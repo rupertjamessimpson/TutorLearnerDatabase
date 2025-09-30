@@ -32,13 +32,11 @@ function Nav() {
             <Link to="/database/tutors" className="sub-nav-button">Tutors</Link>
             <Link to="/database/learners" className="sub-nav-button">Learners</Link>
             <Link to="/database/matches" className="sub-nav-button">Matches</Link>
-            <Link to="/database/users" className="sub-nav-button">Users</Link>
         </div>)}
       {inForms && (
         <div className="sub-nav-container">
             <Link to="/forms/tutor" className="sub-nav-button">Tutor</Link>
             <Link to="/forms/learner" className="sub-nav-button">Learner</Link>
-            <Link to="/forms/user" className="sub-nav-button">User</Link>
         </div>)}
       {inConversation && (
         <div className="sub-nav-container">

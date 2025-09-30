@@ -1,0 +1,287 @@
+/* Database */
+
+.data-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.header {
+  color: #4EC1C0;
+}
+
+.filter-label {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.filters-and-list-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.learner-select-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filterButton {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.list-container {
+  flex-grow: 1;
+  height: 478px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.list .availability-item {
+  list-style-type: none;
+  border-bottom: none;
+  padding: 5px;
+}
+
+.list li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.list li a:visited {
+  color: #007bff;
+}
+
+.filters-and-list-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  padding-left: 20px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Details */
+
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  height: 520px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.info-and-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name-details-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name-details-label {
+  width: 100px;
+  margin: 0;
+  padding-top: 20px;
+  padding-right: 10px;
+}
+
+.contact-details-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.contact-details-label {
+  width: 100px;
+  margin: 0;
+}
+
+.name-details-group p {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 276px;
+  margin: 0;
+  gap: 5px;
+}
+
+.contact-details-group p {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 276px;
+  margin: 0;
+  gap: 5px;
+}
+
+.details-name-container {
+  display: flex;
+  gap: 10px;
+  padding-top: 20px;
+  padding-left: 21px;
+}
+
+.details-contact-container {
+  display: flex;
+  gap: 10px;
+  padding-left: 21px;
+}
+
+.levels-details-label {
+  margin: 0;
+  padding-top: 18px;
+}
+
+.levels-list {
+  list-style-type: none;
+  padding-left: 135px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.availability-list-container {
+  display: flex;
+  justify-content: end;
+}
+
+.availability-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: end;
+}
+
+.availability-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.time-box-container {
+  display: flex;
+  gap: 10px;
+}
+
+.time-box {
+  padding: 3px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  min-width: 80px;
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.match-and-edit-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-message {
+  margin: 0;
+  color: red;
+  display: flex;
+  gap: 10px;
+}
+
+.delete-message p {
+  margin: 0;
+}
+
+/* Matches */
+
+.learner-match-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.matches-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.matches-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.matches-list li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.matches-list li a:visited {
+  color: #007bff;
+}
+
+.match-match-button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+}
