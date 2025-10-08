@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Title from './Title';
-import Nav from './Nav';
+import Title from './components/header/Title';
+import Nav from './components/header/Nav';
 import Tutors from './components/database/tutors'
 import TutorForm from './components/forms/tutors'
 // import TutorDetails from './components/database/tutors/details/index.js';

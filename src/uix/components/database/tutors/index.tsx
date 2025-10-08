@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Tutor from "../../../interfaces/Tutor";
-import { TutorFilters, preferenceKeys, dayKeys } from "../../../interfaces/Filters";
+import Tutor from "../../../../dol/Tutor";
+import { TutorFilters, preferenceKeys, dayKeys } from "../../../../dol/Filters";
 
 import "../index.css";
 

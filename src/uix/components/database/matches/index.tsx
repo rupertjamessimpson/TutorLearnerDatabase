@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Match from "../../../interfaces/Match";
+import Match from "../../../../dol/Match";
 
 import "../index.css";
 
