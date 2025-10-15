@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../index.css"
 import times from "../../../functions/data/times";
 import capitalizeName from "../../../functions/functions/capitalizeName";
 
-import { TutorForm, TutorFormErrors } from "../../../../dol/TutorForm";
-import { dayKeys, preferenceKeys } from "../../../../dol/Filters";
+import "../index.css"
+
+import { TutorForm, TutorFormErrors } from "../../../../DOL/TutorForm";
+import { dayKeys, preferenceKeys } from "../../../../DOL/Filters";
 
 function TutorsForm() {
   const navigate = useNavigate();

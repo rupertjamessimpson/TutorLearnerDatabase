@@ -1,0 +1,106 @@
+{
+  "Tutors": [
+    {
+      "tutor_id": 1,
+      "first_name": "Abigail",
+      "last_name": "Adams",
+      "available": true,
+      "preferences": {
+        "conversation": true,
+        "esl_novice": true,
+        "esl_beginner": true,
+        "esl_intermediate": true,
+        "citizenship": true,
+        "sped_ela": true,
+        "basic_math": true,
+        "hiset_math": true,
+        "basic_reading": true,
+        "hiset_reading": true,
+        "basic_writing": true,
+        "hiset_writing": true
+      },
+      "availability": {
+        "monday": { "start_time": "10:00", "end_time": "14:00" },
+        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
+        "thursday": { "start_time": "10:00", "end_time": "14:00" },
+        "friday": { "start_time": "10:00", "end_time": "14:00" },
+        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+      }
+    },
+    {
+      "tutor_id": 2,
+      "first_name": "Benjamin",
+      "last_name": "Brave",
+      "available": true,
+      "preferences": {
+        "conversation": true,
+        "esl_novice": true,
+        "esl_beginner": true,
+        "esl_intermediate": true,
+        "citizenship": true,
+        "sped_ela": true,
+        "basic_math": true,
+        "hiset_math": true,
+        "basic_reading": true,
+        "hiset_reading": true,
+        "basic_writing": true,
+        "hiset_writing": true
+      },
+      "availability": {
+        "monday": { "start_time": "10:00", "end_time": "14:00" },
+        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
+        "thursday": { "start_time": "10:00", "end_time": "14:00" },
+        "friday": { "start_time": "10:00", "end_time": "14:00" },
+        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+      }
+    }
+  ],
+  "Learners": [
+    {
+      "learner_id": 1,
+      "first_name": "Avery",
+      "last_name": "Allen",
+      "available": true,
+      "conversation": 1,
+      "level": "esl_beginner",
+      "availability": {
+        "monday": { "start_time": "10:00", "end_time": "14:00" },
+        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
+        "thursday": { "start_time": "10:00", "end_time": "14:00" },
+        "friday": { "start_time": "10:00", "end_time": "14:00" },
+        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+      }
+    },
+    {
+      "learner_id": 2,
+      "first_name": "Bonnie",
+      "last_name": "Bowler",
+      "available": true,
+      "conversation": 1,
+      "level": "esl_beginner",
+      "availability": {
+        "monday": { "start_time": "10:00", "end_time": "14:00" },
+        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
+        "thursday": { "start_time": "10:00", "end_time": "14:00" },
+        "friday": { "start_time": "10:00", "end_time": "14:00" },
+        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+      }
+    }
+  ],
+  "Matches": [
+    {
+      "match_id": 1,
+      "tutor_id": 1,
+      "learner_id": 1
+    },
+    {
+      "match_id": 2,
+      "tutor_id": 2,
+      "learner_id": 2
+    }
+  ]
+}

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../functions/data/times";
 import capitalizeName from "../../../functions/functions/capitalizeName";
 
-import { LearnerForm, LearnerFormErrors } from "../../../../dol/LearnerForm";
-import { dayKeys } from "../../../../dol/Filters";
+import { LearnerForm, LearnerFormErrors } from "../../../../DOL/LearnerForm";
+import { dayKeys } from "../../../../DOL/Filters";
 
 import "../index.css";
 
