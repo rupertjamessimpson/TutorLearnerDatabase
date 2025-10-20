@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Title from './components/header/Title';
-import Nav from './components/header/Nav';
-import Tutors from './components/database/tutors'
-import TutorForm from './components/forms/tutors'
-// import TutorDetails from './components/database/tutors/details/index.js';
-// import TutorEdit from './components/database/tutors/edit/index.js';
-// import TutorMatch from './components/database/tutors/match/index.js';
-import Matches from './components/database/matches'
-import Learners from './components/database/learners'
-import LearnerForm from './components/forms/learners'
-// import LearnerDetails from './components/database/learners/details/index.js';
-// import LearnerEdit from './components/database/learners/edit/index.js';
-// import Conversation from './components/conversation/index.js';
+import Title from "./UIX/components/header/Title";
+import Nav from './UIX/components/header/Nav';
+import Tutors from './UIX/components/database/tutors'
+import TutorForm from './UIX/components/forms/tutors'
+// import TutorDetails from './UIX/components/database/tutors/details/index.js';
+// import TutorEdit from './UIX/components/database/tutors/edit/index.js';
+// import TutorMatch from './UIX/components/database/tutors/match/index.js';
+import Matches from './UIX/components/database/matches'
+import Learners from './UIX/components/database/learners'
+import LearnerForm from './UIX/components/forms/learners'
+// import LearnerDetails from './UIX/components/database/learners/details/index.js';
+// import LearnerEdit from './UIX/components/database/learners/edit/index.js';
+// import Conversation from './UIX/components/conversation/index.js';
 
 function App() {
   return (
