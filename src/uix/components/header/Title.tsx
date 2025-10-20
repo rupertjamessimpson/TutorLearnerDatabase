@@ -4,7 +4,7 @@ import '../../../App.css';
 function Title() {
   return (
     <div className="title-container">
-      <h2 className="title-text">Tutor Learner Database</h2>
+      <h2 className="title-text">Tutor Learner Databaseee</h2>
     </div>
   );
 }
