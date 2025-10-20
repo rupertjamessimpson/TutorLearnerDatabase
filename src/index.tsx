@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './UIX/index.css';
+import './index.css';
 import App from './UIX/App';
 import reportWebVitals from './UIX/reportWebVitals';
 
