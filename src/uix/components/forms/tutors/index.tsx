@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import times from "../../../functions/data/times";
-import capitalizeName from "../../../functions/functions/capitalizeName";
+import times from "../../../objects/times";
+import capitalizeName from "../../../functions/capitalizeName";
+
+import { Tutor } from "../../../../DOL/Tutor";
+import { TutorFormErrors } from "../../../objects/FormErrors";
+import { dayKeys, preferenceKeys } from "../../../objects/Filters";
 
 import "../index.css"
 
-import { TutorForm, TutorFormErrors } from "../../../../DOL/TutorForm";
-import { dayKeys, preferenceKeys } from "../../../../DOL/Filters";
+type TutorForm = Omit<Tutor, "tutor_id" >
 
 function TutorsForm() {
   const navigate = useNavigate();

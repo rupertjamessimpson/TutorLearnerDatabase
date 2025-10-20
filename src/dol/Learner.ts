@@ -1,14 +1,25 @@
-export default interface Learner {
+export interface Learner {
   learner_id: number;
   first_name: string;
   last_name: string;
   available: boolean;
+  phone: string;
+  email: string;
   level: string;
   conversation: number;
-  monday: boolean;
-  tuesday: boolean;
-  wednesday: boolean;
-  thursday: boolean;
-  friday: boolean;
-  saturday: boolean;
+  availability: Availability;
+}
+
+export interface Availability {
+  monday: DayAvailability;
+  tuesday: DayAvailability;
+  wednesday: DayAvailability;
+  thursday: DayAvailability;
+  friday: DayAvailability;
+  saturday: DayAvailability;
+}
+
+export interface DayAvailability {
+  start_time: string;
+  end_time: string;
 }

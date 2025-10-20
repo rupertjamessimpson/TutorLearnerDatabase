@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Learner from "../../../../DOL/Learner";
-import { LearnerFilters, levelKeys, dayKeys } from "../../../../DOL/Filters";
+import { Learner } from "../../../../DOL/Learner";
+import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
 
 import "../index.css";
 
@@ -60,13 +60,15 @@ function Learners() {
       const matchesAvailability = filters.available ? learner.available : true;
   
       const matchesNotInClass = filters.not_in_class ? learner.conversation === null : true;
-  
+
       const matchesLevel = levelKeys.some((key) => {
         return filters[key] && learner.level === key;
       });
 
       const matchDaysAvailable = dayKeys.every((day) => {
-        return filters[day] ? learner[day] : true;
+        if (!filters[day]) return true;
+        const dayAvail = learner.availability[day as keyof typeof learner.availability]
+        return !!dayAvail.start_time || !!dayAvail.end_time;
       });
 
       const anyLevelFilterSelected = levelKeys.some((key) => filters[key]);

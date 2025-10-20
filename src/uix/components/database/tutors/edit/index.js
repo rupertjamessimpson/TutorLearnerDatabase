@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import times from "../../../../functions/data/times";
-import capitalizeName from "../../../../functions/functions/capitalizeName";
-import convertTime from "../../../../functions/functions/convertTime";
+import times from "../../../../objects/times";
+import capitalizeName from "../../../../functions/capitalizeName";
+import convertTime from "../../../../functions/convertTime";
 
 function TutorEdit() {
   const { id } = useParams();

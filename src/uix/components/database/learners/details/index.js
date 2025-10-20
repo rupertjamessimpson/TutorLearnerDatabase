@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import convertTime from "../../../../functions/functions/convertTime";
+import convertTime from "../../../../functions/convertTime";
 
 function LearnerDetails() {
   const { id } = useParams();

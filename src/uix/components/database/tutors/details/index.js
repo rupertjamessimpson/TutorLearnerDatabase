@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import convertTime from "../../../../functions/functions/convertTime";
+import convertTime from "../../../../functions/convertTime";
 
 function TutorDetails() {
   const { id } = useParams();

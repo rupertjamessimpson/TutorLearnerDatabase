@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import times from "../../../functions/data/times";
-import capitalizeName from "../../../functions/functions/capitalizeName";
+import times from "../../../objects/times";
+import capitalizeName from "../../../functions/capitalizeName";
 
-import { LearnerForm, LearnerFormErrors } from "../../../../DOL/LearnerForm";
-import { dayKeys } from "../../../../DOL/Filters";
+import { Learner } from "../../../../DOL/Learner";
+import { LearnerFormErrors } from "../../../objects/FormErrors";
+import { dayKeys } from "../../../objects/Filters";
 
 import "../index.css";
+
+type LearnerForm = Omit<Learner, "learner_id" | "available" | "conversation">;
 
 function LearnersForm() {
   const navigate = useNavigate();

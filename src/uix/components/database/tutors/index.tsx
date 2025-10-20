@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Tutor from "../../../../DOL/Tutor";
-import { TutorFilters, preferenceKeys, dayKeys } from "../../../../DOL/Filters";
+import { Tutor, Preferences, Availability } from "../../../../DOL/Tutor";
+import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
 
 import "../index.css";
 
@@ -60,11 +60,13 @@ function Tutors() {
       const matchesAvailability = filters.available ? tutor.available : true;
 
       const matchesPreferences = preferenceKeys.every((key) => {
-        return filters[key] ? tutor[key] : true;
+        const prefKey = key as keyof Preferences;
+        return filters[prefKey] ? tutor.preferences[prefKey] : true;
       });
 
       const matchesDays = dayKeys.every((day) => {
-        return filters[day] ? tutor[day] : true;
+        const dayKey = day as keyof Availability;
+        return filters[dayKey] ? tutor.availability[dayKey].start_time !== "" : true;
       });
 
       return (

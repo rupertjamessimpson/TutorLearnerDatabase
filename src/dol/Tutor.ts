@@ -1,8 +1,15 @@
-export default interface Tutor {
-  tutor_id: number;
+export interface Tutor {
+  tutor_id: string;
   first_name: string;
   last_name: string;
+  phone: string;
+  email: string;
   available: boolean;
+  preferences: Preferences;
+  availability: Availability;
+}
+
+export interface Preferences {
   conversation: boolean;
   esl_novice: boolean;
   esl_beginner: boolean;
@@ -15,10 +22,18 @@ export default interface Tutor {
   hiset_reading: boolean;
   basic_writing: boolean;
   hiset_writing: boolean;
-  monday: boolean;
-  tuesday: boolean;
-  wednesday: boolean;
-  thursday: boolean;
-  friday: boolean;
-  saturday: boolean;
+}
+
+export interface Availability {
+  monday: DayAvailability;
+  tuesday: DayAvailability;
+  wednesday: DayAvailability;
+  thursday: DayAvailability;
+  friday: DayAvailability;
+  saturday: DayAvailability;
+}
+
+export interface DayAvailability {
+  start_time: string;
+  end_time: string;
 }
