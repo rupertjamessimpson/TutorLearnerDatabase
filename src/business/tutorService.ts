@@ -1,8 +1,8 @@
-import { getTutors } from "../dal/tutors";
+// import { getTutors } from "../dal/tutors";
 
-export const TutorService = {
-  getAllTutors: () => {
-    const tutors = getTutors();
-    return tutors;
-  },
-};
+// export const TutorService = {
+//   getAllTutors: () => {
+//     const tutors = getTutors();
+//     return tutors;
+//   },
+// };
