@@ -1,4 +1,4 @@
-import { getMatches } from "../DAL/matchesDAL";
+import { getMatches } from "../dal/matchesDAL";
 
 export const MatchesService = {
   getAllMatches: () => {

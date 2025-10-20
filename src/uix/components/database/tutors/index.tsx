@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Tutor, Preferences, Availability } from "../../../../DOL/Tutor";
+import { Tutor, Preferences, Availability } from "../../../../dol/Tutor";
 import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
 
 import "../index.css";

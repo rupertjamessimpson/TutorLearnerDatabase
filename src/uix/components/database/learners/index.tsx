@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Learner } from "../../../../DOL/Learner";
+import { Learner } from "../../../../dol/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
 
 import "../index.css";

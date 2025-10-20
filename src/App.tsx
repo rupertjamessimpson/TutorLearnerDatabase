@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Title from "./UIX/components/header/Title";
-import Nav from './UIX/components/header/Nav';
-import Tutors from './UIX/components/database/tutors'
-import TutorForm from './UIX/components/forms/tutors'
+import Title from "./uix/components/header/Title";
+import Nav from './uix/components/header/Nav';
+import Tutors from './uix/components/database/tutors'
+import TutorForm from './uix/components/forms/tutors'
 // import TutorDetails from './UIX/components/database/tutors/details/index.js';
 // import TutorEdit from './UIX/components/database/tutors/edit/index.js';
 // import TutorMatch from './UIX/components/database/tutors/match/index.js';
-import Matches from './UIX/components/database/matches'
-import Learners from './UIX/components/database/learners'
-import LearnerForm from './UIX/components/forms/learners'
+import Matches from './uix/components/database/matches'
+import Learners from './uix/components/database/learners'
+import LearnerForm from './uix/components/forms/learners'
 // import LearnerDetails from './UIX/components/database/learners/details/index.js';
 // import LearnerEdit from './UIX/components/database/learners/edit/index.js';
 // import Conversation from './UIX/components/conversation/index.js';

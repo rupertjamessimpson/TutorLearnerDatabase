@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
-import { Learner } from "../../../../DOL/Learner";
+import { Learner } from "../../../../dol/Learner";
 import { LearnerFormErrors } from "../../../objects/FormErrors";
 import { dayKeys } from "../../../objects/Filters";
 

@@ -1,4 +1,4 @@
-import { getTutors } from "../DAL/tutorsDAL";
+import { getTutors } from "../dal/tutorsDAL";
 
 export const TutorService = {
   getAllTutors: () => {
