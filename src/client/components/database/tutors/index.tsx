@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Tutor, Preferences, Availability } from "../../../../server/data_objects/Tutor";
+import { Tutor, Preferences, Availability } from "../../../../business/data_objects/Tutor";
 import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
+import { fetchTutors } from "../../../../business/data_access/tutorService";
 
 import "../index.css";
 
@@ -32,12 +33,17 @@ function Tutors() {
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5002/api/tutors/`)
-  //     .then((response) => response.json())
-  //     .then((data) => setTutors(data))
-  //     .catch((err) => console.error(err));
-  // }, []);
+  useEffect(() => {
+    const getTutors = async () => {
+      try {
+        const data = await fetchTutors();
+        setTutors(data);
+      } catch (err) {
+        console.error("Failed to fetch tutors:", err);
+      }
+    };
+    getTutors();
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

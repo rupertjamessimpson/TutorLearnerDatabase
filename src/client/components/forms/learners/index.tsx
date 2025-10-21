@@ -3,19 +3,20 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
-import { Learner } from "../../../../server/data_objects/Learner";
+import { Learner } from "../../../../business/data_objects/Learner";
 import { LearnerFormErrors } from "../../../objects/FormErrors";
 import { dayKeys } from "../../../objects/Filters";
 
 import "../index.css";
 
-type LearnerForm = Omit<Learner, "learner_id" | "available" | "conversation">;
+type LearnerForm = Omit<Learner, "learner_id" | "conversation">;
 
 function LearnersForm() {
   const navigate = useNavigate();
   const [learner, setLearner] = useState<LearnerForm>({
     first_name: "",
     last_name: "",
+    available: true,
     phone: "",
     email: "",
     level: "",

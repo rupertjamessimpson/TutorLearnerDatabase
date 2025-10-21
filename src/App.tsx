@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Title from "./client/components/header/Title";
 import Nav from './client/components/header/Nav';
-import Tutors from './client/components/database/tutors'
-import TutorForm from './client/components/forms/tutors'
+import Tutors from './client/components/database/tutors';
+import TutorForm from './client/components/forms/tutors';
 // import TutorDetails from './UIX/components/database/tutors/details/index.js';
 // import TutorEdit from './UIX/components/database/tutors/edit/index.js';
 // import TutorMatch from './UIX/components/database/tutors/match/index.js';
-import Matches from './client/components/database/matches'
-import Learners from './client/components/database/learners'
-import LearnerForm from './client/components/forms/learners'
+import Matches from './client/components/database/matches';
+import Learners from './client/components/database/learners';
+import LearnerForm from './client/components/forms/learners';
 // import LearnerDetails from './UIX/components/database/learners/details/index.js';
 // import LearnerEdit from './UIX/components/database/learners/edit/index.js';
 // import Conversation from './UIX/components/conversation/index.js';

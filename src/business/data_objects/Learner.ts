@@ -1,12 +1,12 @@
 export interface Learner {
-  learner_id: number;
+  learner_id?: string;
   first_name: string;
   last_name: string;
   available: boolean;
   phone: string;
   email: string;
   level: string;
-  conversation: number;
+  conversation: string;
   availability: Availability;
 }
 

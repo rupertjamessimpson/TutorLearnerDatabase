@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Learner } from "../../../../server/data_objects/Learner";
+import { Learner } from "../../../../business/data_objects/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
+import { fetchLearners } from "../../../../business/data_access/learnerService";
 
 import "../index.css";
 
@@ -32,12 +33,17 @@ function Learners() {
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5002/api/learners")
-  //     .then(response => response.json())
-  //     .then(data => {setLearners(data)})
-  //     .catch(err => {console.log(err)});
-  // }, []);
+  useEffect(() => {
+    const getLearners = async () => {
+      try {
+        const data = await fetchLearners();
+        setLearners(data);
+      } catch (err) {
+        console.error("Failed to fetch learners:", err);
+      }
+    };
+    getLearners();
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -82,7 +88,7 @@ function Learners() {
       return matchesSearchQuery && matchesFilters;
     });
   
-    return filtered.sort((a, b) => a.learner_id - b.learner_id);
+    return filtered;
   };
 
   const filteredLearners = applyFilters();
