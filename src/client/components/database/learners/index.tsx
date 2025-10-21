@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Tutor, Preferences, Availability } from "../../../../dol/Tutor";
-import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
+import { Learner } from "../../../../server/data_objects/Learner";
+import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
 
 import "../index.css";
 
-function Tutors() {
-  const [tutors, setTutors] = useState<Tutor[]>([]);
+function Learners() {
+  const [learners, setLearners] = useState<Learner[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filters, setFilters] = useState<TutorFilters>({
+  const [filters, setFilters] = useState<LearnerFilters>({
     available: false,
-    conversation: false,
+    not_in_class: false,
     esl_novice: false,
     esl_beginner: false,
     esl_intermediate: false,
@@ -33,10 +33,10 @@ function Tutors() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5002/api/tutors/`)
-  //     .then((response) => response.json())
-  //     .then((data) => setTutors(data))
-  //     .catch((err) => console.error(err));
+  //   fetch("http://localhost:5002/api/learners")
+  //     .then(response => response.json())
+  //     .then(data => {setLearners(data)})
+  //     .catch(err => {console.log(err)});
   // }, []);
 
   const toggleSidebar = () => {
@@ -52,41 +52,48 @@ function Tutors() {
   };
 
   const applyFilters = () => {
-    return tutors.filter((tutor) => {
-      const matchesSearchQuery = `${tutor.first_name} ${tutor.last_name}`
+    const filtered = learners.filter(learner => {
+      const matchesSearchQuery = `${learner.first_name} ${learner.last_name}`
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
+  
+      const matchesAvailability = filters.available ? learner.available : true;
+  
+      const matchesNotInClass = filters.not_in_class ? learner.conversation === null : true;
 
-      const matchesAvailability = filters.available ? tutor.available : true;
-
-      const matchesPreferences = preferenceKeys.every((key) => {
-        const prefKey = key as keyof Preferences;
-        return filters[prefKey] ? tutor.preferences[prefKey] : true;
+      const matchesLevel = levelKeys.some((key) => {
+        return filters[key] && learner.level === key;
       });
 
-      const matchesDays = dayKeys.every((day) => {
-        const dayKey = day as keyof Availability;
-        return filters[dayKey] ? tutor.availability[dayKey].start_time !== "" : true;
+      const matchDaysAvailable = dayKeys.every((day) => {
+        if (!filters[day]) return true;
+        const dayAvail = learner.availability[day as keyof typeof learner.availability]
+        return !!dayAvail.start_time || !!dayAvail.end_time;
       });
 
-      return (
-        matchesSearchQuery &&
-        matchesAvailability &&
-        matchesPreferences &&
-        matchesDays
-      );
+      const anyLevelFilterSelected = levelKeys.some((key) => filters[key]);
+      const anyDayFilterSelected = dayKeys.some((day) => filters[day]);
+  
+      const matchesFilters =
+        (!anyLevelFilterSelected || matchesLevel) &&
+        (!anyDayFilterSelected || matchDaysAvailable) &&
+        matchesAvailability && matchesNotInClass;
+  
+      return matchesSearchQuery && matchesFilters;
     });
+  
+    return filtered.sort((a, b) => a.learner_id - b.learner_id);
   };
 
-  const filteredTutors = applyFilters();
+  const filteredLearners = applyFilters();
 
   return (
     <div className="data-container">
-      <h3 className="header">Tutors</h3>
+      <h3 className="header">Learners</h3>
       <div className="search-filter-container">
         <input
           type="text"
-          placeholder="Search Tutors"
+          placeholder="Search Learners"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -97,10 +104,10 @@ function Tutors() {
       <div className="filters-and-list-container">
         <div className="list-container">
           <ul className="list">
-            {filteredTutors.map(tutor => (
-              <li key={tutor.tutor_id}>
-                <Link to={`/database/tutors/${tutor.tutor_id}`}>
-                  {tutor.first_name} {tutor.last_name}
+            {filteredLearners.map(learner => (
+              <li key={learner.learner_id}>
+                <Link to={`/database/learners/${learner.learner_id}`}>
+                  {learner.first_name} {learner.last_name}
                 </Link>
               </li>
             ))}
@@ -119,9 +126,18 @@ function Tutors() {
                   />available
                 </label>
               </div>
-              <h3 className="filter-label">Preferences</h3>
-              <h3 className="filter-label">Preferences</h3>
-              {preferenceKeys.map((preference) => (
+              <div key="not_in_class">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="not_in_class"
+                    checked={filters.not_in_class}
+                    onChange={handleFilterChange}
+                  />not in class
+                </label>
+              </div>
+              <h3 className="filter-label">Level</h3>
+              {levelKeys.map((preference) => (
                 <div key={preference}>
                   <label>
                     <input
@@ -130,7 +146,7 @@ function Tutors() {
                       checked={filters[preference]}
                       onChange={handleFilterChange}
                     />
-                    {preference.replace("_", " ")}
+                    {preference.replace('_', ' ')}
                   </label>
                 </div>
               ))}
@@ -156,4 +172,4 @@ function Tutors() {
   );
 }
 
-export default Tutors;
+export default Learners;

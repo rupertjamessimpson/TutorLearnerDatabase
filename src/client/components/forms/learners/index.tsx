@@ -3,36 +3,22 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
-import { Tutor } from "../../../../dol/Tutor";
-import { TutorFormErrors } from "../../../objects/FormErrors";
-import { dayKeys, preferenceKeys } from "../../../objects/Filters";
+import { Learner } from "../../../../server/data_objects/Learner";
+import { LearnerFormErrors } from "../../../objects/FormErrors";
+import { dayKeys } from "../../../objects/Filters";
 
-import "../index.css"
+import "../index.css";
 
-type TutorForm = Omit<Tutor, "tutor_id" >
+type LearnerForm = Omit<Learner, "learner_id" | "available" | "conversation">;
 
-function TutorsForm() {
+function LearnersForm() {
   const navigate = useNavigate();
-  const [tutor, setTutor] = useState<TutorForm>({
+  const [learner, setLearner] = useState<LearnerForm>({
     first_name: "",
     last_name: "",
     phone: "",
     email: "",
-    available: true,
-    preferences: {
-      conversation: false,
-      esl_novice: false,
-      esl_beginner: false,
-      esl_intermediate: false,
-      citizenship: false,
-      sped_ela: false,
-      basic_math: false,
-      hiset_math: false,
-      basic_reading: false,
-      hiset_reading: false,
-      basic_writing: false,
-      hiset_writing: false
-    },
+    level: "",
     availability: {
       monday: { start_time: "", end_time: "" },
       tuesday: { start_time: "", end_time: "" },
@@ -42,62 +28,54 @@ function TutorsForm() {
       saturday: { start_time: "", end_time: "" }
     }
   });
-  const [errors, setErrors] = useState<TutorFormErrors>({});
+  const [errors, setErrors] = useState<LearnerFormErrors>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    const checked = (e.currentTarget as HTMLInputElement).checked;
-
-    if (type === "text" || type === "email") {
-      setTutor((prevTutor) => ({
-        ...prevTutor,
-        [name]: value,
+  
+    if (type === 'text' || type === 'email') {
+      setLearner((prevLearner) => ({
+        ...prevLearner,
+        [name]: value
       }));
-    } else if (type === "checkbox") {
-      const [category, field] = name.split(".");
-
-      if (category === "preferences") {
-        setTutor((prevTutor) => ({
-          ...prevTutor,
-          preferences: {
-            ...prevTutor.preferences,
-            [field as keyof TutorForm["preferences"]]: checked,
-          },
+    } else if (type === 'checkbox') {
+      if (name === "level") {
+        setLearner((prevLearner) => ({
+          ...prevLearner,
+          level: value
         }));
       }
     } else {
-      const [day, timeType] = name.split(".");
-      setTutor((prevTutor) => ({
-        ...prevTutor,
+      const [day, timeType] = name.split('.');
+      setLearner((prevLearner) => ({
+        ...prevLearner,
         availability: {
-          ...prevTutor.availability,
-          [day as keyof TutorForm["availability"]]: {
-            ...prevTutor.availability[day as keyof TutorForm["availability"]],
-            [timeType]: value,
-          },
-        },
+          ...prevLearner.availability,
+          [day as keyof LearnerForm["availability"]]: {
+            ...prevLearner.availability[day as keyof LearnerForm["availability"]],
+            [timeType]: value
+          }
+        }
       }));
     }
   };
 
   const validateForm = () => {
-    const newErrors: TutorFormErrors = {};
+    const newErrors: LearnerFormErrors = {};
   
-    if (!tutor.first_name.trim()) newErrors.first_name = "First name is required";
-    if (!tutor.last_name.trim()) newErrors.last_name = "Last name is required";
-    if (!tutor.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!tutor.email.trim()) newErrors.email = "Email is required";
+    if (!learner.first_name.trim()) newErrors.first_name = "First name is required";
+    if (!learner.last_name.trim()) newErrors.last_name = "Last name is required";
+    if (!learner.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!learner.email.trim()) newErrors.email = "Email is required";
+    if (!learner.level.trim()) newErrors.level = "Level is required";
   
     const phonePattern = /^[0-9]{10}$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (tutor.phone && !phonePattern.test(tutor.phone)) newErrors.phone = "Phone number is invalid";
-    if (tutor.email && !emailPattern.test(tutor.email)) newErrors.email = "Email is invalid";
-  
-    const hasCheckedPreference = Object.values(tutor.preferences).some(value => value);
-    if (!hasCheckedPreference) newErrors.preferences = "At least one preference must be selected";
+    if (learner.phone && !phonePattern.test(learner.phone)) newErrors.phone = "Phone number is invalid";
+    if (learner.email && !emailPattern.test(learner.email)) newErrors.email = "Email is invalid";
   
     dayKeys.forEach((day) => {
-      const { start_time, end_time } = tutor.availability[day];
+      const { start_time, end_time } = learner.availability[day];
 
       if (start_time && !end_time) {
         newErrors.availability = "End time is required if a start time is selected";
@@ -114,25 +92,25 @@ function TutorsForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
-    const capitalizedTutor = {
-      ...tutor,
-      first_name: capitalizeName(tutor.first_name),
-      last_name: capitalizeName(tutor.last_name)
+    const capitalizedLearner = {
+      ...learner,
+      first_name: capitalizeName(learner.first_name),
+      last_name: capitalizeName(learner.last_name)
     };
     if (validateForm()) {
       // try {
-      //   const response = await fetch('http://localhost:5002/api/tutors/', {
+      //   const response = await fetch('http://localhost:5002/api/learners/', {
       //     method: 'POST',
       //     headers: {
       //       'Content-Type': 'application/json',
       //     },
-      //     body: JSON.stringify(capitalizedTutor),
+      //     body: JSON.stringify(capitalizedLearner),
       //   });
   
       //   if (response.ok) {
-      //     navigate(`/database/tutors`);
+      //     navigate(`/database/learners`);
       //   } else {
       //     const data = await response.json();
       //     console.error("Server error:", data);
@@ -141,12 +119,12 @@ function TutorsForm() {
       //   console.error("Network error:", error);
       // }
     }
-  };  
+  };
 
   return (
     <div className="data-container">
       <div className="header-and-errors-container">
-        <h3 className="header">Add a Tutor</h3>
+        <h3 className="header">Add a Learner</h3>
         {Object.keys(errors).length > 0 && (
           <ul className="error-list">
             {Object.entries(errors).map(([field, error]) => (
@@ -166,7 +144,7 @@ function TutorsForm() {
                   id="first_name"
                   name="first_name"
                   placeholder="First Name"
-                  value={tutor.first_name}
+                  value={learner.first_name}
                   onChange={handleChange}
                 />
                 <input
@@ -174,7 +152,7 @@ function TutorsForm() {
                   id="last_name"
                   name="last_name"
                   placeholder="Last Name"
-                  value={tutor.last_name}
+                  value={learner.last_name}
                   onChange={handleChange}
                 />
               </div>
@@ -187,7 +165,7 @@ function TutorsForm() {
                   id="email"
                   name="email"
                   placeholder="Email"
-                  value={tutor.email}
+                  value={learner.email}
                   onChange={handleChange}
                 />
                 <input
@@ -195,23 +173,34 @@ function TutorsForm() {
                   id="phone"
                   name="phone"
                   placeholder="Phone Number"
-                  value={tutor.phone}
+                  value={learner.phone}
                   onChange={handleChange}
                 />
               </div>
             </div>
-            <h4 className="preferences-label">Preferences</h4>
+            <h4 className="preferences-label">Level</h4>
             <div className="level-container">
-              {preferenceKeys.map((preference) => (
-                <div key={preference}>
+              {["esl_novice", 
+                "esl_beginner", 
+                "esl_intermediate",
+                "citizenship", 
+                "sped_ela", 
+                "basic_math", 
+                "hiset_math", 
+                "basic_reading", 
+                "hiset_reading", 
+                "basic_writing", 
+                "hiset_writing"].map((level) => (
+                <div key={level}>
                   <input
                     type="checkbox"
-                    id={preference}
-                    name={`preferences.${preference}`}
-                    checked={tutor.preferences[preference]}
+                    id={level}
+                    name="level"
+                    value={level}
+                    checked={learner.level === level}
                     onChange={handleChange}
                   />
-                  <label htmlFor={preference}>{preference.replace('_', ' ').toLowerCase()}</label>
+                  <label htmlFor={level}>{level.replace('_', ' ').toLowerCase()}</label>
                 </div>
               ))}
             </div>
@@ -236,7 +225,7 @@ function TutorsForm() {
                     <select
                       id={`${day}.start_time`}
                       name={`${day}.start_time`}
-                      value={tutor.availability[day].start_time}
+                      value={learner.availability[day].start_time}
                       onChange={handleChange}
                     >
                       <option value="">Start Time</option>
@@ -252,7 +241,7 @@ function TutorsForm() {
                     <select
                       id={`${day}.end_time`}
                       name={`${day}.end_time`}
-                      value={tutor.availability[day].end_time}
+                      value={learner.availability[day].end_time}
                       onChange={handleChange}
                     >
                       <option value="">End Time</option>
@@ -276,4 +265,4 @@ function TutorsForm() {
   );
 }
 
-export default TutorsForm;
+export default LearnersForm;
