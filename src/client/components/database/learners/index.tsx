@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Learner } from "../../../../business/data_objects/Learner";
+import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
-import { fetchLearners } from "../../../../business/data_access/learnerService";
+import { fetchLearners } from "../../../../data/data_access/learnerService";
 
 import "../index.css";
 
@@ -111,8 +111,8 @@ function Learners() {
         <div className="list-container">
           <ul className="list">
             {filteredLearners.map(learner => (
-              <li key={learner.learner_id}>
-                <Link to={`/database/learners/${learner.learner_id}`}>
+              <li key={learner.id}>
+                <Link to={`/database/learners/${learner.id}`}>
                   {learner.first_name} {learner.last_name}
                 </Link>
               </li>

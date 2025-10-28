@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
+import { Learner } from "../../../data/data_objects/Learner";
 import "./index.css";
 
-function Conversation() {
+function Class() {
   const location = useLocation();
   const pathParts = location.pathname.split("/");
   const id = pathParts[pathParts.length - 1];
-  const [learners, setLearners] = useState([]);
+  const [learners, setLearners] = useState<Learner[]>([]);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-  useEffect(() => {
-    fetch("http://localhost:5002/api/learners")
-      .then((response) => response.json())
-      .then((data) => setLearners(data))
-      .catch((err) => console.error('Error fetching learners:', err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:5002/api/learners")
+  //     .then((response) => response.json())
+  //     .then((data) => setLearners(data))
+  //     .catch((err) => console.error('Error fetching learners:', err));
+  // }, []);
 
   const toggleSelect = () => {
     setIsSelectOpen(!isSelectOpen);
   };
 
-  const handleSelectChange = (event) => {
-    const learnerId = event.target.value;
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const learnerId = e.target.value;
   
     fetch('http://localhost:5002/api/learners/update-conversation', {
       method: 'PUT',
@@ -38,7 +39,7 @@ function Conversation() {
   
         setLearners((prevLearners) =>
           prevLearners.map(learner =>
-            learner.learner_id === updatedLearner.learner_id
+            learner.id === updatedLearner.id
               ? updatedLearner
               : learner
           )
@@ -47,7 +48,7 @@ function Conversation() {
       .catch((err) => console.error('Error updating learner:', err));
   };
 
-  const removeLearner = (learnerId) => {
+  const removeLearner = (learnerId: string) => {
     fetch('http://localhost:5002/api/learners/remove-conversation', {
       method: 'PUT',
       headers: {
@@ -61,7 +62,7 @@ function Conversation() {
   
         setLearners((prevLearners) =>
           prevLearners.map(learner =>
-            learner.learner_id === updatedLearner.learner_id
+            learner.id === updatedLearner.id
               ? updatedLearner
               : learner
           )
@@ -71,25 +72,25 @@ function Conversation() {
   };
 
   const filterLearners = () => {
-    return learners.filter(learner => learner.conversation === parseInt(id));
+    return learners.filter(learner => learner.conversation === id);
   };
 
   const filteredLearners = filterLearners();
 
   return (
     <div className="data-container">
-      <h3 className="header">{"Conversation " + id}</h3>
+      <h3 className="header">{"Class " + id}</h3>
       <div className="add-container">
         <button onClick={toggleSelect}>Add Learner</button>
         {isSelectOpen && (
           <div>
-            <select onChange={handleSelectChange}>
+            <select onChange={(handleSelectChange)}>
               <option value="">Select Learner</option>
               {learners
                 .slice()
                 .sort((a, b) => a.first_name.localeCompare(b.first_name))
                 .map(learner => (
-                  <option key={learner.learner_id} value={learner.learner_id}>
+                  <option key={learner.id} value={learner.id}>
                     {learner.first_name} {learner.last_name}
                   </option>
                 ))}
@@ -101,12 +102,12 @@ function Conversation() {
         <div className="list-container">
           <ul className="conversation-list">
             {filteredLearners.map(learner => (
-              <li key={learner.learner_id} className="learner-item">
-                <Link to={`/database/learners/${learner.learner_id}`}>
+              <li key={learner.id} className="learner-item">
+                <Link to={`/database/learners/${learner.id}`}>
                   {learner.first_name} {learner.last_name}
                 </Link>
                 <button
-                  onClick={() => removeLearner(learner.learner_id)}
+                  onClick={() => removeLearner(learner.id)}
                   className="remove-button">Remove
                 </button>
               </li>
@@ -118,4 +119,4 @@ function Conversation() {
   );
 }
 
-export default Conversation;
+export default Class;

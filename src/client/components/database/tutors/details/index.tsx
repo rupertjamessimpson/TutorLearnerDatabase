@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
+import { Tutor } from "../../../../../data/data_objects/Tutor";
+import { fetchTutorById } from "../../../../../data/data_access/tutorService";
+
 function TutorDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [tutorData, setTutorData] = useState({});
+  const [tutor, setTutor] = useState<Tutor | null>(null);
   const [isDeleteMessageOpen, setIsDeleteMessageOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/api/tutors/${id}`)
-      .then((response) => response.json())
-      .then((data) => setTutorData(data))
-      .catch((err) => console.error('Error fetching tutor:', err));
+    if (!id) return;
+    
+    fetchTutorById(id)
+      .then((data) => setTutor(data))
+      .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
 
   const toggleDeleteMessage = () => {
@@ -23,29 +27,27 @@ function TutorDetails() {
     }
   };
 
-  const handleDelete = () => {
-    fetch(`http://localhost:5002/api/tutors/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to delete tutor');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data.message);
-        navigate('/database/tutors');
-      })
-      .catch((error) => {
-        console.error('Error deleting tutor:', error);
-      });
-  };
-
-  const { tutor, preferences, availability } = tutorData;
+  // const handleDelete = () => {
+  //   fetch(`http://localhost:5002/api/tutors/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error('Failed to delete tutor');
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data.message);
+  //       navigate('/database/tutors');
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error deleting tutor:', error);
+  //     });
+  // };
 
   if (!tutor) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -73,33 +75,37 @@ function TutorDetails() {
                   </div>
                 </div>
               </div>
+              <div className="gender-details-group">
+                <h4 className="gender-details-label">Gender</h4>
+                <div className="info-container">
+                  <div className="details-gender-container">
+                    <p>{tutor.gender}</p>
+                  </div>
+                </div>
+              </div>
               <h4 className="levels-details-label">Preferences</h4>
               <div className="levels-list-container">
                 <ul className="levels-list">
-                  {preferences && Object.entries(preferences).slice(2).map(([key, value]) => {
+                  {tutor.preferences && Object.entries(tutor.preferences).slice(2).map(([key, value]) => {
                     if (value) {
-                      return (<li key={key}>{key.replace('_', ' ')}</li>);
-                    } else {
-                      return null;
+                      return <li key={key}>{key.replace('_', ' ')}</li>;
                     }
+                    return null;
                   })}
                 </ul>
               </div>
               <h4 className="details-label">Availability</h4>
               <div className="availability-list-container">
                 <ul className="availability-list">
-                  {availability &&
-                    availability.map((slot, index) => (
-                      <li key={index}>
-                        <span className="day-label">
-                          {slot.day.charAt(0).toUpperCase() + slot.day.slice(1)}
-                        </span>
-                        <div className="time-box-container">
-                          <div className="time-box">{convertTime(slot.start_time)}</div>
-                          <div className="time-box">{convertTime(slot.end_time)}</div>
-                        </div>
-                      </li>
-                    ))}
+                  {Object.entries(tutor.availability).map(([day, slot]) => (
+                    <li key={day}>
+                      <span className="day-label">{day.charAt(0).toUpperCase() + day.slice(1)}</span>
+                      <div className="time-box-container">
+                        <div className="time-box">{convertTime(slot.start_time)}</div>
+                        <div className="time-box">{convertTime(slot.end_time)}</div>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -111,7 +117,7 @@ function TutorDetails() {
               {isDeleteMessageOpen && (
                 <div className="delete-message">
                   <p className="delete-message-text">Are you sure you want to delete this tutor?</p>
-                  <button className="yes-delete-button" onClick={handleDelete}>Yes</button>
+                  {/* <button className="yes-delete-button" onClick={handleDelete}>Yes</button> */}
                   <button className="no-delete-button" onClick={toggleDeleteMessage}>No</button>
                 </div>
               )}

@@ -5,7 +5,7 @@ export interface Person {
 }
 
 export default interface Match {
-  match_id?: string;
+  id: string;
   tutor: Person;
   learner: Person;
 }

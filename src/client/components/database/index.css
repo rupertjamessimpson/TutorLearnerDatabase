@@ -1,12 +1,13 @@
 /* Database */
 
+.header {
+  color: #4EC1C0;
+}
+
 .data-container {
   padding-left: 20px;
   padding-right: 20px;
-}
-
-.header {
-  color: #4EC1C0;
+  padding-bottom: 20px;
 }
 
 .filter-label {
@@ -124,6 +125,15 @@
   padding-right: 10px;
 }
 
+.name-details-group p {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 276px;
+  margin: 0;
+  gap: 5px;
+}
+
 .contact-details-group {
   display: flex;
   align-items: center;
@@ -136,7 +146,7 @@
   margin: 0;
 }
 
-.name-details-group p {
+.contact-details-group p {
   padding: 3px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -145,11 +155,21 @@
   gap: 5px;
 }
 
-.contact-details-group p {
+.gender-details-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.gender-details-label {
+  width: 100px;
+  margin: 0;
+}
+
+.gender-details-group p {
   padding: 3px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 276px;
+  width: 573px;
   margin: 0;
   gap: 5px;
 }

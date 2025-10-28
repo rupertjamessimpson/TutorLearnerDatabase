@@ -6,7 +6,7 @@ function Nav() {
   const location = useLocation();
   const inDatabase = location.pathname.startsWith('/database');
   const inForms = location.pathname.startsWith('/forms');
-  const inConversation = location.pathname.startsWith('/conversation');
+  const inClass = location.pathname.startsWith('/class');
 
   return (
     <div className="nav-container">
@@ -22,9 +22,9 @@ function Nav() {
             Forms
         </NavLink>
         <NavLink
-          to="/conversation"
+          to="/class"
           className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-            Conversation
+            Classes
         </NavLink>
       </div>
       {inDatabase && (
@@ -38,12 +38,16 @@ function Nav() {
             <Link to="/forms/tutor" className="sub-nav-button">Tutor</Link>
             <Link to="/forms/learner" className="sub-nav-button">Learner</Link>
         </div>)}
-      {inConversation && (
+      {inClass && (
         <div className="sub-nav-container">
-            <Link to="/conversation/1" className="sub-nav-button">Class 1</Link>
-            <Link to="/conversation/2" className="sub-nav-button">Class 2</Link>
-            <Link to="/conversation/3" className="sub-nav-button">Class 3</Link>
-            <Link to="/conversation/4" className="sub-nav-button">Class 4</Link>
+            <Link to="/class/1" className="sub-nav-button">Class 1</Link>
+            <Link to="/class/2" className="sub-nav-button">Class 2</Link>
+            <Link to="/class/3" className="sub-nav-button">Class 3</Link>
+            <Link to="/class/4" className="sub-nav-button">Class 4</Link>
+            <Link to="/class/5" className="sub-nav-button">Class 5</Link>
+            <Link to="/class/6" className="sub-nav-button">Class 6</Link>
+            <Link to="/class/7" className="sub-nav-button">Class 7</Link>
+            <Link to="/class/8" className="sub-nav-button">Class 8</Link>
         </div>)}
     </div>
   );

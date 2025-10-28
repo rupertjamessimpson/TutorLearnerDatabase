@@ -3,19 +3,20 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
-import { Tutor } from "../../../../business/data_objects/Tutor";
+import { Tutor } from "../../../../data/data_objects/Tutor";
 import { TutorFormErrors } from "../../../objects/FormErrors";
 import { dayKeys, preferenceKeys } from "../../../objects/Filters";
 
 import "../index.css"
 
-type TutorForm = Omit<Tutor, "tutor_id" >
+type TutorForm = Omit<Tutor, "id" >
 
 function TutorsForm() {
   const navigate = useNavigate();
   const [tutor, setTutor] = useState<TutorForm>({
     first_name: "",
     last_name: "",
+    gender: "",
     phone: "",
     email: "",
     available: true,
@@ -48,7 +49,8 @@ function TutorsForm() {
     const { name, value, type } = e.target;
     const checked = (e.currentTarget as HTMLInputElement).checked;
 
-    if (type === "text" || type === "email") {
+    if (type === "text" || type === "email" || type === "select-one") {
+      // Handles gender and other top-level text/select fields
       setTutor((prevTutor) => ({
         ...prevTutor,
         [name]: value,
@@ -66,6 +68,7 @@ function TutorsForm() {
         }));
       }
     } else {
+      // Handles nested availability updates (monday.start_time, etc.)
       const [day, timeType] = name.split(".");
       setTutor((prevTutor) => ({
         ...prevTutor,
@@ -87,6 +90,7 @@ function TutorsForm() {
     if (!tutor.last_name.trim()) newErrors.last_name = "Last name is required";
     if (!tutor.phone.trim()) newErrors.phone = "Phone number is required";
     if (!tutor.email.trim()) newErrors.email = "Email is required";
+    if (!tutor.gender.trim()) newErrors.gender = "Gender is required";
   
     const phonePattern = /^[0-9]{10}$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -198,6 +202,22 @@ function TutorsForm() {
                   value={tutor.phone}
                   onChange={handleChange}
                 />
+              </div>
+            </div>
+            <div className="form-group">
+              <h4 className="input-label">Gender</h4>
+              <div className="gender-container">
+                <select
+                  id="gender"
+                  name="gender"
+                  value={tutor.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">gender</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                  <option value="nonbinary">non-binary</option>
+                </select>
               </div>
             </div>
             <h4 className="preferences-label">Preferences</h4>

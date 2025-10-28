@@ -1,7 +1,8 @@
 export interface Tutor {
-  tutor_id?: string;
+  id: string;
   first_name: string;
   last_name: string;
+  gender: string;
   phone: string;
   email: string;
   available: boolean;

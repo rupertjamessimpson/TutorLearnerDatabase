@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Tutor, Preferences, Availability } from "../../../../business/data_objects/Tutor";
+import { Tutor, Preferences, Availability } from "../../../../data/data_objects/Tutor";
 import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
-import { fetchTutors } from "../../../../business/data_access/tutorService";
+import { fetchTutors } from "../../../../data/data_access/tutorService";
 
 import "../index.css";
 
@@ -104,8 +104,8 @@ function Tutors() {
         <div className="list-container">
           <ul className="list">
             {filteredTutors.map(tutor => (
-              <li key={tutor.tutor_id}>
-                <Link to={`/database/tutors/${tutor.tutor_id}`}>
+              <li key={tutor.id}>
+                <Link to={`/database/tutors/${tutor.id}`}>
                   {tutor.first_name} {tutor.last_name}
                 </Link>
               </li>

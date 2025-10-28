@@ -1,7 +1,8 @@
 export interface Learner {
-  learner_id?: string;
+  id: string;
   first_name: string;
   last_name: string;
+  gender: string;
   available: boolean;
   phone: string;
   email: string;

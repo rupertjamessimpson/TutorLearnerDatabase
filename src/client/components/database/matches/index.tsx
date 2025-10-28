@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Match from "../../../../business/data_objects/Match";
-import { fetchMatches } from "../../../../business/data_access/matchService";
+import Match from "../../../../data/data_objects/Match";
+import { fetchMatches } from "../../../../data/data_access/matchService";
 
 import "../index.css";
 
@@ -44,7 +44,7 @@ function Matches() {
   //     .then((data) => {
   //       if (data.success) {
   //         setMatches((prevMatches) =>
-  //           prevMatches.filter((match) => match.match_id !== id)
+  //           prevMatches.filter((match) => match.id !== id)
   //         );
   //       } else {
   //         alert(`Error deleting match: ${data.message || "Unknown error"}`);
@@ -72,7 +72,7 @@ function Matches() {
         <div className="list-container">
           <ul className="matches-list">
             {filteredMatches.map((match) => (
-              <li key={match.match_id}>
+              <li key={match.id}>
                 <div>
                   <Link to={`/database/tutors/${match.tutor.id}`}>
                     {match.tutor.first_name} {match.tutor.last_name} {" - "}
@@ -82,7 +82,7 @@ function Matches() {
                   </Link>
                 </div>
                 {/* <button
-                  onClick={() => removeMatch(match.match_id)}
+                  onClick={() => removeMatch(match.id)}
                   className="remove-button">Unmatch
                 </button> */}
               </li>

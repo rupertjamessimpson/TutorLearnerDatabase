@@ -10,6 +10,7 @@ export interface LearnerFormErrors {
 export interface TutorFormErrors {
   first_name?: string;
   last_name?: string;
+  gender?: string;
   phone?: string;
   email?: string;
   preferences?: string;
