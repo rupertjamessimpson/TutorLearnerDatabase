@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import { Tutor, Preferences, Availability } from "../../../../data/data_objects/Tutor";
 import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
-import { fetchTutors } from "../../../../data/data_access/tutorService";
+import { exampleFetchTutorById, exampleFetchTutors } from "../../../../data/data_access/examples/ExampleTutorService";
+// import { fetchTutors } from "../../../../data/data_access/tutorService";
 
 import "../index.css";
 
@@ -36,7 +37,7 @@ function Tutors() {
   useEffect(() => {
     const getTutors = async () => {
       try {
-        const data = await fetchTutors();
+        const data = await exampleFetchTutors();
         setTutors(data);
       } catch (err) {
         console.error("Failed to fetch tutors:", err);
@@ -44,6 +45,18 @@ function Tutors() {
     };
     getTutors();
   }, []);
+
+  // useEffect(() => {
+  //   const getTutors = async () => {
+  //     try {
+  //       const data = await fetchTutors();
+  //       setTutors(data);
+  //     } catch (err) {
+  //       console.error("Failed to fetch tutors:", err);
+  //     }
+  //   };
+  //   getTutors();
+  // }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

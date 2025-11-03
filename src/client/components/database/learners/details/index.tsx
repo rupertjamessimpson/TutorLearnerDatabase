@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
 import { Learner } from "../../../../../data/data_objects/Learner";
+import { exampleFetchLearnerById } from "../../../../../data/data_access/examples/ExampleLearnerService";
 import { fetchLearnerById } from "../../../../../data/data_access/learnerService";
 
 function LearnerDetails() {
@@ -14,10 +15,18 @@ function LearnerDetails() {
   useEffect(() => {
     if (!id) return;
     
-    fetchLearnerById(id)
+    exampleFetchLearnerById(id)
       .then((data) => setLearner(data))
       .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
+
+  // useEffect(() => {
+  //   if (!id) return;
+    
+  //   fetchLearnerById(id)
+  //     .then((data) => setLearner(data))
+  //     .catch((err) => console.error("Error fetching tutor:", err));
+  // }, [id]);
 
   const toggleDeleteMessage = () => {
     if (isDeleteMessageOpen) {

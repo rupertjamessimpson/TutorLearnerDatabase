@@ -1,4 +1,4 @@
-const convertTime = (time) => {
+const convertTime = (time: string) => {
   // If time is already in 12-hour format (AM/PM), just return it
   if (time.includes('AM') || time.includes('PM')) {
     return time;

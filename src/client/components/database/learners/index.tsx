@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
-import { fetchLearners } from "../../../../data/data_access/learnerService";
+import { exampleFetchLearners } from "../../../../data/data_access/examples/ExampleLearnerService";
+// import { fetchLearners } from "../../../../data/data_access/learnerService";
 
 import "../index.css";
 
@@ -36,7 +37,7 @@ function Learners() {
   useEffect(() => {
     const getLearners = async () => {
       try {
-        const data = await fetchLearners();
+        const data = await exampleFetchLearners();
         setLearners(data);
       } catch (err) {
         console.error("Failed to fetch learners:", err);
@@ -44,6 +45,18 @@ function Learners() {
     };
     getLearners();
   }, []);
+
+  // useEffect(() => {
+  //   const getLearners = async () => {
+  //     try {
+  //       const data = await fetchLearners();
+  //       setLearners(data);
+  //     } catch (err) {
+  //       console.error("Failed to fetch learners:", err);
+  //     }
+  //   };
+  //   getLearners();
+  // }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

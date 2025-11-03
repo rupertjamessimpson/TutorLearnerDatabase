@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import { Learner } from "../../../data/data_objects/Learner";
+import { exampleFetchLearners } from "../../../data/data_access/examples/ExampleLearnerService";
 import "./index.css";
 
 function Class() {
@@ -11,64 +12,69 @@ function Class() {
   const [learners, setLearners] = useState<Learner[]>([]);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5002/api/learners")
-  //     .then((response) => response.json())
-  //     .then((data) => setLearners(data))
-  //     .catch((err) => console.error('Error fetching learners:', err));
-  // }, []);
+  useEffect(() => {
+    const getLearners = async () => {
+      try {
+        const data = await exampleFetchLearners();
+        setLearners(data);
+      } catch (err) {
+        console.error("Failed to fetch learners:", err);
+      }
+    };
+    getLearners();
+  }, []);
 
   const toggleSelect = () => {
     setIsSelectOpen(!isSelectOpen);
   };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const learnerId = e.target.value;
+    // const learnerId = e.target.value;
   
-    fetch('http://localhost:5002/api/learners/update-conversation', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ learnerId, conversationId: id }),
-    })
-      .then((response) => response.json())
-      .then((updatedLearner) => {
-        console.log('Learner added to conversation:', updatedLearner);
-        setIsSelectOpen(false);
+    // fetch('http://localhost:5002/api/learners/update-conversation', {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ learnerId, conversationId: id }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((updatedLearner) => {
+    //     console.log('Learner added to conversation:', updatedLearner);
+    //     setIsSelectOpen(false);
   
-        setLearners((prevLearners) =>
-          prevLearners.map(learner =>
-            learner.id === updatedLearner.id
-              ? updatedLearner
-              : learner
-          )
-        );
-      })
-      .catch((err) => console.error('Error updating learner:', err));
+    //     setLearners((prevLearners) =>
+    //       prevLearners.map(learner =>
+    //         learner.id === updatedLearner.id
+    //           ? updatedLearner
+    //           : learner
+    //       )
+    //     );
+    //   })
+    //   .catch((err) => console.error('Error updating learner:', err));
   };
 
   const removeLearner = (learnerId: string) => {
-    fetch('http://localhost:5002/api/learners/remove-conversation', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ learnerId }),
-    })
-      .then((response) => response.json())
-      .then((updatedLearner) => {
-        console.log('Learner removed from conversation:', updatedLearner);
+    // fetch('http://localhost:5002/api/learners/remove-conversation', {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ learnerId }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((updatedLearner) => {
+    //     console.log('Learner removed from conversation:', updatedLearner);
   
-        setLearners((prevLearners) =>
-          prevLearners.map(learner =>
-            learner.id === updatedLearner.id
-              ? updatedLearner
-              : learner
-          )
-        );
-      })
-      .catch((err) => console.error('Error removing learner:', err));
+    //     setLearners((prevLearners) =>
+    //       prevLearners.map(learner =>
+    //         learner.id === updatedLearner.id
+    //           ? updatedLearner
+    //           : learner
+    //       )
+    //     );
+    //   })
+    //   .catch((err) => console.error('Error removing learner:', err));
   };
 
   const filterLearners = () => {

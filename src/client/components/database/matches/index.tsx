@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Match from "../../../../data/data_objects/Match";
-import { fetchMatches } from "../../../../data/data_access/matchService";
+import { exampleFetchMatches } from "../../../../data/data_access/examples/ExampleMatchService";
+// import { fetchMatches } from "../../../../data/data_access/matchService";
 
 import "../index.css";
 
@@ -10,10 +11,11 @@ function Matches() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+
   useEffect(() => {
     const getMatches = async () => {
       try {
-        const data = await fetchMatches();
+        const data = await exampleFetchMatches();
         setMatches(data);
       } catch (err) {
         console.error("Failed to fetch matches:", err);
@@ -21,6 +23,18 @@ function Matches() {
     };
     getMatches();
   }, []);
+
+  // useEffect(() => {
+  //   const getMatches = async () => {
+  //     try {
+  //       const data = await fetchMatches();
+  //       setMatches(data);
+  //     } catch (err) {
+  //       console.error("Failed to fetch matches:", err);
+  //     }
+  //   };
+  //   getMatches();
+  // }, []);
 
   const applyFilters = () => {
     return matches.filter(match => {

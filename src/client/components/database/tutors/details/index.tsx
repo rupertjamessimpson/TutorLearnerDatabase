@@ -3,21 +3,30 @@ import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
-import { fetchTutorById } from "../../../../../data/data_access/tutorService";
+import { exampleFetchTutorById } from "../../../../../data/data_access/examples/ExampleTutorService";
+// import { fetchTutorById } from "../../../../../data/data_access/tutorService";
 
 function TutorDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [tutor, setTutor] = useState<Tutor | null>(null);
+  const [tutor, setTutor] = useState<Tutor | null>();
   const [isDeleteMessageOpen, setIsDeleteMessageOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
     
-    fetchTutorById(id)
+    exampleFetchTutorById(id)
       .then((data) => setTutor(data))
       .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
+
+  // useEffect(() => {
+  //   if (!id) return;
+    
+  //   fetchTutorById(id)
+  //     .then((data) => setTutor(data))
+  //     .catch((err) => console.error("Error fetching tutor:", err));
+  // }, [id]);
 
   const toggleDeleteMessage = () => {
     if (isDeleteMessageOpen) {
