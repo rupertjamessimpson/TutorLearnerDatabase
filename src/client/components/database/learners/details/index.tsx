@@ -4,7 +4,7 @@ import convertTime from "../../../../functions/convertTime";
 
 import { Learner } from "../../../../../data/data_objects/Learner";
 import { exampleFetchLearnerById } from "../../../../../data/data_access/examples/ExampleLearnerService";
-import { fetchLearnerById } from "../../../../../data/data_access/learnerService";
+// import { fetchLearnerById } from "../../../../../data/data_access/learnerService";
 
 function LearnerDetails() {
   const { id } = useParams();
@@ -117,6 +117,7 @@ function LearnerDetails() {
             <div className="buttons-container">
               <div className="match-and-edit-buttons">
                 <button className="edit-button"onClick={() => navigate(`/database/learners/edit/${id}`)}>Edit</button>
+                <button className="match-button" onClick={() => navigate(`/database/learners/match/${id}`)}>Match</button>
               </div>
               {isDeleteMessageOpen && (
                 <div className="delete-message">
