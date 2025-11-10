@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
-import { exampleFetchTutorById } from "../../../../../data/data_access/examples/ExampleTutorService";
+import { exampleFetchTutorById, exampleDeleteTutor } from "../../../../../data/data_access/examples/ExampleTutorService";
 // import { fetchTutorById } from "../../../../../data/data_access/tutorService";
 
 function TutorDetails() {
@@ -36,24 +36,17 @@ function TutorDetails() {
     }
   };
 
-  // const handleDelete = () => {
-  //   fetch(`http://localhost:5002/api/tutors/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error('Failed to delete tutor');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data.message);
-  //       navigate('/database/tutors');
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error deleting tutor:', error);
-  //     });
-  // };
+  const handleDelete = async () => {
+    if (!id) return;
+    try {
+      await exampleDeleteTutor(id);
+      alert("Tutor deleted successfully.");
+      navigate("/database/tutors");
+    } catch (err) {
+      console.error("Error deleting tutor:", err);
+      alert("Failed to delete tutor.");
+    }
+  };
 
   if (!tutor) {
     return <div>Loading...</div>;
@@ -126,7 +119,7 @@ function TutorDetails() {
               {isDeleteMessageOpen && (
                 <div className="delete-message">
                   <p className="delete-message-text">Are you sure you want to delete this tutor?</p>
-                  {/* <button className="yes-delete-button" onClick={handleDelete}>Yes</button> */}
+                  <button className="yes-delete-button" onClick={handleDelete}>Yes</button>
                   <button className="no-delete-button" onClick={toggleDeleteMessage}>No</button>
                 </div>
               )}

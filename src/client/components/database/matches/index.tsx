@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Match from "../../../../data/data_objects/Match";
-import { exampleFetchMatches } from "../../../../data/data_access/examples/ExampleMatchService";
+import { exampleFetchMatches, exampleDeleteMatch } from "../../../../data/data_access/examples/ExampleMatchService";
 // import { fetchMatches } from "../../../../data/data_access/matchService";
 
 import "../index.css";
@@ -50,24 +50,16 @@ function Matches() {
     });
   };
 
-  // const removeMatch = (id: number) => {
-  //   fetch(`http://localhost:5002/api/matches/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.success) {
-  //         setMatches((prevMatches) =>
-  //           prevMatches.filter((match) => match.id !== id)
-  //         );
-  //       } else {
-  //         alert(`Error deleting match: ${data.message || "Unknown error"}`);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // };
+  const removeMatch = async (id: string) => {
+    try {
+      await exampleDeleteMatch(id);
+      setMatches((prev) => prev.filter((match) => match.id !== id)); // Update UI
+      alert("Match successfully removed.");
+    } catch (err) {
+      console.error("Error deleting match:", err);
+      alert("Failed to delete match.");
+    }
+  };
 
   const filteredMatches = applyFilters();
 
@@ -95,10 +87,10 @@ function Matches() {
                     {match.learner.first_name} {match.learner.last_name}
                   </Link>
                 </div>
-                {/* <button
+                <button
                   onClick={() => removeMatch(match.id)}
                   className="remove-button">Unmatch
-                </button> */}
+                </button>
               </li>
             ))}
           </ul>

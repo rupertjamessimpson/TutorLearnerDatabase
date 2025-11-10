@@ -6,10 +6,11 @@ import capitalizeName from "../../../functions/capitalizeName";
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFormErrors } from "../../../objects/FormErrors";
 import { dayKeys } from "../../../objects/Filters";
+import { exampleCreateLearner } from "../../../../data/data_access/examples/ExampleLearnerService";
 
 import "../index.css";
 
-type LearnerForm = Omit<Learner, "id" | "conversation">;
+type LearnerForm = Omit<Learner, "id">;
 
 function LearnersForm() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function LearnersForm() {
     phone: "",
     email: "",
     level: "",
+    class: "",
     availability: {
       monday: { start_time: "", end_time: "" },
       tuesday: { start_time: "", end_time: "" },
@@ -102,24 +104,14 @@ function LearnersForm() {
       last_name: capitalizeName(learner.last_name)
     };
     if (validateForm()) {
-      // try {
-      //   const response = await fetch('http://localhost:5002/api/learners/', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(capitalizedLearner),
-      //   });
-  
-      //   if (response.ok) {
-      //     navigate(`/database/learners`);
-      //   } else {
-      //     const data = await response.json();
-      //     console.error("Server error:", data);
-      //   }
-      // } catch (error) {
-      //   console.error("Network error:", error);
-      // }
+      try {
+        const createdLearner = await exampleCreateLearner(capitalizedLearner);
+        alert(`Learner ${createdLearner.first_name} ${createdLearner.last_name} added successfully!`);
+        navigate(`/database/learners/${createdLearner.id}`);
+      } catch (err) {
+        console.error("Error creating learner:", err);
+        alert("Failed to create learner.");
+      }
     }
   };
 

@@ -7,7 +7,7 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -38,7 +38,7 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -69,7 +69,7 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -100,7 +100,7 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -131,7 +131,7 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -162,7 +162,7 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -193,7 +193,7 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -224,7 +224,7 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -255,7 +255,7 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -286,7 +286,7 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
+      "available": false,
       "preferences": {
         "conversation": true,
         "esl_novice": true,
@@ -629,8 +629,8 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -648,8 +648,8 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -667,8 +667,8 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -686,8 +686,8 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -705,8 +705,8 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -724,8 +724,8 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -743,8 +743,8 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -762,8 +762,8 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -781,8 +781,8 @@
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -800,8 +800,8 @@
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
-      "available": true,
-      "conversation": "1",
+      "available": false,
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -820,7 +820,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -839,7 +839,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -858,7 +858,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -877,7 +877,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -896,7 +896,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -915,7 +915,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -934,7 +934,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -953,7 +953,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -972,7 +972,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },
@@ -991,7 +991,7 @@
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "conversation": "1",
+      "class": "1",
       "level": "esl_beginner",
       "availability": {
         "monday": { "start_time": "10:00", "end_time": "14:00" },

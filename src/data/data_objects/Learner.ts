@@ -7,7 +7,7 @@ export interface Learner {
   phone: string;
   email: string;
   level: string;
-  conversation: string;
+  class: string;
   availability: Availability;
 }
 

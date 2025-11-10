@@ -1,10 +1,12 @@
 import data from "./example.json";
 import Match from "../../data_objects/Match";
 
+// Returns all matches
 export const exampleFetchMatches = async (): Promise<Match[]> => {
   return data.Matches;
 }
 
+// Creates a new match
 export const exampleCreateMatch = async (
   tutor_id: string,
   tutor_first_name: string,
@@ -37,3 +39,19 @@ export const exampleCreateMatch = async (
 
   return newMatch;
 };
+
+// Deletes the match with the provided ID
+export const exampleDeleteMatch = async (id: string): Promise<void> => {
+  const index = data.Matches.findIndex((m) => m.id === id);
+  if (index === -1) throw new Error(`Match ${id} not found`);
+
+  const match = data.Matches[index];
+
+  const tutor = data.Tutors.find((t) => t.id === match.tutor.id);
+  const learner = data.Learners.find((l) => l.id === match.learner.id);
+
+  if (tutor) tutor.available = true;
+  if (learner) learner.available = true;
+
+  data.Matches.splice(index, 1);
+}

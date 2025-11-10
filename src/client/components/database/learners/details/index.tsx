@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
 import { Learner } from "../../../../../data/data_objects/Learner";
-import { exampleFetchLearnerById } from "../../../../../data/data_access/examples/ExampleLearnerService";
+import { exampleFetchLearnerById, exampleDeleteLearner } from "../../../../../data/data_access/examples/ExampleLearnerService";
 // import { fetchLearnerById } from "../../../../../data/data_access/learnerService";
 
 function LearnerDetails() {
@@ -36,24 +36,17 @@ function LearnerDetails() {
     }
   };
 
-  // const handleDelete = () => {
-  //   fetch(`http://localhost:5002/api/learners/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error('Failed to delete learner');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data.message);
-  //       navigate('/database/learners');
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error deleting learner:', error);
-  //     });
-  // };
+  const handleDelete = async () => {
+    if (!id) return;
+    try {
+      await exampleDeleteLearner(id);
+      alert("Learner deleted successfully.");
+      navigate("/database/learners");
+    } catch (err) {
+      console.error("Error deleting learner:", err);
+      alert("Failed to delete learner.");
+    }
+  };
 
   if (!learner) {
     return <div></div>;
@@ -122,7 +115,7 @@ function LearnerDetails() {
               {isDeleteMessageOpen && (
                 <div className="delete-message">
                   <p className="delete-message-text">Are you sure you want to delete this learner?</p>
-                  {/* <button className="yes-delete-button" onClick={handleDelete}>Yes</button> */}
+                  <button className="yes-delete-button" onClick={handleDelete}>Yes</button>
                   <button className="no-delete-button" onClick={toggleDeleteMessage}>No</button>
                 </div>
               )}

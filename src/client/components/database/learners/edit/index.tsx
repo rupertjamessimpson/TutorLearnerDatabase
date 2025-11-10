@@ -21,7 +21,7 @@ function LearnerEdit() {
     gender: "",
     phone: "",
     email: "",
-    conversation: "",
+    class: "",
     level: "",
     available: true,
     availability: {

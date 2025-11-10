@@ -6,6 +6,7 @@ import capitalizeName from "../../../functions/capitalizeName";
 import { Tutor } from "../../../../data/data_objects/Tutor";
 import { TutorFormErrors } from "../../../objects/FormErrors";
 import { dayKeys, preferenceKeys } from "../../../objects/Filters";
+import { exampleCreateTutor } from "../../../../data/data_access/examples/ExampleTutorService";
 
 import "../index.css"
 
@@ -50,7 +51,6 @@ function TutorsForm() {
     const checked = (e.currentTarget as HTMLInputElement).checked;
 
     if (type === "text" || type === "email" || type === "select-one") {
-      // Handles gender and other top-level text/select fields
       setTutor((prevTutor) => ({
         ...prevTutor,
         [name]: value,
@@ -68,7 +68,6 @@ function TutorsForm() {
         }));
       }
     } else {
-      // Handles nested availability updates (monday.start_time, etc.)
       const [day, timeType] = name.split(".");
       setTutor((prevTutor) => ({
         ...prevTutor,
@@ -126,24 +125,14 @@ function TutorsForm() {
       last_name: capitalizeName(tutor.last_name)
     };
     if (validateForm()) {
-      // try {
-      //   const response = await fetch('http://localhost:5002/api/tutors/', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(capitalizedTutor),
-      //   });
-  
-      //   if (response.ok) {
-      //     navigate(`/database/tutors`);
-      //   } else {
-      //     const data = await response.json();
-      //     console.error("Server error:", data);
-      //   }
-      // } catch (error) {
-      //   console.error("Network error:", error);
-      // }
+      try {
+        const createdTutor = await exampleCreateTutor(capitalizedTutor);
+        alert(`Tutor ${createdTutor.first_name} ${createdTutor.last_name} added successfully!`);
+        navigate(`/database/tutors/${createdTutor.id}`);
+      } catch (err) {
+        console.error("Error creating tutor:", err);
+        alert("Failed to create tutor.");
+      }
     }
   };  
 

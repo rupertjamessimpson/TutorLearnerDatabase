@@ -78,7 +78,7 @@ function Learners() {
   
       const matchesAvailability = filters.available ? learner.available : true;
   
-      const matchesNotInClass = filters.not_in_class ? learner.conversation === null : true;
+      const matchesNotInClass = filters.not_in_class ? learner.class === null : true;
 
       const matchesLevel = levelKeys.some((key) => {
         return filters[key] && learner.level === key;
