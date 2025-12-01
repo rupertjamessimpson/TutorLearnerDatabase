@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { exampleFetchLearners } from "../../../../data/data_access/ExampleLearnerService";
+
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
-import { exampleFetchLearners } from "../../../../data/data_access/examples/ExampleLearnerService";
-// import { fetchLearners } from "../../../../data/data_access/learnerService";
 
 import "../index.css";
 
@@ -46,18 +46,6 @@ function Learners() {
     getLearners();
   }, []);
 
-  // useEffect(() => {
-  //   const getLearners = async () => {
-  //     try {
-  //       const data = await fetchLearners();
-  //       setLearners(data);
-  //     } catch (err) {
-  //       console.error("Failed to fetch learners:", err);
-  //     }
-  //   };
-  //   getLearners();
-  // }, []);
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -78,7 +66,9 @@ function Learners() {
   
       const matchesAvailability = filters.available ? learner.available : true;
   
-      const matchesNotInClass = filters.not_in_class ? learner.class === null : true;
+      const matchesNotInClass = !filters.not_in_class
+        ? true
+        : !learner.class?.trim();
 
       const matchesLevel = levelKeys.some((key) => {
         return filters[key] && learner.level === key;

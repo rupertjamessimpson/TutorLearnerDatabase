@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import times from "../../../../objects/times";
 import capitalizeName from "../../../../functions/capitalizeName";
 import convertTime from "../../../../functions/convertTime";
+import { exampleFetchTutorById, exampleUpdateTutor } from "../../../../../data/data_access/ExampleTutorService";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
 import { TutorFormErrors } from "../../../../objects/FormErrors";
 import { dayKeys } from "../../../../objects/Filters";
-
-import { exampleFetchTutorById, exampleUpdateTutor } from "../../../../../data/data_access/examples/ExampleTutorService";
 
 function TutorEdit() {
   const { id } = useParams();
@@ -33,7 +33,7 @@ function TutorEdit() {
       basic_reading: false,
       hiset_reading: false,
       basic_writing: false,
-      hiset_writing: false
+      hiset_writing: false,
     },
     availability: {
       monday: { start_time: "", end_time: "" },
@@ -41,8 +41,8 @@ function TutorEdit() {
       wednesday: { start_time: "", end_time: "" },
       thursday: { start_time: "", end_time: "" },
       friday: { start_time: "", end_time: "" },
-      saturday: { start_time: "", end_time: "" }
-    }
+      saturday: { start_time: "", end_time: "" },
+    },
   });
   const [errors, setErrors] = useState<TutorFormErrors>({});
 
@@ -52,30 +52,36 @@ function TutorEdit() {
     exampleFetchTutorById(id)
       .then((data) => setTutor(data))
       .catch((err) => console.log("Error fetching tutor:", err));
-  }, [id])
+  }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value, type } = e.target;
 
-    if (type === "text" || type === "email") {
+    if (
+      type === "text" ||
+      type === "email" ||
+      (type === "select-one" && name === "gender")
+    ) {
       setTutor((prevTutor) => ({
         ...prevTutor,
         [name]: value,
       }));
-    } 
-    else if (type === "checkbox") {
+    } else if (type === "checkbox") {
       const [category, field] = name.split(".");
       if (category === "preferences") {
         setTutor((prevTutor) => ({
           ...prevTutor,
           preferences: {
             ...prevTutor.preferences,
-            [field as keyof Tutor["preferences"]]: (e.target as HTMLInputElement).checked,
+            [field as keyof Tutor["preferences"]]: (
+              e.target as HTMLInputElement
+            ).checked,
           },
         }));
       }
-    } 
-    else {
+    } else {
       const [day, timeType] = name.split(".");
       setTutor((prevTutor) => ({
         ...prevTutor,
@@ -92,34 +98,44 @@ function TutorEdit() {
 
   const validateForm = () => {
     const newErrors: TutorFormErrors = {};
-  
-    if (!tutor.first_name.trim()) newErrors.first_name = "First name is required";
-    if (!tutor.last_name.trim()) newErrors.last_name = "Last name is required";
+
+    if (!tutor.first_name.trim())
+      newErrors.first_name = "First name is required";
+    if (!tutor.last_name.trim())
+      newErrors.last_name = "Last name is required";
     if (!tutor.phone.trim()) newErrors.phone = "Phone number is required";
     if (!tutor.email.trim()) newErrors.email = "Email is required";
-  
+    if (!tutor.gender.trim()) newErrors.gender = "Gender is required";
+
     const phonePattern = /^[0-9]{10}$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (tutor.phone && !phonePattern.test(tutor.phone)) newErrors.phone = "Phone number is invalid";
-    if (tutor.email && !emailPattern.test(tutor.email)) newErrors.email = "Email is invalid";
-  
-    const hasCheckedPreference = Object.values(tutor.preferences).some(value => value);
-    if (!hasCheckedPreference) newErrors.preferences = "At least one preference must be selected";
-  
+    if (tutor.phone && !phonePattern.test(tutor.phone))
+      newErrors.phone = "Phone number is invalid";
+    if (tutor.email && !emailPattern.test(tutor.email))
+      newErrors.email = "Email is invalid";
+
+    const hasCheckedPreference = Object.values(tutor.preferences).some(
+      (value) => value
+    );
+    if (!hasCheckedPreference)
+      newErrors.preferences = "At least one preference must be selected";
+
     dayKeys.forEach((day) => {
       const { start_time, end_time } = tutor.availability[day];
 
       if (start_time && !end_time) {
-        newErrors.availability = "End time is required if a start time is selected";
+        newErrors.availability =
+          "End time is required if a start time is selected";
       } else if (!start_time && end_time) {
-        newErrors.availability = "Start time is required if an end time is selected";
+        newErrors.availability =
+          "Start time is required if an end time is selected";
       }
 
       if (start_time && end_time && start_time >= end_time) {
         newErrors.availability = "Start time must be before end time";
       }
     });
-  
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -147,7 +163,9 @@ function TutorEdit() {
   return (
     <div className="data-container">
       <div className="header-and-errors-container">
-        <h3 className="header">{tutor.first_name} {tutor.last_name}</h3>
+        <h3 className="header">
+          {tutor.first_name} {tutor.last_name}
+        </h3>
         {Object.keys(errors).length > 0 && (
           <ul className="error-list">
             {Object.entries(errors).map(([field, error]) => (
@@ -201,20 +219,45 @@ function TutorEdit() {
                 />
               </div>
             </div>
+
+            {/* NEW GENDER SELECT */}
+            <div className="form-group">
+              <h4 className="input-label">Gender</h4>
+              <div className="gender-container">
+                <select
+                  id="gender"
+                  name="gender"
+                  value={tutor.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">gender</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                  <option value="nonbinary">non-binary</option>
+                </select>
+              </div>
+            </div>
+
             <h4 className="preferences-label">Preferences</h4>
             <div className="level-container">
-            {Object.keys(tutor.preferences).map((preference) => (
-              <div key={preference}>
-                <input
-                  type="checkbox"
-                  id={preference}
-                  name={`preferences.${preference}`}
-                  checked={tutor.preferences[preference as keyof typeof tutor.preferences]}
-                  onChange={handleChange}
-                />
-                <label htmlFor={preference}>{preference.replace(/_/g, " ")}</label>
-              </div>
-            ))}
+              {Object.keys(tutor.preferences).map((preference) => (
+                <div key={preference}>
+                  <input
+                    type="checkbox"
+                    id={preference}
+                    name={`preferences.${preference}`}
+                    checked={
+                      tutor.preferences[
+                        preference as keyof typeof tutor.preferences
+                      ]
+                    }
+                    onChange={handleChange}
+                  />
+                  <label htmlFor={preference}>
+                    {preference.replace(/_/g, " ")}
+                  </label>
+                </div>
+              ))}
             </div>
             <h4 className="select-label">Availability</h4>
             <div className="availability-container">
@@ -232,12 +275,14 @@ function TutorEdit() {
                 return (
                   <div key={day}>
                     <label htmlFor={`${day}.start_time`}>
-                      {day.charAt(0).toUpperCase() + day.slice(1)} 
+                      {day.charAt(0).toUpperCase() + day.slice(1)}
                     </label>
                     <select
                       id={`${day}.start_time`}
                       name={`${day}.start_time`}
-                      value={convertTime(tutor.availability[day].start_time)}
+                      value={convertTime(
+                        tutor.availability[day].start_time
+                      )}
                       onChange={handleChange}
                     >
                       <option value="">Start Time</option>
@@ -247,9 +292,7 @@ function TutorEdit() {
                         </option>
                       ))}
                     </select>
-                    <label htmlFor={`${day}.end_time`}>
-                      {"  "}
-                    </label>
+                    <label htmlFor={`${day}.end_time`}>{"  "}</label>
                     <select
                       id={`${day}.end_time`}
                       name={`${day}.end_time`}

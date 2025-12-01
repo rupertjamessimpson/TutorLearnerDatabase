@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { exampleFetchMatches, exampleDeleteMatch } from "../../../../data/data_access/ExampleMatchService";
+
 import Match from "../../../../data/data_objects/Match";
-import { exampleFetchMatches, exampleDeleteMatch } from "../../../../data/data_access/examples/ExampleMatchService";
-// import { fetchMatches } from "../../../../data/data_access/matchService";
 
 import "../index.css";
 
@@ -23,18 +23,6 @@ function Matches() {
     };
     getMatches();
   }, []);
-
-  // useEffect(() => {
-  //   const getMatches = async () => {
-  //     try {
-  //       const data = await fetchMatches();
-  //       setMatches(data);
-  //     } catch (err) {
-  //       console.error("Failed to fetch matches:", err);
-  //     }
-  //   };
-  //   getMatches();
-  // }, []);
 
   const applyFilters = () => {
     return matches.filter(match => {

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
+import { exampleFetchLearnerById, exampleDeleteLearner } from "../../../../../data/data_access/ExampleLearnerService";
+
 import { Learner } from "../../../../../data/data_objects/Learner";
-import { exampleFetchLearnerById, exampleDeleteLearner } from "../../../../../data/data_access/examples/ExampleLearnerService";
-// import { fetchLearnerById } from "../../../../../data/data_access/learnerService";
 
 function LearnerDetails() {
   const { id } = useParams();
@@ -20,13 +20,6 @@ function LearnerDetails() {
       .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
 
-  // useEffect(() => {
-  //   if (!id) return;
-    
-  //   fetchLearnerById(id)
-  //     .then((data) => setLearner(data))
-  //     .catch((err) => console.error("Error fetching tutor:", err));
-  // }, [id]);
 
   const toggleDeleteMessage = () => {
     if (isDeleteMessageOpen) {
@@ -77,40 +70,54 @@ function LearnerDetails() {
                   </div>
                 </div>
               </div>
-              <div className="gender-details-group">
-                <h4 className="gender-details-label">Gender</h4>
+              <div className="details-group">
+                <h4 className="details-label">Gender</h4>
                 <div className="info-container">
                   <div className="details-gender-container">
                     <p>{learner.gender}</p>
                   </div>
                 </div>
               </div>
-              <h4 className="levels-details-label">Level</h4>
-              <div className="levels-list-container">
-                <ul className="levels-list">
-                  <li>{learner.level.replace(/_/g, ' ')}</li>
-                </ul>
+              <div className="details-group">
+                <h4 className="details-label">Level</h4>
+                <div className="info-container">
+                  <div className="details-gender-container">
+                    <p>{learner.level.replace('_', ' ')}</p>
+                  </div>
+                </div>
               </div>
-              <h4 className="details-label">Availability</h4>
+              <div className="details-group">
+                <h4 className="details-label">Availability</h4>
+                <div className="info-container">
+                  <div className="details-gender-container">
+                    <p>{"(" + learner.first_name + (learner.available ? " is available" : " is matched") + ")"}</p>
+                  </div>
+                </div>
+              </div>
               <div className="availability-list-container">
-                <ul className="availability-list">
-                  {learner.availability &&
-                    Object.entries(learner.availability).map(([day, slot]) => (
-                      <li key={day}>
-                        <span className="day-label">{day.charAt(0).toUpperCase() + day.slice(1)}</span>
-                        <div className="time-box-container">
-                          <div className="time-box">{convertTime(slot.start_time)}</div>
-                          <div className="time-box">{convertTime(slot.end_time)}</div>
-                        </div>
-                      </li>
+              <ul className="availability-list">
+                {Object.entries(learner.availability)
+                  .filter(([, slot]) => slot.start_time && slot.end_time)
+                  .map(([day, slot]) => (
+                    <li key={day}>
+                      <span className="day-label">
+                        {day.charAt(0).toUpperCase() + day.slice(1)}
+                      </span>
+                      <div className="time-box-container">
+                        <div className="time-box">{convertTime(slot.start_time)}</div>
+                        <div className="time-box">{convertTime(slot.end_time)}</div>
+                      </div>
+                    </li>
                   ))}
-                </ul>
+              </ul>
               </div>
             </div>
             <div className="buttons-container">
               <div className="match-and-edit-buttons">
                 <button className="edit-button"onClick={() => navigate(`/database/learners/edit/${id}`)}>Edit</button>
-                <button className="match-button" onClick={() => navigate(`/database/learners/match/${id}`)}>Match</button>
+                {learner.available &&
+                  <button className="match-button" onClick={() => navigate(`/database/learners/match/${id}`)}>Match</button>
+                }
               </div>
               {isDeleteMessageOpen && (
                 <div className="delete-message">

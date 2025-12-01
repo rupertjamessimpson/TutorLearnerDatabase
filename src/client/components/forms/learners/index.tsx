@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
+import { exampleCreateLearner } from "../../../../data/data_access/ExampleLearnerService";
+
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFormErrors } from "../../../objects/FormErrors";
 import { dayKeys } from "../../../objects/Filters";
-import { exampleCreateLearner } from "../../../../data/data_access/examples/ExampleLearnerService";
 
 import "../index.css";
 

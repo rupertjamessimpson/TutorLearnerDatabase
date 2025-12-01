@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import convertTime from "../../../../functions/convertTime";
+import { exampleFetchLearnerById } from "../../../../../data/data_access/ExampleLearnerService";
+import { exampleFetchTutors } from "../../../../../data/data_access/ExampleTutorService";
+import { exampleCreateMatch } from "../../../../../data/data_access/ExampleMatchService";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
 import { Learner, Availability, DayAvailability } from "../../../../../data/data_objects/Learner";
-import { exampleFetchLearnerById } from "../../../../../data/data_access/examples/ExampleLearnerService";
-import { exampleFetchTutors } from "../../../../../data/data_access/examples/ExampleTutorService";
-import { exampleCreateMatch } from "../../../../../data/data_access/examples/ExampleMatchService";
 
 function LearnerMatch() {
   const { id } = useParams();
@@ -131,15 +132,16 @@ function LearnerMatch() {
                   {(Object.entries(tutor.availability) as [
                     keyof Availability,
                     DayAvailability
-                  ][]).map(([day, slot]) => (
-                    <li className="availability-item" key={day}>
-                      <div>
-                        {day.charAt(0).toUpperCase() + day.slice(1)}:{" "}
-                        {convertTime(slot.start_time)} -{" "}
-                        {convertTime(slot.end_time)}
-                      </div>
-                    </li>
-                  ))}
+                  ][])
+                    .filter(([, slot]) => slot.start_time && slot.end_time)
+                    .map(([day, slot]) => (
+                      <li className="availability-item" key={day}>
+                        <div>
+                          {day.charAt(0).toUpperCase() + day.slice(1)}:{" "}
+                          {convertTime(slot.start_time)} - {convertTime(slot.end_time)}
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               </li>
             ))}

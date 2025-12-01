@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "tutorlearnerdatabase"
-  }
+    "default": "tutorlearnerdatabase",
+    "demo": "tutorlearnerdatabasedemo"
+  },
+  "targets": {},
+  "etags": {}
 }

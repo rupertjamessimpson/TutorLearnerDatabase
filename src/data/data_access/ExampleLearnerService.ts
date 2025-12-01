@@ -1,5 +1,5 @@
 import data from "./example.json";
-import { Learner } from "../../data_objects/Learner";
+import { Learner } from "../data_objects/Learner";
 
 // Returns all learners
 export const exampleFetchLearners = async (): Promise<Learner[]> => {
@@ -17,7 +17,10 @@ export const exampleFetchLearnerById = async (id: string): Promise<Learner> => {
 
 // Creates new tutor with the provided data
 export const exampleCreateLearner = async (learnerForm: Omit<Learner, "id">): Promise<Learner> => {
-  const newId = (data.Learners.length + 1).toString();
+  let last = data.Learners[data.Learners.length - 1];
+  let currentId = last ? Number(last.id) : 0;
+
+  const newId = String(currentId + 1);
 
   const newLearner: Learner = {
     id: newId,
@@ -79,4 +82,26 @@ export const exampleRemoveLearnerFromClass = async (learnerId: string): Promise<
 
   data.Learners[index].class = "";
   return structuredClone(data.Learners[index]);
+}
+
+// Creates a batch of tutors from the provided data
+export const exampleBatchCreateLearners = async (batchLearners: Array<Omit<Learner, "id">>): Promise<Learner[]> => {
+  const createdLearners: Learner[] = [];
+
+  let last = data.Learners[data.Learners.length - 1];
+  let currentId = last ? Number(last.id) : 0;
+
+  for (const learner of batchLearners) {
+    const nextId = currentId + 1;
+    const newLearner: Learner = {
+      id: String(nextId),
+      ...learner
+    };
+
+    data.Learners.push(newLearner);
+    createdLearners.push(structuredClone(newLearner));
+    currentId = nextId;
+  }
+
+  return createdLearners;
 }

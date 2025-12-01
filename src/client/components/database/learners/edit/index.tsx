@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import times from "../../../../objects/times";
 import capitalizeName from "../../../../functions/capitalizeName";
 import convertTime from "../../../../functions/convertTime";
+import { exampleFetchLearnerById, exampleUpdateLearner } from "../../../../../data/data_access/ExampleLearnerService";
 
 import { Learner } from "../../../../../data/data_objects/Learner";
 import { LearnerFormErrors } from "../../../../objects/FormErrors";
 import { dayKeys } from "../../../../objects/Filters";
-
-import { exampleFetchLearnerById, exampleUpdateLearner } from "../../../../../data/data_access/examples/ExampleLearnerService";
 
 function LearnerEdit() {
   const { id } = useParams();
@@ -30,70 +30,88 @@ function LearnerEdit() {
       wednesday: { start_time: "", end_time: "" },
       thursday: { start_time: "", end_time: "" },
       friday: { start_time: "", end_time: "" },
-      saturday: { start_time: "", end_time: "" }
-    }
+      saturday: { start_time: "", end_time: "" },
+    },
   });
   const [errors, setErrors] = useState<LearnerFormErrors>({});
 
   useEffect(() => {
     if (!id) return;
-    
+
     exampleFetchLearnerById(id)
       .then((data) => setLearner(data))
       .catch((err) => console.error("Error fetching learner:", err));
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value, type } = e.target;
-  
-    if (type === 'text' || type === 'email') {
+
+    // Text, email, and gender <select>
+    if (
+      type === "text" ||
+      type === "email" ||
+      (type === "select-one" && name === "gender")
+    ) {
       setLearner((prevLearner) => ({
         ...prevLearner,
-        [name]: value
+        [name]: value,
       }));
-    } else if (type === 'checkbox') {
+    }
+    // Level checkbox (treated like radio – only one level at a time)
+    else if (type === "checkbox") {
       if (name === "level") {
         setLearner((prevLearner) => ({
           ...prevLearner,
-          level: value
+          level: value,
         }));
       }
-    } else {
-      const [day, timeType] = name.split('.');
+    }
+    // Availability selects
+    else {
+      const [day, timeType] = name.split(".");
       setLearner((prevLearner) => ({
         ...prevLearner,
         availability: {
           ...prevLearner.availability,
           [day as keyof Learner["availability"]]: {
             ...prevLearner.availability[day as keyof Learner["availability"]],
-            [timeType]: value
-          }
-        }
+            [timeType]: value,
+          },
+        },
       }));
     }
   };
 
   const validateForm = () => {
     const newErrors: LearnerFormErrors = {};
-  
-    if (!learner.first_name.trim()) newErrors.first_name = "First name is required";
-    if (!learner.last_name.trim()) newErrors.last_name = "Last name is required";
+
+    if (!learner.first_name.trim())
+      newErrors.first_name = "First name is required";
+    if (!learner.last_name.trim())
+      newErrors.last_name = "Last name is required";
     if (!learner.phone.trim()) newErrors.phone = "Phone number is required";
     if (!learner.email.trim()) newErrors.email = "Email is required";
+    if (!learner.gender.trim()) newErrors.gender = "Gender is required";
     if (!learner.level.trim()) newErrors.level = "Level is required";
-  
+
     const phonePattern = /^[0-9]{10}$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (learner.phone && !phonePattern.test(learner.phone)) newErrors.phone = "Phone number is invalid";
-    if (learner.email && !emailPattern.test(learner.email)) newErrors.email = "Email is invalid";
-  
+    if (learner.phone && !phonePattern.test(learner.phone))
+      newErrors.phone = "Phone number is invalid";
+    if (learner.email && !emailPattern.test(learner.email))
+      newErrors.email = "Email is invalid";
+
     dayKeys.forEach((day) => {
       const { start_time, end_time } = learner.availability[day];
 
       if (start_time && !end_time) {
-        newErrors.availability = "End time is required if a start time is selected";
+        newErrors.availability =
+          "End time is required if a start time is selected";
       } else if (!start_time && end_time) {
-        newErrors.availability = "Start time is required if an end time is selected";
+        newErrors.availability =
+          "Start time is required if an end time is selected";
       }
 
       if (start_time && end_time && start_time >= end_time) {
@@ -128,7 +146,9 @@ function LearnerEdit() {
   return (
     <div className="data-container">
       <div className="header-and-errors-container">
-        <h3 className="header">{learner.first_name} {learner.last_name}</h3>
+        <h3 className="header">
+          {learner.first_name} {learner.last_name}
+        </h3>
         {Object.keys(errors).length > 0 && (
           <ul className="error-list">
             {Object.entries(errors).map(([field, error]) => (
@@ -161,6 +181,7 @@ function LearnerEdit() {
                 />
               </div>
             </div>
+
             <div className="form-group">
               <h4 className="input-label">Contact</h4>
               <div className="input-container">
@@ -182,19 +203,40 @@ function LearnerEdit() {
                 />
               </div>
             </div>
+
+            {/* NEW GENDER SELECT, matching tutor forms */}
+            <div className="form-group">
+              <h4 className="input-label">Gender</h4>
+              <div className="gender-container">
+                <select
+                  id="gender"
+                  name="gender"
+                  value={learner.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">gender</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                  <option value="nonbinary">non-binary</option>
+                </select>
+              </div>
+            </div>
+
             <h4 className="preferences-label">Level</h4>
             <div className="level-container">
-              {["esl_novice", 
-                "esl_beginner", 
+              {[
+                "esl_novice",
+                "esl_beginner",
                 "esl_intermediate",
-                "citizenship", 
-                "sped_ela", 
-                "basic_math", 
-                "hiset_math", 
-                "basic_reading", 
-                "hiset_reading", 
-                "basic_writing", 
-                "hiset_writing"].map((level) => (
+                "citizenship",
+                "sped_ela",
+                "basic_math",
+                "hiset_math",
+                "basic_reading",
+                "hiset_reading",
+                "basic_writing",
+                "hiset_writing",
+              ].map((level) => (
                 <div key={level}>
                   <input
                     type="checkbox"
@@ -204,10 +246,13 @@ function LearnerEdit() {
                     checked={learner.level === level}
                     onChange={handleChange}
                   />
-                  <label htmlFor={level}>{level.replace('_', ' ').toLowerCase()}</label>
+                  <label htmlFor={level}>
+                    {level.replace("_", " ").toLowerCase()}
+                  </label>
                 </div>
               ))}
             </div>
+
             <h4 className="select-label">Availability</h4>
             <div className="availability-container">
               {dayKeys.map((day) => {
@@ -224,7 +269,7 @@ function LearnerEdit() {
                 return (
                   <div key={day}>
                     <label htmlFor={`${day}.start_time`}>
-                      {day.charAt(0).toUpperCase() + day.slice(1)} 
+                      {day.charAt(0).toUpperCase() + day.slice(1)}
                     </label>
                     <select
                       id={`${day}.start_time`}
@@ -239,9 +284,7 @@ function LearnerEdit() {
                         </option>
                       ))}
                     </select>
-                    <label htmlFor={`${day}.end_time`}>
-                      {"  "}
-                    </label>
+                    <label htmlFor={`${day}.end_time`}>{"  "}</label>
                     <select
                       id={`${day}.end_time`}
                       name={`${day}.end_time`}
@@ -259,6 +302,7 @@ function LearnerEdit() {
                 );
               })}
             </div>
+
             <div className="button-container">
               <button className="save-button" onClick={handleSave}>Save</button>
               <button onClick={() => navigate(`/database/learners/${id}`)}>Cancel</button>

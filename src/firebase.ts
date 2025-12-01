@@ -1,17 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC5wTAUwLceMknO1EOhBkXvYGSIbF5So98",
-  authDomain: "tutorlearnerdatabase.firebaseapp.com",
-  projectId: "tutorlearnerdatabase",
-  storageBucket: "tutorlearnerdatabase.firebasestorage.app",
-  messagingSenderId: "1084021393378",
-  appId: "1:1084021393378:web:794d114cc01f81b6ebdbbb",
-  measurementId: "G-JM31KN45X6"
+  apiKey: "AIzaSyC7P7uSYanUx4gaAyQbbEmRgRop04LYILg",
+  authDomain: "tutorlearnerdatabasedemo.firebaseapp.com",
+  projectId: "tutorlearnerdatabasedemo",
+  storageBucket: "tutorlearnerdatabasedemo.firebasestorage.app",
+  messagingSenderId: "191970084550",
+  appId: "1:191970084550:web:62ddaf1f6382f7398c39c7",
+  measurementId: "G-M1N71SMH4E"
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-
-export default app;
+export const app = initializeApp(firebaseConfig);

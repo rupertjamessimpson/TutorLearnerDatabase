@@ -155,19 +155,19 @@
   gap: 5px;
 }
 
-.gender-details-group {
+.details-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: 10px;
 }
 
-.gender-details-label {
+.details-label {
   width: 100px;
   margin: 0;
 }
 
-.gender-details-group p {
+.details-group p {
   padding: 3px;
   width: 573px;
   margin: 0;
@@ -202,6 +202,7 @@
 }
 
 .availability-list-container {
+  padding-top: 20px;
   display: flex;
   justify-content: end;
 }

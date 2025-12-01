@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
+import { exampleFetchTutorById, exampleDeleteTutor } from "../../../../../data/data_access/ExampleTutorService";
+
 import { Tutor } from "../../../../../data/data_objects/Tutor";
-import { exampleFetchTutorById, exampleDeleteTutor } from "../../../../../data/data_access/examples/ExampleTutorService";
-// import { fetchTutorById } from "../../../../../data/data_access/tutorService";
 
 function TutorDetails() {
   const { id } = useParams();
@@ -19,14 +19,6 @@ function TutorDetails() {
       .then((data) => setTutor(data))
       .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
-
-  // useEffect(() => {
-  //   if (!id) return;
-    
-  //   fetchTutorById(id)
-  //     .then((data) => setTutor(data))
-  //     .catch((err) => console.error("Error fetching tutor:", err));
-  // }, [id]);
 
   const toggleDeleteMessage = () => {
     if (isDeleteMessageOpen) {
@@ -77,10 +69,10 @@ function TutorDetails() {
                   </div>
                 </div>
               </div>
-              <div className="gender-details-group">
-                <h4 className="gender-details-label">Gender</h4>
+              <div className="details-group">
+                <h4 className="details-label">Gender</h4>
                 <div className="info-container">
-                  <div className="details-gender-container">
+                  <div className="details-container">
                     <p>{tutor.gender}</p>
                   </div>
                 </div>
@@ -96,25 +88,38 @@ function TutorDetails() {
                   })}
                 </ul>
               </div>
-              <h4 className="details-label">Availability</h4>
+              <div className="details-group">
+                <h4 className="details-label">Availability</h4>
+                <div className="info-container">
+                  <div className="details-container">
+                    <p>{"(" + tutor.first_name + (tutor.available ? " is available" : " is matched") + ")"}</p>
+                  </div>
+                </div>
+              </div>
               <div className="availability-list-container">
                 <ul className="availability-list">
-                  {Object.entries(tutor.availability).map(([day, slot]) => (
-                    <li key={day}>
-                      <span className="day-label">{day.charAt(0).toUpperCase() + day.slice(1)}</span>
-                      <div className="time-box-container">
-                        <div className="time-box">{convertTime(slot.start_time)}</div>
-                        <div className="time-box">{convertTime(slot.end_time)}</div>
-                      </div>
-                    </li>
-                  ))}
+                  {Object.entries(tutor.availability)
+                    .filter(([, slot]) => slot.start_time && slot.end_time)
+                    .map(([day, slot]) => (
+                      <li key={day}>
+                        <span className="day-label">
+                          {day.charAt(0).toUpperCase() + day.slice(1)}
+                        </span>
+                        <div className="time-box-container">
+                          <div className="time-box">{convertTime(slot.start_time)}</div>
+                          <div className="time-box">{convertTime(slot.end_time)}</div>
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               </div>
             </div>
             <div className="buttons-container">
               <div className="match-and-edit-buttons">
                 <button className="edit-button" onClick={() => navigate(`/database/tutors/edit/${id}`)}>Edit</button>
-                <button className="match-button" onClick={() => navigate(`/database/tutors/match/${id}`)}>Match</button>
+                {tutor.available &&
+                  <button className="match-button" onClick={() => navigate(`/database/tutors/match/${id}`)}>Match</button>
+                }
               </div>
               {isDeleteMessageOpen && (
                 <div className="delete-message">

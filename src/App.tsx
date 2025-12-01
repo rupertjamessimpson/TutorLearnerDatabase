@@ -15,6 +15,8 @@ import LearnerDetails from "./client/components/database/learners/details";
 import LearnerEdit from "./client/components/database/learners/edit";
 import LearnerMatch from "./client/components/database/learners/match";
 import Class from "./client/components/classes";
+import CsvUpload from "./client/components/forms/csv";
+import CsvUploadInstructions from "./client/components/forms/csv/instructions";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/forms" element={<Navigate to="/forms/tutor" />} />
           <Route path="/forms/tutor" element={<TutorForm />} />
           <Route path="/forms/learner" element={<LearnerForm />} />
+          <Route path="/forms/csv" element={<CsvUpload />} />
+          <Route path="/forms/csv/instructions" element={<CsvUploadInstructions />} />
           <Route path="/class" element={<Navigate to="/class/1" />} />
           <Route path="/class/1" element={<Class />} />
           <Route path="/class/2" element={<Class />} />
@@ -43,8 +47,6 @@ function App() {
           <Route path="/class/4" element={<Class />} />
           <Route path="/class/5" element={<Class />} />
           <Route path="/class/6" element={<Class />} />
-          <Route path="/class/7" element={<Class />} />
-          <Route path="/class/8" element={<Class />} />
         </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
+import { exampleFetchLearners, exampleAddLearnerToClass, exampleRemoveLearnerFromClass } from "../../../data/data_access/ExampleLearnerService";
+
 import { Learner } from "../../../data/data_objects/Learner";
-import { exampleFetchLearners, exampleAddLearnerToClass, exampleRemoveLearnerFromClass } from "../../../data/data_access/examples/ExampleLearnerService";
+
 import "./index.css";
 
 function Class() {

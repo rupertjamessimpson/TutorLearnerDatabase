@@ -37,17 +37,16 @@ function Nav() {
         <div className="sub-nav-container">
             <Link to="/forms/tutor" className="sub-nav-button">Tutor</Link>
             <Link to="/forms/learner" className="sub-nav-button">Learner</Link>
+            <Link to="/forms/csv" className="sub-nav-button">CSV Upload</Link>
         </div>)}
       {inClass && (
         <div className="sub-nav-container">
-            <Link to="/class/1" className="sub-nav-button">Class 1</Link>
-            <Link to="/class/2" className="sub-nav-button">Class 2</Link>
-            <Link to="/class/3" className="sub-nav-button">Class 3</Link>
-            <Link to="/class/4" className="sub-nav-button">Class 4</Link>
-            <Link to="/class/5" className="sub-nav-button">Class 5</Link>
-            <Link to="/class/6" className="sub-nav-button">Class 6</Link>
-            <Link to="/class/7" className="sub-nav-button">Class 7</Link>
-            <Link to="/class/8" className="sub-nav-button">Class 8</Link>
+            <Link to="/class/1" className="sub-nav-button">1</Link>
+            <Link to="/class/2" className="sub-nav-button">2</Link>
+            <Link to="/class/3" className="sub-nav-button">3</Link>
+            <Link to="/class/4" className="sub-nav-button">4</Link>
+            <Link to="/class/5" className="sub-nav-button">5</Link>
+            <Link to="/class/6" className="sub-nav-button">6</Link>
         </div>)}
     </div>
   );

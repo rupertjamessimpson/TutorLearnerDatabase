@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import convertTime from "../../../../functions/convertTime";
+import { exampleFetchTutorById } from "../../../../../data/data_access/ExampleTutorService";
+import { exampleFetchLearners } from "../../../../../data/data_access/ExampleLearnerService";
+import { exampleCreateMatch } from "../../../../../data/data_access/ExampleMatchService";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
 import { Learner, Availability, DayAvailability } from "../../../../../data/data_objects/Learner";
-import { exampleFetchTutorById } from "../../../../../data/data_access/examples/ExampleTutorService";
-import { exampleFetchLearners } from "../../../../../data/data_access/examples/ExampleLearnerService";
-import { exampleCreateMatch } from "../../../../../data/data_access/examples/ExampleMatchService";
 
 function TutorMatch() {
   const { id } = useParams();
@@ -112,18 +113,24 @@ function TutorMatch() {
             {filteredLearners.map((learner) => (
               <li key={learner.first_name}>
                 <div className="learner-match-name">
-                  <strong>{learner.first_name} {learner.last_name} ({learner.gender})</strong>
+                  <strong>{learner.first_name} {learner.last_name} - ESL Beginner ({learner.gender})</strong>
                   <button className="match-match-button" onClick={() => handleMatch(learner.id)}>Match</button>
                 </div>
                 <ul>
-                  {(Object.entries(learner.availability) as [keyof Availability, DayAvailability][]).map(([day, slot]) => (
-                    <li className="availability-item" key={day}>
-                      <div>
-                        {day.charAt(0).toUpperCase() + day.slice(1)}:{" "}
-                        {convertTime(slot.start_time)} - {convertTime(slot.end_time)}
-                      </div>
-                    </li>
-                  ))}
+                  {(Object.entries(learner.availability) as [
+                    keyof Availability,
+                    DayAvailability
+                  ][])
+                    // only show days that have BOTH a start and end time
+                    .filter(([, slot]) => slot.start_time && slot.end_time)
+                    .map(([day, slot]) => (
+                      <li className="availability-item" key={day}>
+                        <div>
+                          {day.charAt(0).toUpperCase() + day.slice(1)}:{" "}
+                          {convertTime(slot.start_time)} - {convertTime(slot.end_time)}
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               </li>
             ))}

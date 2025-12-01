@@ -1,5 +1,5 @@
 import data from "./example.json";
-import { Tutor } from "../../data_objects/Tutor";
+import { Tutor } from "../data_objects/Tutor";
 
 // Returns all Tutors
 export const exampleFetchTutors = async (): Promise<Tutor[]> => {
@@ -17,12 +17,15 @@ export const exampleFetchTutorById = async (id: string): Promise<Tutor> => {
 
 // Creates new tutor with the provided data
 export const exampleCreateTutor = async (tutorForm: Omit<Tutor, "id">): Promise<Tutor> => {
-  const newId = (data.Tutors.length + 1).toString();
+  let last = data.Tutors[data.Tutors.length - 1];
+  let currentId = last ? Number(last.id) : 0;
+
+  const newId = String(currentId + 1);
 
   const newTutor: Tutor = {
     id: newId,
     ...tutorForm
-  }
+  };
 
   data.Tutors.push(newTutor);
   return structuredClone(newTutor);
@@ -62,4 +65,26 @@ export const exampleDeleteTutor = async (id: string): Promise<void> => {
 
   const matchIndex = data.Matches.findIndex((m) => m.id === match.id);
   if (matchIndex !== -1) data.Matches.splice(matchIndex, 1);
+}
+
+// Creates a batch of tutors from the provided data
+export const exampleBatchCreateTutors = async (batchTutors: Array<Omit<Tutor, "id">>): Promise<Tutor[]> => {
+  const createdTutors: Tutor[] = [];
+
+  let last = data.Tutors[data.Tutors.length - 1];
+  let currentId = last ? Number(last.id) : 0;
+
+  for (const tutor of batchTutors) {
+    const nextId = currentId + 1;
+    const newTutor: Tutor = {
+      id: String(nextId),
+      ...tutor
+    };
+
+    data.Tutors.push(newTutor);
+    createdTutors.push(structuredClone(newTutor));
+    currentId = nextId;
+  }
+
+  return createdTutors;
 }
