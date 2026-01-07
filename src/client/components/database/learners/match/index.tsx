@@ -47,7 +47,7 @@ function LearnerMatch() {
       learner.last_name
     )
       .then((newMatch) => {
-        console.log("✅ Match created:", newMatch);
+        console.log("Match created:", newMatch);
         navigate("/database/matches");
       })
       .catch((err) => console.error("Error creating match:", err));
@@ -68,12 +68,14 @@ function LearnerMatch() {
     tutors.map((t) => ({
       tutor_id: t.id,
       name: `${t.first_name} ${t.last_name}`,
+      available: t.available,
       preferences: t.preferences,
       availability: t.availability,
     }));
 
   const filteredTutors = filterTutors();
   const allTutors = getAllTutors();
+  const availableTutors = allTutors.filter((t) => t.available);
 
   return (
     <div className="data-container">
@@ -102,7 +104,7 @@ function LearnerMatch() {
               }}
             >
               <option value="">Select a Tutor</option>
-              {allTutors.map((tutor) => (
+              {availableTutors.map((tutor) => (
                 <option key={tutor.name} value={tutor.name}>
                   {tutor.name}
                 </option>

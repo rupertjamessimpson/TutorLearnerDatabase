@@ -80,12 +80,12 @@ function TutorDetails() {
               <h4 className="levels-details-label">Preferences</h4>
               <div className="levels-list-container">
                 <ul className="levels-list">
-                  {tutor.preferences && Object.entries(tutor.preferences).slice(2).map(([key, value]) => {
-                    if (value) {
-                      return <li key={key}>{key.replace('_', ' ')}</li>;
-                    }
-                    return null;
-                  })}
+                  {tutor.preferences &&
+                    Object.entries(tutor.preferences)
+                      .filter(([key, value]) => value)
+                      .map(([key]) => (
+                        <li key={key}>{key.replace(/_/g, " ")}</li>
+                      ))}
                 </ul>
               </div>
               <div className="details-group">

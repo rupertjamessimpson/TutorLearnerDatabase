@@ -48,7 +48,6 @@ function TutorMatch() {
       selectedLearner.last_name
     )
       .then((newMatch) => {
-        console.log("✅ Match created:", newMatch);
         navigate("/database/matches");
       })
       .catch((err) => console.error("Error creating match:", err));
@@ -71,6 +70,7 @@ function TutorMatch() {
     learners.map((l) => ({
       learner_id: l.id,
       name: `${l.first_name} ${l.last_name}`,
+      available: l.available,
       level: l.level,
       availability: l.availability,
     }));
@@ -78,6 +78,7 @@ function TutorMatch() {
 
   const filteredLearners = filterLearners();
   const allLearners = getAllLearners();
+  const availableLearners = allLearners.filter((l) => l.available);
 
   return (
     <div className="data-container">
@@ -98,7 +99,7 @@ function TutorMatch() {
               }
             }}>
               <option value="">Select a Learner</option>
-              {allLearners.map((learner) => (
+              {availableLearners.map((learner) => (
                 <option key={learner.name} value={learner.name}>
                   {learner.name} ({learner.level.replace('_', ' ')})
                 </option>
@@ -113,7 +114,7 @@ function TutorMatch() {
             {filteredLearners.map((learner) => (
               <li key={learner.first_name}>
                 <div className="learner-match-name">
-                  <strong>{learner.first_name} {learner.last_name} - ESL Beginner ({learner.gender})</strong>
+                  <strong>{learner.first_name} {learner.last_name} - {learner.level.replace('_', ' ')} ({learner.gender})</strong>
                   <button className="match-match-button" onClick={() => handleMatch(learner.id)}>Match</button>
                 </div>
                 <ul>

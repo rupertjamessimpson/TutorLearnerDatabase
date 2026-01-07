@@ -49,17 +49,21 @@ function TutorsForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    const checked = (e.currentTarget as HTMLInputElement).checked;
 
-    if (type === "text" || type === "email" || type === "select-one") {
+    if (type === "text" || type === "email") {
       setTutor((prevTutor) => ({
         ...prevTutor,
         [name]: value,
       }));
-    } else if (type === "checkbox") {
+      return;
+    }
+
+    if (type === "checkbox") {
       const [category, field] = name.split(".");
 
       if (category === "preferences") {
+        const checked = (e.target as HTMLInputElement).checked;
+
         setTutor((prevTutor) => ({
           ...prevTutor,
           preferences: {
@@ -68,8 +72,13 @@ function TutorsForm() {
           },
         }));
       }
-    } else {
+
+      return;
+    }
+
+    if (name.includes(".")) {
       const [day, timeType] = name.split(".");
+
       setTutor((prevTutor) => ({
         ...prevTutor,
         availability: {
@@ -79,6 +88,11 @@ function TutorsForm() {
             [timeType]: value,
           },
         },
+      }));
+    } else {
+      setTutor((prevTutor) => ({
+        ...prevTutor,
+        [name]: value,
       }));
     }
   };

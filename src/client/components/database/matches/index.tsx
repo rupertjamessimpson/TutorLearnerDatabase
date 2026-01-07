@@ -42,7 +42,6 @@ function Matches() {
     try {
       await exampleDeleteMatch(id);
       setMatches((prev) => prev.filter((match) => match.id !== id)); // Update UI
-      alert("Match successfully removed.");
     } catch (err) {
       console.error("Error deleting match:", err);
       alert("Failed to delete match.");

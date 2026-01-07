@@ -269,3 +269,107 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+.instructions {
+  display: flex;
+  justify-content: left;
+  flex-grow: 1;
+  height: 540px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.instructions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Mobile layout for forms --- */
+@media (max-width: 768px) {
+  /* Make the card taller instead of fixed height */
+  .form-container {
+    align-items: stretch;
+  }
+
+  .form {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  /* Error header + form stacked */
+  .header-and-errors-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Generic form rows (label + input) */
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input-label {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .input-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px; /* optional spacing */
+  }
+
+  .input-container input {
+    width: 250px;
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+
+  /* Top name/contact rows */
+  .name-container,
+  .contact-container {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Preferences / availability / gender grids -> 1 column */
+  .level-container,
+  .availability-container,
+  .gender-container {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .availability-container div,
+  .gender-container div {
+    justify-content: flex-start;
+  }
+
+  /* Buttons */
+  .button-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* CSV upload bits */
+  .csv-upload-container {
+    height: auto;
+    padding: 10px;
+  }
+
+  .csv-upload-box {
+    height: auto;
+  }
+
+  .toggle-and-instructions-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

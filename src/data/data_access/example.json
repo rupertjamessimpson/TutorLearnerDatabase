@@ -11,309 +11,309 @@
       "preferences": {
         "conversation": true,
         "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "", "end_time": "" }
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "14:00", "end_time": "16:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "2",
       "first_name": "Benjamin",
-      "last_name": "Brave",
+      "last_name": "Bismarck",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
+        "esl_novice": false,
         "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "", "end_time": "" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "13:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "12:00", "end_time": "15:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "3",
-      "first_name": "Cameron",
-      "last_name": "Collins",
-      "gender": "male",
+      "first_name": "Cleopatra",
+      "last_name": "Crane",
+      "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
+        "esl_novice": false,
+        "esl_beginner": false,
         "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "", "end_time": "" }
+        "monday":    { "start_time": "12:00", "end_time": "14:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "13:00", "end_time": "16:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "4",
-      "first_name": "Daniel",
-      "last_name": "Davis",
+      "first_name": "Dante",
+      "last_name": "Doyle",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
         "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "", "end_time": "" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "14:00", "end_time": "17:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "5",
-      "first_name": "Elvis",
-      "last_name": "Edwards",
-      "gender": "male",
+      "first_name": "Eleanor",
+      "last_name": "Ellis",
+      "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
         "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "", "end_time": "" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "13:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "6",
-      "first_name": "Francis",
-      "last_name": "Frank",
+      "first_name": "Florence",
+      "last_name": "Fairchild",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
         "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "", "end_time": "" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "14:00", "end_time": "17:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "10:00", "end_time": "13:00" }
       }
     },
     {
       "id": "7",
-      "first_name": "Gabrielle",
-      "last_name": "Gomez",
-      "gender": "female",
+      "first_name": "Galileo",
+      "last_name": "Gray",
+      "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
         "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "14:00", "end_time": "17:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "8",
-      "first_name": "Hillary",
-      "last_name": "Hoff",
+      "first_name": "Harriet",
+      "last_name": "Huxley",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
         "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "15:00", "end_time": "18:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "10:00", "end_time": "12:00" }
       }
     },
     {
       "id": "9",
-      "first_name": "Isabelle",
-      "last_name": "Irwin",
-      "gender": "female",
+      "first_name": "Isaac",
+      "last_name": "Irons",
+      "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
         "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "13:00", "end_time": "16:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "10",
-      "first_name": "Jacob",
-      "last_name": "Jones",
+      "first_name": "Julius",
+      "last_name": "Justice",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
         "basic_writing": true,
-        "hiset_writing": true
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "13:00", "end_time": "16:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "11",
-      "first_name": "Karen",
-      "last_name": "Kruger",
+      "first_name": "Katherine",
+      "last_name": "Kepler",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
@@ -322,91 +322,91 @@
         "conversation": true,
         "esl_novice": true,
         "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
+        "esl_intermediate": false,
+        "citizenship": false,
         "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
+        "basic_math": false,
+        "hiset_math": false,
         "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "12",
-      "first_name": "Lucas",
-      "last_name": "Long",
+      "first_name": "Leonardo",
+      "last_name": "Locke",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
+        "esl_novice": false,
         "esl_beginner": true,
         "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
+        "citizenship": false,
+        "sped_ela": false,
         "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
+        "hiset_math": false,
+        "basic_reading": false,
         "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "17:00", "end_time": "20:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "17:00", "end_time": "20:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "13",
-      "first_name": "Maria",
-      "last_name": "Mason",
-      "gender": "female",
+      "first_name": "Marcus",
+      "last_name": "Monroe",
+      "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
+        "esl_novice": false,
+        "esl_beginner": false,
         "esl_intermediate": true,
         "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
         "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
+        "hiset_reading": false,
+        "basic_writing": false,
         "hiset_writing": true
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "12:00", "end_time": "15:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "11:00", "end_time": "14:00" }
       }
     },
     {
       "id": "14",
-      "first_name": "Nathaniel",
-      "last_name": "Norris",
+      "first_name": "Nikola",
+      "last_name": "Novak",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
@@ -414,185 +414,92 @@
       "preferences": {
         "conversation": true,
         "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
         "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
         "hiset_writing": true
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "10:00", "end_time": "13:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "15",
-      "first_name": "Oscar",
-      "last_name": "O'Riley",
-      "gender": "male",
+      "first_name": "Octavia",
+      "last_name": "Orwell",
+      "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
+        "esl_novice": false,
         "esl_beginner": true,
-        "esl_intermediate": true,
+        "esl_intermediate": false,
         "citizenship": true,
         "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
         "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
+        "basic_writing": false,
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "15:00", "end_time": "18:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "10:00", "end_time": "12:00" }
       }
     },
     {
       "id": "16",
-      "first_name": "Peter",
-      "last_name": "Phillips",
+      "first_name": "Pascal",
+      "last_name": "Pierce",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
       "preferences": {
         "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
+        "esl_novice": false,
+        "esl_beginner": false,
         "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
+        "citizenship": false,
+        "sped_ela": false,
         "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": false,
         "basic_writing": true,
-        "hiset_writing": true
+        "hiset_writing": false
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "18:00", "end_time": "21:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "18:00", "end_time": "21:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "14:00", "end_time": "17:00" }
       }
     },
     {
       "id": "17",
-      "first_name": "Quinn",
-      "last_name": "Quiggly",
-      "gender": "female",
-      "phone": "7777777777",
-      "email": "example@example.com",
-      "available": true,
-      "preferences": {
-        "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
-      },
-      "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
-      }
-    },
-    {
-      "id": "18",
-      "first_name": "Roger",
-      "last_name": "Red",
-      "gender": "female",
-      "phone": "7777777777",
-      "email": "example@example.com",
-      "available": true,
-      "preferences": {
-        "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
-      },
-      "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
-      }
-    },
-    {
-      "id": "19",
-      "first_name": "Savannah",
-      "last_name": "Sullivan",
-      "gender": "female",
-      "phone": "7777777777",
-      "email": "example@example.com",
-      "available": true,
-      "preferences": {
-        "conversation": true,
-        "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
-        "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
-        "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
-        "hiset_writing": true
-      },
-      "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
-      }
-    },
-    {
-      "id": "20",
-      "first_name": "Timothy",
-      "last_name": "Turner",
+      "first_name": "Quentin",
+      "last_name": "Quill",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
@@ -600,406 +507,499 @@
       "preferences": {
         "conversation": true,
         "esl_novice": true,
-        "esl_beginner": true,
-        "esl_intermediate": true,
-        "citizenship": true,
+        "esl_beginner": false,
+        "esl_intermediate": false,
+        "citizenship": false,
         "sped_ela": true,
-        "basic_math": true,
-        "hiset_math": true,
+        "basic_math": false,
+        "hiset_math": false,
         "basic_reading": true,
-        "hiset_reading": true,
-        "basic_writing": true,
+        "hiset_reading": false,
+        "basic_writing": false,
+        "hiset_writing": false
+      },
+      "availability": {
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "12:00", "end_time": "17:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
+      }
+    },
+    {
+      "id": "18",
+      "first_name": "Rosalind",
+      "last_name": "Ryder",
+      "gender": "female",
+      "phone": "7777777777",
+      "email": "example@example.com",
+      "available": true,
+      "preferences": {
+        "conversation": true,
+        "esl_novice": false,
+        "esl_beginner": true,
+        "esl_intermediate": false,
+        "citizenship": true,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": true,
+        "basic_reading": false,
+        "hiset_reading": false,
+        "basic_writing": false,
         "hiset_writing": true
       },
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
+        "monday":    { "start_time": "10:00", "end_time": "14:00" },
+        "tuesday":   { "start_time": "10:00", "end_time": "14:00" },
         "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "thursday":  { "start_time": "10:00", "end_time": "14:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
+      }
+    },
+    {
+      "id": "19",
+      "first_name": "Simone",
+      "last_name": "Sinclair",
+      "gender": "female",
+      "phone": "7777777777",
+      "email": "example@example.com",
+      "available": true,
+      "preferences": {
+        "conversation": true,
+        "esl_novice": false,
+        "esl_beginner": false,
+        "esl_intermediate": true,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": true,
+        "hiset_reading": true,
+        "basic_writing": false,
+        "hiset_writing": false
+      },
+      "availability": {
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "14:00", "end_time": "17:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
+      }
+    },
+    {
+      "id": "20",
+      "first_name": "Tesla",
+      "last_name": "Thorne",
+      "gender": "nonbinary",
+      "phone": "7777777777",
+      "email": "example@example.com",
+      "available": true,
+      "preferences": {
+        "conversation": true,
+        "esl_novice": true,
+        "esl_beginner": true,
+        "esl_intermediate": false,
+        "citizenship": false,
+        "sped_ela": false,
+        "basic_math": false,
+        "hiset_math": false,
+        "basic_reading": false,
+        "hiset_reading": true,
+        "basic_writing": true,
+        "hiset_writing": false
+      },
+      "availability": {
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     }
   ],
   "Learners": [
     {
       "id": "1",
-      "first_name": "Avery",
-      "last_name": "Allen",
+      "first_name": "Alan",
+      "last_name": "Armitage",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "class": "1",
-      "level": "esl_beginner",
+      "level": "esl_novice",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "11:00", "end_time": "13:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "2",
-      "first_name": "Bonnie",
-      "last_name": "Bowie",
+      "first_name": "Beatrix",
+      "last_name": "Browning",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
-      "class": "1",
+      "class": "2",
       "level": "esl_beginner",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "11:00", "end_time": "14:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "3",
-      "first_name": "Cindy",
-      "last_name": "Carter",
+      "first_name": "Clara",
+      "last_name": "Cates",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "class": "1",
-      "level": "esl_beginner",
+      "level": "esl_intermediate",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "12:00", "end_time": "15:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "12:00", "end_time": "15:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "10:00", "end_time": "12:00" }
       }
     },
     {
       "id": "4",
-      "first_name": "Denise",
-      "last_name": "Downey",
-      "gender": "female",
+      "first_name": "Desmond",
+      "last_name": "Doyle",
+      "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "2",
+      "level": "citizenship",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "11:00", "end_time": "13:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "5",
-      "first_name": "Emily",
-      "last_name": "Ellis",
+      "first_name": "Edith",
+      "last_name": "Ellison",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "class": "1",
-      "level": "esl_beginner",
+      "level": "sped_ela",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "11:00", "end_time": "14:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "6",
-      "first_name": "Franklin",
-      "last_name": "Fierce",
+      "first_name": "Felix",
+      "last_name": "Frost",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "2",
+      "level": "basic_math",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "14:00", "end_time": "16:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "11:00", "end_time": "14:00" }
       }
     },
     {
       "id": "7",
-      "first_name": "Giselle",
-      "last_name": "Green",
+      "first_name": "Greta",
+      "last_name": "Glass",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "2",
+      "level": "hiset_math",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "15:00", "end_time": "17:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "8",
-      "first_name": "Henry",
-      "last_name": "Hunt",
+      "first_name": "Hugo",
+      "last_name": "Hart",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "3",
+      "level": "basic_reading",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "16:00", "end_time": "19:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "9",
-      "first_name": "Ivan",
-      "last_name": "Irving",
-      "gender": "male",
+      "first_name": "Ingrid",
+      "last_name": "Ives",
+      "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "3",
+      "level": "hiset_reading",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "11:00", "end_time": "13:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "10",
-      "first_name": "Jessica",
-      "last_name": "James",
-      "gender": "female",
+      "first_name": "Jonas",
+      "last_name": "Jett",
+      "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": false,
       "class": "1",
-      "level": "esl_beginner",
+      "level": "basic_writing",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "14:00", "end_time": "17:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "11",
-      "first_name": "Kevin",
-      "last_name": "Kirk",
+      "first_name": "Kieran",
+      "last_name": "Knox",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
       "class": "1",
-      "level": "esl_beginner",
+      "level": "hiset_writing",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "13:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "10:00", "end_time": "13:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "12",
-      "first_name": "Louis",
-      "last_name": "Lee",
+      "first_name": "Lila",
+      "last_name": "Lane",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "2",
+      "level": "esl_novice",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "10:00", "end_time": "12:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "13",
-      "first_name": "Matthew",
-      "last_name": "Matters",
+      "first_name": "Milo",
+      "last_name": "March",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
+      "class": "2",
       "level": "esl_beginner",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "13:00", "end_time": "16:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "14",
-      "first_name": "Natalie",
-      "last_name": "Nimb",
+      "first_name": "Nora",
+      "last_name": "North",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "2",
+      "level": "esl_intermediate",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "12:00", "end_time": "15:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "12:00", "end_time": "15:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "10:00", "end_time": "12:00" }
       }
     },
     {
       "id": "15",
-      "first_name": "Omelia",
-      "last_name": "Oscar",
+      "first_name": "Opal",
+      "last_name": "Oakley",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "3",
+      "level": "citizenship",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "14:00", "end_time": "17:00" },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "14:00", "end_time": "17:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "16",
-      "first_name": "Parker",
-      "last_name": "Prince",
+      "first_name": "Petra",
+      "last_name": "Page",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "",
+      "level": "sped_ela",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "13:00", "end_time": "17:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     },
     {
       "id": "17",
       "first_name": "Quentin",
-      "last_name": "Quil",
+      "last_name": "Quinn",
       "gender": "male",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "",
+      "level": "basic_math",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "10:00", "end_time": "13:00" }
       }
     },
     {
       "id": "18",
-      "first_name": "Rachael",
-      "last_name": "Rae",
-      "gender": "male",
-      "phone": "7777777777",
-      "email": "example@example.com",
-      "available": true,
-      "class": "1",
-      "level": "esl_beginner",
-      "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
-      }
-    },
-    {
-      "id": "19",
-      "first_name": "Sullivan",
-      "last_name": "Samson",
-      "gender": "male",
-      "phone": "7777777777",
-      "email": "example@example.com",
-      "available": true,
-      "class": "1",
-      "level": "esl_beginner",
-      "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
-      }
-    },
-    {
-      "id": "20",
-      "first_name": "Tabitha",
-      "last_name": "Townsend",
+      "first_name": "Rhea",
+      "last_name": "Rowan",
       "gender": "female",
       "phone": "7777777777",
       "email": "example@example.com",
       "available": true,
-      "class": "1",
-      "level": "esl_beginner",
+      "class": "",
+      "level": "hiset_math",
       "availability": {
-        "monday": { "start_time": "10:00", "end_time": "14:00" },
-        "tuesday": { "start_time": "10:00", "end_time": "14:00" },
-        "wednesday": { "start_time": "10:00", "end_time": "14:00" },
-        "thursday": { "start_time": "10:00", "end_time": "14:00" },
-        "friday": { "start_time": "10:00", "end_time": "14:00" },
-        "saturday": { "start_time": "10:00", "end_time": "14:00" }
+        "monday":    { "start_time": "10:00", "end_time": "14:00" },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "",      "end_time": ""      },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "",      "end_time": ""      }
+      }
+    },
+    {
+      "id": "19",
+      "first_name": "Silas",
+      "last_name": "Stone",
+      "gender": "male",
+      "phone": "7777777777",
+      "email": "example@example.com",
+      "available": true,
+      "class": "",
+      "level": "basic_reading",
+      "availability": {
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "",      "end_time": ""      },
+        "wednesday": { "start_time": "18:00", "end_time": "21:00" },
+        "thursday":  { "start_time": "",      "end_time": ""      },
+        "friday":    { "start_time": "",      "end_time": ""      },
+        "saturday":  { "start_time": "14:00", "end_time": "17:00" }
+      }
+    },
+    {
+      "id": "20",
+      "first_name": "Tessa",
+      "last_name": "Trent",
+      "gender": "female",
+      "phone": "7777777777",
+      "email": "example@example.com",
+      "available": true,
+      "class": "",
+      "level": "hiset_reading",
+      "availability": {
+        "monday":    { "start_time": "",      "end_time": ""      },
+        "tuesday":   { "start_time": "10:00", "end_time": "12:00" },
+        "wednesday": { "start_time": "10:00", "end_time": "12:00" },
+        "thursday":  { "start_time": "10:00", "end_time": "12:00" },
+        "friday":    { "start_time": "10:00", "end_time": "12:00" },
+        "saturday":  { "start_time": "",      "end_time": ""      }
       }
     }
   ],
@@ -1013,8 +1013,8 @@
       },
       "learner": {
         "id": "1",
-        "first_name": "Avery",
-        "last_name": "Allen"
+        "first_name": "Alan",
+        "last_name": "Armitage"
       }
     },
     {
@@ -1022,116 +1022,116 @@
       "tutor": {
         "id": "2",
         "first_name": "Benjamin",
-        "last_name": "Brave"
+        "last_name": "Bismarck"
       },
       "learner": {
         "id": "2",
-        "first_name": "Bonnie",
-        "last_name": "Bowie"
+        "first_name": "Beatrix",
+        "last_name": "Browning"
       }
     },
     {
       "id": "3",
       "tutor": {
         "id": "3",
-        "first_name": "Cameron",
-        "last_name": "Collins"
+        "first_name": "Cleopatra",
+        "last_name": "Crane"
       },
       "learner": {
         "id": "3",
-        "first_name": "Cindy",
-        "last_name": "Carter"
+        "first_name": "Clara",
+        "last_name": "Cates"
       }
     },
     {
       "id": "4",
       "tutor": {
         "id": "4",
-        "first_name": "Daniel",
-        "last_name": "Davis"
+        "first_name": "Dante",
+        "last_name": "Doyle"
       },
       "learner": {
         "id": "4",
-        "first_name": "Denise",
-        "last_name": "Downey"
+        "first_name": "Desmond",
+        "last_name": "Doyle"
       }
     },
     {
       "id": "5",
       "tutor": {
         "id": "5",
-        "first_name": "Elvis",
-        "last_name": "Edwards"
+        "first_name": "Eleanor",
+        "last_name": "Ellis"
       },
       "learner": {
         "id": "5",
-        "first_name": "Emily",
-        "last_name": "Ellis"
+        "first_name": "Edith",
+        "last_name": "Ellison"
       }
     },
     {
       "id": "6",
       "tutor": {
         "id": "6",
-        "first_name": "Francis",
-        "last_name": "Frank"
+        "first_name": "Florence",
+        "last_name": "Fairchild"
       },
       "learner": {
         "id": "6",
-        "first_name": "Franklin",
-        "last_name": "Fierce"
+        "first_name": "Felix",
+        "last_name": "Frost"
       }
     },
     {
       "id": "7",
       "tutor": {
         "id": "7",
-        "first_name": "Gabrielle",
-        "last_name": "Gomez"
+        "first_name": "Galileo",
+        "last_name": "Gray"
       },
       "learner": {
         "id": "7",
-        "first_name": "Giselle",
-        "last_name": "Green"
+        "first_name": "Greta",
+        "last_name": "Glass"
       }
     },
     {
       "id": "8",
       "tutor": {
         "id": "8",
-        "first_name": "Hillary",
-        "last_name": "Hoff"
+        "first_name": "Harriet",
+        "last_name": "Huxley"
       },
       "learner": {
         "id": "8",
-        "first_name": "Henry",
-        "last_name": "Hunt"
+        "first_name": "Hugo",
+        "last_name": "Hart"
       }
     },
     {
       "id": "9",
       "tutor": {
         "id": "9",
-        "first_name": "Isabelle",
-        "last_name": "Irwin"
+        "first_name": "Isaac",
+        "last_name": "Irons"
       },
       "learner": {
         "id": "9",
-        "first_name": "Ivan",
-        "last_name": "Irving"
+        "first_name": "Ingrid",
+        "last_name": "Ives"
       }
     },
     {
       "id": "10",
       "tutor": {
         "id": "10",
-        "first_name": "Jacob",
-        "last_name": "Jones"
+        "first_name": "Julius",
+        "last_name": "Justice"
       },
       "learner": {
         "id": "10",
-        "first_name": "Jessica",
-        "last_name": "James"
+        "first_name": "Jonas",
+        "last_name": "Jett"
       }
     }
   ]
