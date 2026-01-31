@@ -64,7 +64,7 @@ function Learners() {
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
   
-      const matchesAvailability = filters.available ? learner.available : true;
+      const matchesAvailability = filters.available ? learner.available && !learner.match : true;
   
       const matchesNotInClass = !filters.not_in_class
         ? true

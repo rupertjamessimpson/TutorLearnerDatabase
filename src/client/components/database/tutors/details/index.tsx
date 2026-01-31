@@ -77,47 +77,74 @@ function TutorDetails() {
                   </div>
                 </div>
               </div>
-              <h4 className="levels-details-label">Preferences</h4>
-              <div className="levels-list-container">
-                <ul className="levels-list">
-                  {tutor.preferences &&
-                    Object.entries(tutor.preferences)
-                      .filter(([key, value]) => value)
-                      .map(([key]) => (
-                        <li key={key}>{key.replace(/_/g, " ")}</li>
-                      ))}
-                </ul>
-              </div>
-              <div className="details-group">
-                <h4 className="details-label">Availability</h4>
+              <div className="level-details-group">
+                <h4 className="details-label">Preferences</h4>
                 <div className="info-container">
-                  <div className="details-container">
-                    <p>{"(" + tutor.first_name + (tutor.available ? " is available" : " is matched") + ")"}</p>
+                  <div className="levels-list-container">
+                    <ul className="levels-list">
+                      {tutor.preferences &&
+                        Object.entries(tutor.preferences)
+                          .filter(([key, value]) => value)
+                          .map(([key]) => (
+                            <li key={key}>{key.replace(/_/g, " ")}</li>
+                          ))}
+                    </ul>
                   </div>
                 </div>
               </div>
-              <div className="availability-list-container">
-                <ul className="availability-list">
-                  {Object.entries(tutor.availability)
-                    .filter(([, slot]) => slot.start_time && slot.end_time)
-                    .map(([day, slot]) => (
-                      <li key={day}>
-                        <span className="day-label">
-                          {day.charAt(0).toUpperCase() + day.slice(1)}
-                        </span>
-                        <div className="time-box-container">
-                          <div className="time-box">{convertTime(slot.start_time)}</div>
-                          <div className="time-box">{convertTime(slot.end_time)}</div>
-                        </div>
-                      </li>
-                    ))}
-                </ul>
+              {tutor.match &&
+                <div className="details-group">
+                  <h4 className="details-label">Match</h4>
+                  <div className="info-container">
+                    <div className="details-container">
+                      <p>{tutor.match}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+              {tutor.notes &&
+                <div className="details-group">
+                  <h4 className="details-label">Notes</h4>
+                  <div className="info-container">
+                    <div className="details-container">
+                      <p>{tutor.notes}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+              <div className="details-group">
+                <h4 className="details-label">Availability</h4>
+                {tutor.available ? 
+                  <div className="availability-list-container">
+                    <ul className="availability-list">
+                      {Object.entries(tutor.availability)
+                        .filter(([, slot]) => slot.start_time && slot.end_time)
+                        .map(([day, slot]) => (
+                          <li key={day}>
+                            <span className="day-label">
+                              {day.charAt(0).toUpperCase() + day.slice(1)}
+                            </span>
+                            <div className="time-box-container">
+                              <div className="time-box">{convertTime(slot.start_time)}</div>
+                              <div className="time-box">{convertTime(slot.end_time)}</div>
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                  :
+                  <div className="info-container">
+                    <div className="details-container">
+                      <p>unavailable</p>
+                    </div>
+                  </div>
+                }
               </div>
             </div>
             <div className="buttons-container">
               <div className="match-and-edit-buttons">
                 <button className="edit-button" onClick={() => navigate(`/database/tutors/edit/${id}`)}>Edit</button>
-                {tutor.available &&
+                {(tutor.available && !tutor.match) &&
                   <button className="match-button" onClick={() => navigate(`/database/tutors/match/${id}`)}>Match</button>
                 }
               </div>

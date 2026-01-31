@@ -34,8 +34,8 @@ export const exampleCreateMatch = async (
   const tutor = data.Tutors.find((t) => t.id === tutor_id);
   const learner = data.Learners.find((l) => l.id === learner_id);
 
-  if (tutor) tutor.available = false;
-  if (learner) learner.available = false;
+  if (tutor) tutor.match = learner_first_name + " " + learner_last_name;
+  if (learner) learner.match = tutor_first_name + " " + tutor_last_name;
 
   return newMatch;
 };
@@ -50,8 +50,8 @@ export const exampleDeleteMatch = async (id: string): Promise<void> => {
   const tutor = data.Tutors.find((t) => t.id === match.tutor.id);
   const learner = data.Learners.find((l) => l.id === match.learner.id);
 
-  if (tutor) tutor.available = true;
-  if (learner) learner.available = true;
+  if (tutor) tutor.match = "";
+  if (learner) learner.match = "";
 
   data.Matches.splice(index, 1);
 }

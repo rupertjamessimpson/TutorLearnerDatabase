@@ -23,7 +23,9 @@ function LearnerEdit() {
     email: "",
     class: "",
     level: "",
+    notes: "",
     available: true,
+    match: "false",
     availability: {
       monday: { start_time: "", end_time: "" },
       tuesday: { start_time: "", end_time: "" },

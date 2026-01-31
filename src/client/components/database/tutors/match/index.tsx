@@ -62,7 +62,7 @@ function TutorMatch() {
 
     return learners.filter(
       (learner) =>
-        learner.available && preferredLevels.includes(learner.level)
+        !learner.match && learner.available && preferredLevels.includes(learner.level)
     );
   };
 

@@ -226,6 +226,8 @@ export function parseTutorsFromCSV(text: string): Tutor[] {
         phone: normalizePhone(phoneRaw || ""),
         email: (emailRaw || "").toLowerCase(),
         available: true,
+        match: "",
+        notes: "",
         preferences,
         availability,
       };

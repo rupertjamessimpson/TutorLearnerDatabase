@@ -20,6 +20,8 @@ function LearnersForm() {
     last_name: "",
     gender: "",
     available: true,
+    match: "",
+    notes: "",
     phone: "",
     email: "",
     level: "",
@@ -48,6 +50,13 @@ function LearnersForm() {
         setLearner((prevLearner) => ({
           ...prevLearner,
           level: value
+        }));
+      }
+    } else if (type === "radio") {
+      if (name === "available") {
+        setLearner((prev) => ({
+          ...prev,
+          available: value === "true"
         }));
       }
     } else {
@@ -215,7 +224,45 @@ function LearnersForm() {
                 </div>
               ))}
             </div>
-            <h4 className="select-label">Availability</h4>
+            <div className="form-group">
+              <h4 className="input-label">Notes</h4>
+              <div className="notes-input-container">
+                <input
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  placeholder="Notes"
+                  value={learner.notes}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="availability-form-group">
+              <h4 className="input-label">Availability</h4>
+              <div className="availability-status-container">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="true"
+                    checked={learner.available === true}
+                    onChange={handleChange}
+                  />
+                  available
+                </label>
+
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="false"
+                    checked={learner.available === false}
+                    onChange={handleChange}
+                  />
+                  unavailable
+                </label>
+              </div>
+            </div>
             <div className="availability-container">
               {dayKeys.map((day) => {
                 let filteredTimes;

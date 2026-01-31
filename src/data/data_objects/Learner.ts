@@ -4,6 +4,8 @@ export interface Learner {
   last_name: string;
   gender: string;
   available: boolean;
+  match: string;
+  notes: string;
   phone: string;
   email: string;
   level: string;

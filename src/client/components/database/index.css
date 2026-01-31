@@ -157,9 +157,8 @@
 
 .details-group {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 .details-label {
@@ -187,22 +186,21 @@
   padding-left: 21px;
 }
 
-.levels-details-label {
-  margin: 0;
-  padding-top: 18px;
+.level-details-group {
+  display: flex;
+  padding-top: 20px;
 }
 
 .levels-list {
+  padding-left: 30px;
   list-style-type: none;
-  padding-left: 135px;
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  column-gap: 170px;
 }
 
 .availability-list-container {
-  padding-top: 20px;
   display: flex;
   justify-content: end;
 }
@@ -308,11 +306,22 @@
 }
 
 /* Mobile layout */
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   /* General containers */
   .data-container {
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  .level-details-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* stack items vertically */
+  .levels-list {
+    width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .form-container,
@@ -371,6 +380,7 @@
   .name-details-label,
   .contact-details-label,
   .details-label {
+    padding-top: 0px;
     width: 100%;
     padding-right: 0;
   }
@@ -386,6 +396,7 @@
     flex-direction: column;
     padding-left: 0;
     width: 250px;
+    padding-top: 0;
   }
 
   .levels-list {

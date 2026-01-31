@@ -232,6 +232,8 @@ export function parseLearnerFromCSV(text: string): Learner[] {
         phone: normalizePhone(phoneRaw || ""),
         email: (emailRaw || "").toLowerCase(),
         available: true,
+        match: "",
+        notes: "",
         level: levelRaw, // normalized level string
         class: "",
         availability,

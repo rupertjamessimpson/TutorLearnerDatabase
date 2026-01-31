@@ -64,7 +64,7 @@ function Tutors() {
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
 
-      const matchesAvailability = filters.available ? tutor.available : true;
+      const matchesAvailability = filters.available ? tutor.available && !tutor.match: true;
 
       const matchesPreferences = preferenceKeys.every((key) => {
         const prefKey = key as keyof Preferences;

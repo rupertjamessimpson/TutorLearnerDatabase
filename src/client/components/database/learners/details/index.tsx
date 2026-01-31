@@ -86,36 +86,59 @@ function LearnerDetails() {
                   </div>
                 </div>
               </div>
-              <div className="details-group">
-                <h4 className="details-label">Availability</h4>
-                <div className="info-container">
-                  <div className="details-gender-container">
-                    <p>{"(" + learner.first_name + (learner.available ? " is available" : " is matched") + ")"}</p>
+              {learner.match &&
+                <div className="details-group">
+                  <h4 className="details-label">Match</h4>
+                  <div className="info-container">
+                    <div className="details-container">
+                      <p>{learner.match}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="availability-list-container">
-              <ul className="availability-list">
-                {Object.entries(learner.availability)
-                  .filter(([, slot]) => slot.start_time && slot.end_time)
-                  .map(([day, slot]) => (
-                    <li key={day}>
-                      <span className="day-label">
-                        {day.charAt(0).toUpperCase() + day.slice(1)}
-                      </span>
-                      <div className="time-box-container">
-                        <div className="time-box">{convertTime(slot.start_time)}</div>
-                        <div className="time-box">{convertTime(slot.end_time)}</div>
-                      </div>
-                    </li>
-                  ))}
-              </ul>
+              }
+              {learner.notes &&
+                <div className="details-group">
+                  <h4 className="details-label">Notes</h4>
+                  <div className="info-container">
+                    <div className="details-container">
+                      <p>{learner.notes}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+              <div className="details-group">
+                <h4 className="details-label">Availability</h4>
+                {learner.available ? 
+                  <div className="availability-list-container">
+                    <ul className="availability-list">
+                      {Object.entries(learner.availability)
+                        .filter(([, slot]) => slot.start_time && slot.end_time)
+                        .map(([day, slot]) => (
+                          <li key={day}>
+                            <span className="day-label">
+                              {day.charAt(0).toUpperCase() + day.slice(1)}
+                            </span>
+                            <div className="time-box-container">
+                              <div className="time-box">{convertTime(slot.start_time)}</div>
+                              <div className="time-box">{convertTime(slot.end_time)}</div>
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                  :
+                  <div className="info-container">
+                    <div className="details-container">
+                      <p>unavailable</p>
+                    </div>
+                  </div>
+                }
               </div>
             </div>
             <div className="buttons-container">
               <div className="match-and-edit-buttons">
                 <button className="edit-button"onClick={() => navigate(`/database/learners/edit/${id}`)}>Edit</button>
-                {learner.available &&
+                {(learner.available && !learner.match) &&
                   <button className="match-button" onClick={() => navigate(`/database/learners/match/${id}`)}>Match</button>
                 }
               </div>

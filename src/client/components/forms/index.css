@@ -26,7 +26,7 @@
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  height: 540px;
+  height: 590px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   padding-top: 20px;
@@ -35,6 +35,18 @@
 .form-group {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
+}
+
+.availability-form-group {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+.availability-status-container {
+  padding-left: 20px;
   margin-bottom: 10px;
 }
 
@@ -54,6 +66,10 @@
   padding-bottom: 20px;
 }
 
+.radio-option {
+  padding-right: 20px;
+}
+
 .input-container {
   flex-grow: 1;
   display: flex;
@@ -62,6 +78,21 @@
 
 .input-container input {
   flex-basis: 45%;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.notes-input-container {
+  padding-top: 20px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.notes-input-container input {
+  flex-basis: 100%;
   margin-left: 10px;
   padding: 5px;
   border: 1px solid #ccc;
@@ -350,12 +381,6 @@
   .availability-container div,
   .gender-container div {
     justify-content: flex-start;
-  }
-
-  /* Buttons */
-  .button-container {
-    flex-direction: column;
-    align-items: stretch;
   }
 
   /* CSV upload bits */

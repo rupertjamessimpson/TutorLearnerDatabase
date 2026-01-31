@@ -6,6 +6,8 @@ export interface Tutor {
   phone: string;
   email: string;
   available: boolean;
+  match: string;
+  notes: string;
   preferences: Preferences;
   availability: Availability;
 }

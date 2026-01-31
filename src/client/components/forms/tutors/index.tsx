@@ -22,6 +22,8 @@ function TutorsForm() {
     phone: "",
     email: "",
     available: true,
+    match: "",
+    notes: "",
     preferences: {
       conversation: false,
       esl_novice: false,
@@ -73,6 +75,17 @@ function TutorsForm() {
         }));
       }
 
+      return;
+    }
+
+
+    if (type === "radio") {
+      if (name === "available") {
+        setTutor((prev) => ({
+          ...prev,
+          available: value === "true"
+        }));
+      }
       return;
     }
 
@@ -239,7 +252,45 @@ function TutorsForm() {
                 </div>
               ))}
             </div>
-            <h4 className="select-label">Availability</h4>
+            <div className="form-group">
+              <h4 className="input-label">Notes</h4>
+              <div className="notes-input-container">
+                <input
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  placeholder="Notes"
+                  value={tutor.notes}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="availability-form-group">
+              <h4 className="input-label">Availability</h4>
+              <div className="availability-status-container">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="true"
+                    checked={tutor.available === true}
+                    onChange={handleChange}
+                  />
+                  available
+                </label>
+
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="false"
+                    checked={tutor.available === false}
+                    onChange={handleChange}
+                  />
+                  unavailable
+                </label>
+              </div>
+            </div>
             <div className="availability-container">
               {dayKeys.map((day) => {
                 let filteredTimes;

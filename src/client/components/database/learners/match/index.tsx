@@ -58,6 +58,7 @@ function LearnerMatch() {
 
     return tutors.filter(
       (tutor) =>
+        !tutor.match &&
         tutor.available &&
         tutor.preferences &&
         tutor.preferences[learner.level as keyof typeof tutor.preferences]

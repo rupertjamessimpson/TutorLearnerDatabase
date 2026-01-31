@@ -21,6 +21,8 @@ function TutorEdit() {
     phone: "",
     email: "",
     available: true,
+    match: "",
+    notes: "",
     preferences: {
       conversation: false,
       esl_novice: false,
