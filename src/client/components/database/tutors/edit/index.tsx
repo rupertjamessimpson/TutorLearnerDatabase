@@ -4,7 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import times from "../../../../objects/times";
 import capitalizeName from "../../../../functions/capitalizeName";
 import convertTime from "../../../../functions/convertTime";
-import { exampleFetchTutorById, exampleUpdateTutor } from "../../../../../data/data_access/ExampleTutorService";
+
+// import { exampleFetchTutorById, exampleUpdateTutor } from "../../../../../data/data_access/ExampleTutorService";
+import { fetchTutorById, updateTutor } from "../../../../../data/data_access/TutorService";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
 import { TutorFormErrors } from "../../../../objects/FormErrors";
@@ -51,7 +53,7 @@ function TutorEdit() {
   useEffect(() => {
     if (!id) return;
 
-    exampleFetchTutorById(id)
+    fetchTutorById(id)
       .then((data) => setTutor(data))
       .catch((err) => console.log("Error fetching tutor:", err));
   }, [id]);
@@ -61,29 +63,43 @@ function TutorEdit() {
   ) => {
     const { name, value, type } = e.target;
 
-    if (
-      type === "text" ||
-      type === "email" ||
-      (type === "select-one" && name === "gender")
-    ) {
+    // text/email/select (gender)
+    if (type === "text" || type === "email" || (type === "select-one" && name === "gender")) {
       setTutor((prevTutor) => ({
         ...prevTutor,
         [name]: value,
       }));
-    } else if (type === "checkbox") {
+      return;
+    }
+
+    // radio (available)
+    if (type === "radio") {
+      if (name === "available") {
+        setTutor((prev) => ({
+          ...prev,
+          available: value === "true",
+        }));
+      }
+      return;
+    }
+
+    // checkbox (preferences)
+    if (type === "checkbox") {
       const [category, field] = name.split(".");
       if (category === "preferences") {
         setTutor((prevTutor) => ({
           ...prevTutor,
           preferences: {
             ...prevTutor.preferences,
-            [field as keyof Tutor["preferences"]]: (
-              e.target as HTMLInputElement
-            ).checked,
+            [field as keyof Tutor["preferences"]]: (e.target as HTMLInputElement).checked,
           },
         }));
       }
-    } else {
+      return;
+    }
+
+    // availability selects: "monday.start_time"
+    if (name.includes(".")) {
       const [day, timeType] = name.split(".");
       setTutor((prevTutor) => ({
         ...prevTutor,
@@ -95,7 +111,14 @@ function TutorEdit() {
           },
         },
       }));
+      return;
     }
+
+    // fallback (if you ever add other fields later)
+    setTutor((prevTutor) => ({
+      ...prevTutor,
+      [name]: value,
+    }));
   };
 
   const validateForm = () => {
@@ -153,7 +176,7 @@ function TutorEdit() {
 
     if (validateForm()) {
       try {
-        const updated = await exampleUpdateTutor(id!, capitalizedTutor);
+        const updated = await updateTutor(id!, capitalizedTutor);
         setTutor(updated);
         navigate(`/database/tutors/${id}`);
       } catch (error) {
@@ -261,7 +284,46 @@ function TutorEdit() {
                 </div>
               ))}
             </div>
-            <h4 className="select-label">Availability</h4>
+            <div className="form-group">
+              <h4 className="input-label">Notes</h4>
+              <div className="notes-input-container">
+                <input
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  placeholder="Notes"
+                  value={tutor.notes}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="availability-form-group">
+              <h4 className="input-label">Availability</h4>
+              <div className="availability-status-container">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="true"
+                    checked={tutor.available === true}
+                    onChange={handleChange}
+                  />
+                  available
+                </label>
+
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="false"
+                    checked={tutor.available === false}
+                    onChange={handleChange}
+                  />
+                  unavailable
+                </label>
+              </div>
+            </div>
+
             <div className="availability-container">
               {dayKeys.map((day) => {
                 let filteredTimes;
@@ -282,9 +344,7 @@ function TutorEdit() {
                     <select
                       id={`${day}.start_time`}
                       name={`${day}.start_time`}
-                      value={convertTime(
-                        tutor.availability[day].start_time
-                      )}
+                      value={convertTime(tutor.availability[day].start_time)}
                       onChange={handleChange}
                     >
                       <option value="">Start Time</option>
@@ -294,6 +354,7 @@ function TutorEdit() {
                         </option>
                       ))}
                     </select>
+
                     <label htmlFor={`${day}.end_time`}>{"  "}</label>
                     <select
                       id={`${day}.end_time`}

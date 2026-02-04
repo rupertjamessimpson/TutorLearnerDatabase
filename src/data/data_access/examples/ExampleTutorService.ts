@@ -1,5 +1,5 @@
 import data from "./example.json";
-import { Tutor } from "../data_objects/Tutor";
+import { Tutor } from "../../data_objects/Tutor";
 
 // Returns all Tutors
 export const exampleFetchTutors = async (): Promise<Tutor[]> => {

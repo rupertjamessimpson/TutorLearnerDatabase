@@ -1,5 +1,5 @@
 import data from "./example.json";
-import Match from "../data_objects/Match";
+import Match from "../../data_objects/Match";
 
 // Returns all matches
 export const exampleFetchMatches = async (): Promise<Match[]> => {

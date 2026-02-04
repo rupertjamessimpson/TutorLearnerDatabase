@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { exampleFetchLearners } from "../../../../data/data_access/ExampleLearnerService";
+// import { exampleFetchLearners } from "../../../../data/data_access/ExampleLearnerService";
+import { fetchLearners } from "../../../../data/data_access/LearnerService";
 
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
@@ -37,7 +38,7 @@ function Learners() {
   useEffect(() => {
     const getLearners = async () => {
       try {
-        const data = await exampleFetchLearners();
+        const data = await fetchLearners();
         setLearners(data);
       } catch (err) {
         console.error("Failed to fetch learners:", err);

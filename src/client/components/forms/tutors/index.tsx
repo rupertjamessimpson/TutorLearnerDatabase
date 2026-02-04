@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
-import { exampleCreateTutor } from "../../../../data/data_access/ExampleTutorService";
+// import { exampleCreateTutor } from "../../../../data/data_access/ExampleTutorService";
+import { createTutor } from "../../../../data/data_access/TutorService";
 
 import { Tutor } from "../../../../data/data_objects/Tutor";
 import { TutorFormErrors } from "../../../objects/FormErrors";
@@ -154,7 +155,7 @@ function TutorsForm() {
     };
     if (validateForm()) {
       try {
-        const createdTutor = await exampleCreateTutor(capitalizedTutor);
+        const createdTutor = await createTutor(capitalizedTutor);
         alert(`Tutor ${createdTutor.first_name} ${createdTutor.last_name} added successfully!`);
         navigate(`/database/tutors/${createdTutor.id}`);
       } catch (err) {

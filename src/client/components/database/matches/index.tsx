@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { exampleFetchMatches, exampleDeleteMatch } from "../../../../data/data_access/ExampleMatchService";
+// import { exampleFetchMatches, exampleDeleteMatch } from "../../../../data/data_access/ExampleMatchService";
+import { fetchMatches, deleteMatch } from "../../../../data/data_access/MatchService";
 
 import Match from "../../../../data/data_objects/Match";
 
@@ -15,7 +16,7 @@ function Matches() {
   useEffect(() => {
     const getMatches = async () => {
       try {
-        const data = await exampleFetchMatches();
+        const data = await fetchMatches();
         setMatches(data);
       } catch (err) {
         console.error("Failed to fetch matches:", err);
@@ -40,7 +41,7 @@ function Matches() {
 
   const removeMatch = async (id: string) => {
     try {
-      await exampleDeleteMatch(id);
+      await deleteMatch(id);
       setMatches((prev) => prev.filter((match) => match.id !== id)); // Update UI
     } catch (err) {
       console.error("Error deleting match:", err);

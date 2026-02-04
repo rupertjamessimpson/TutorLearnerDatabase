@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { exampleFetchTutors } from "../../../../data/data_access/ExampleTutorService";
+// import { exampleFetchTutors } from "../../../../data/data_access/ExampleTutorService";
+import { fetchTutors } from "../../../../data/data_access/TutorService";
 
 import { Tutor, Preferences, Availability } from "../../../../data/data_objects/Tutor";
 import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
@@ -37,7 +38,7 @@ function Tutors() {
   useEffect(() => {
     const getTutors = async () => {
       try {
-        const data = await exampleFetchTutors();
+        const data = await fetchTutors();
         setTutors(data);
       } catch (err) {
         console.error("Failed to fetch tutors:", err);

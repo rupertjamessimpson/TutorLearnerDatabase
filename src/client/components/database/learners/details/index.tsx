@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import convertTime from "../../../../functions/convertTime";
 
-import { exampleFetchLearnerById, exampleDeleteLearner } from "../../../../../data/data_access/ExampleLearnerService";
+// import { exampleFetchLearnerById, exampleDeleteLearner } from "../../../../../data/data_access/ExampleLearnerService";
+import { fetchLearnerById, deleteLearner } from "../../../../../data/data_access/LearnerService";
 
 import { Learner } from "../../../../../data/data_objects/Learner";
 
@@ -15,7 +16,7 @@ function LearnerDetails() {
   useEffect(() => {
     if (!id) return;
     
-    exampleFetchLearnerById(id)
+    fetchLearnerById(id)
       .then((data) => setLearner(data))
       .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
@@ -32,7 +33,7 @@ function LearnerDetails() {
   const handleDelete = async () => {
     if (!id) return;
     try {
-      await exampleDeleteLearner(id);
+      await deleteLearner(id);
       alert("Learner deleted successfully.");
       navigate("/database/learners");
     } catch (err) {

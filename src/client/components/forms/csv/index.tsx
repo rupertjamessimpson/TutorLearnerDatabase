@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { exampleBatchCreateTutors } from "../../../../data/data_access/ExampleTutorService";
-import { exampleBatchCreateLearners } from "../../../../data/data_access/ExampleLearnerService";
+// import { exampleBatchCreateTutors } from "../../../../data/data_access/ExampleTutorService";
+// import { exampleBatchCreateLearners } from "../../../../data/data_access/ExampleLearnerService";
+import { batchCreateTutors } from "../../../../data/data_access/TutorService";
+import { batchCreateLearners } from "../../../../data/data_access/LearnerService";
+
 import { parseTutorsFromCSV } from "../../../functions/parseTutorsFromCSV";
 import { parseLearnerFromCSV } from "../../../functions/parseLearnersFromCSV";
 
@@ -206,7 +209,7 @@ function CsvUpload() {
       });
 
       try {
-        const created = await exampleBatchCreateTutors(batchTutors);
+        const created = await batchCreateTutors(batchTutors);
         alert(`Successfully uploaded ${created.length} tutor(s).`);
         setTutors([]);
         setFileText(null);
@@ -235,7 +238,7 @@ function CsvUpload() {
       );
 
       try {
-        const created = await exampleBatchCreateLearners(batchLearners);
+        const created = await batchCreateLearners(batchLearners);
         alert(`Successfully uploaded ${created.length} learner(s).`);
         setLearners([]);
         setFileText(null);

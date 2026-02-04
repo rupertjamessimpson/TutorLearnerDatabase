@@ -85,9 +85,9 @@ function splitCSVLine(line: string): string[] {
 
 // Converts time to expected convention
 const timeBands: Record<TimeBandName, { start: number; end: number }> = {
-  morning: { start: 10 * 60, end: 12 * 60 },
-  afternoon: { start: 12 * 60, end: 16 * 60 },
-  evening: { start: 16 * 60, end: 20 * 60 },
+  morning: { start: 10 * 60, end: 13 * 60 },   // 10:00 AM - 1:00 PM
+  afternoon: { start: 13 * 60, end: 18 * 60 }, // 1:00 PM - 6:00 PM
+  evening: { start: 18 * 60, end: 20 * 60 },   // 6:00 PM - 8:00 PM
 };
 
 // Converts time numbers to string

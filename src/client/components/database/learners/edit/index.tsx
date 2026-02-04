@@ -4,7 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import times from "../../../../objects/times";
 import capitalizeName from "../../../../functions/capitalizeName";
 import convertTime from "../../../../functions/convertTime";
-import { exampleFetchLearnerById, exampleUpdateLearner } from "../../../../../data/data_access/ExampleLearnerService";
+
+// import { exampleFetchLearnerById, exampleUpdateLearner } from "../../../../../data/data_access/ExampleLearnerService";
+import { fetchLearnerById, updateLearner } from "../../../../../data/data_access/LearnerService";
 
 import { Learner } from "../../../../../data/data_objects/Learner";
 import { LearnerFormErrors } from "../../../../objects/FormErrors";
@@ -40,7 +42,7 @@ function LearnerEdit() {
   useEffect(() => {
     if (!id) return;
 
-    exampleFetchLearnerById(id)
+    fetchLearnerById(id)
       .then((data) => setLearner(data))
       .catch((err) => console.error("Error fetching learner:", err));
   }, [id]);
@@ -50,28 +52,39 @@ function LearnerEdit() {
   ) => {
     const { name, value, type } = e.target;
 
-    // Text, email, and gender <select>
-    if (
-      type === "text" ||
-      type === "email" ||
-      (type === "select-one" && name === "gender")
-    ) {
+    // Text/email/select (gender) + any other plain string fields like notes/class
+    if (type === "text" || type === "email" || type === "select-one") {
       setLearner((prevLearner) => ({
         ...prevLearner,
         [name]: value,
       }));
+      return;
     }
+
+    // Radio (available)
+    if (type === "radio") {
+      if (name === "available") {
+        setLearner((prev) => ({
+          ...prev,
+          available: value === "true",
+        }));
+      }
+      return;
+    }
+
     // Level checkbox (treated like radio – only one level at a time)
-    else if (type === "checkbox") {
+    if (type === "checkbox") {
       if (name === "level") {
         setLearner((prevLearner) => ({
           ...prevLearner,
           level: value,
         }));
       }
+      return;
     }
-    // Availability selects
-    else {
+
+    // Availability selects: "monday.start_time"
+    if (name.includes(".")) {
       const [day, timeType] = name.split(".");
       setLearner((prevLearner) => ({
         ...prevLearner,
@@ -83,8 +96,16 @@ function LearnerEdit() {
           },
         },
       }));
+      return;
     }
+
+    // Fallback
+    setLearner((prevLearner) => ({
+      ...prevLearner,
+      [name]: value,
+    }));
   };
+
 
   const validateForm = () => {
     const newErrors: LearnerFormErrors = {};
@@ -136,7 +157,7 @@ function LearnerEdit() {
 
     if (validateForm()) {
       try {
-        const updated = await exampleUpdateLearner(id!, capitalizedLearner);
+        const updated = await updateLearner(id!, capitalizedLearner);
         setLearner(updated);
         navigate(`/database/learners/${id}`);
       } catch (error) {
@@ -254,9 +275,49 @@ function LearnerEdit() {
                 </div>
               ))}
             </div>
+            <div className="form-group">
+              <h4 className="input-label">Notes</h4>
+              <div className="notes-input-container">
+                <input
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  placeholder="Notes"
+                  value={learner.notes}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className="availability-form-group">
+              <h4 className="input-label">Availability</h4>
 
-            <h4 className="select-label">Availability</h4>
+              <div className="availability-status-container">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="true"
+                    checked={learner.available === true}
+                    onChange={handleChange}
+                  />
+                  available
+                </label>
+
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="available"
+                    value="false"
+                    checked={learner.available === false}
+                    onChange={handleChange}
+                  />
+                  unavailable
+                </label>
+              </div>
+            </div>
+
             <div className="availability-container">
+              {/* your existing dayKeys map stays exactly the same */}
               {dayKeys.map((day) => {
                 let filteredTimes;
 
@@ -304,7 +365,6 @@ function LearnerEdit() {
                 );
               })}
             </div>
-
             <div className="button-container">
               <button className="save-button" onClick={handleSave}>Save</button>
               <button onClick={() => navigate(`/database/learners/${id}`)}>Cancel</button>

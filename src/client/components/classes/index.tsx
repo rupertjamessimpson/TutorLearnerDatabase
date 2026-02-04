@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { exampleFetchLearners, exampleAddLearnerToClass, exampleRemoveLearnerFromClass } from "../../../data/data_access/ExampleLearnerService";
+// import { exampleFetchLearners, exampleAddLearnerToClass, exampleRemoveLearnerFromClass } from "../../../data/data_access/ExampleLearnerService";
+import { fetchLearners, addLearnerToClass, removeLearnerFromClass } from "../../../data/data_access/LearnerService";
 
 import { Learner } from "../../../data/data_objects/Learner";
 
@@ -17,7 +18,7 @@ function Class() {
   useEffect(() => {
     const getLearners = async () => {
       try {
-        const data = await exampleFetchLearners();
+        const data = await fetchLearners();
         setLearners(data);
       } catch (err) {
         console.error("Failed to fetch learners:", err);
@@ -34,7 +35,7 @@ function Class() {
     const learnerId = e.target.value;
     if (!learnerId) return;
     try {
-      await exampleAddLearnerToClass(learnerId, id);
+      await addLearnerToClass(learnerId, id);
       setLearners((prev) =>
         prev.map((l) =>
           l.id === learnerId ? { ...l, class: id } : l
@@ -48,7 +49,7 @@ function Class() {
 
   const removeLearner = async (learnerId: string) => {
     try {
-      await exampleRemoveLearnerFromClass(learnerId);
+      await removeLearnerFromClass(learnerId);
       setLearners((prev) =>
         prev.map((l) =>
           l.id === learnerId ? { ...l, class: "" } : l

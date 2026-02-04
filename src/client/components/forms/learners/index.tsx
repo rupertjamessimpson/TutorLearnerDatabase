@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import times from "../../../objects/times";
 import capitalizeName from "../../../functions/capitalizeName";
 
-import { exampleCreateLearner } from "../../../../data/data_access/ExampleLearnerService";
+// import { exampleCreateLearner } from "../../../../data/data_access/ExampleLearnerService";
+import { createLearner } from "../../../../data/data_access/LearnerService";
 
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFormErrors } from "../../../objects/FormErrors";
@@ -115,7 +116,7 @@ function LearnersForm() {
     };
     if (validateForm()) {
       try {
-        const createdLearner = await exampleCreateLearner(capitalizedLearner);
+        const createdLearner = await createLearner(capitalizedLearner);
         alert(`Learner ${createdLearner.first_name} ${createdLearner.last_name} added successfully!`);
         navigate(`/database/learners/${createdLearner.id}`);
       } catch (err) {

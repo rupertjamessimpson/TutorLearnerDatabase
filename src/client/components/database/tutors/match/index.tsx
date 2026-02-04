@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import convertTime from "../../../../functions/convertTime";
-import { exampleFetchTutorById } from "../../../../../data/data_access/ExampleTutorService";
-import { exampleFetchLearners } from "../../../../../data/data_access/ExampleLearnerService";
-import { exampleCreateMatch } from "../../../../../data/data_access/ExampleMatchService";
+
+// import { exampleFetchTutorById } from "../../../../../data/data_access/ExampleTutorService";
+// import { exampleFetchLearners } from "../../../../../data/data_access/ExampleLearnerService";
+// import { exampleCreateMatch } from "../../../../../data/data_access/ExampleMatchService";
+import { fetchTutorById } from "../../../../../data/data_access/TutorService";
+import { fetchLearners } from "../../../../../data/data_access/LearnerService";
+import { createMatch } from "../../../../../data/data_access/MatchService";
 
 import { Tutor } from "../../../../../data/data_objects/Tutor";
 import { Learner, Availability, DayAvailability } from "../../../../../data/data_objects/Learner";
@@ -19,13 +23,13 @@ function TutorMatch() {
   useEffect(() => {
     if (!id) return;
     
-    exampleFetchTutorById(id)
+    fetchTutorById(id)
       .then((data) => setTutor(data))
       .catch((err) => console.error("Error fetching tutor:", err));
   }, [id]);
 
   useEffect(() => {
-    exampleFetchLearners()
+    fetchLearners()
       .then((data) => setLearners(data))
       .catch((err) => console.log("Failed to fetch learners:", err))
   }, []);
@@ -39,7 +43,7 @@ function TutorMatch() {
       return;
     }
 
-    exampleCreateMatch(
+    createMatch(
       tutor.id,
       tutor.first_name,
       tutor.last_name,
