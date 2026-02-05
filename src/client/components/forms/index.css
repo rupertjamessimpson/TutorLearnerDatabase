@@ -385,12 +385,12 @@
 
   /* CSV upload bits */
   .csv-upload-container {
-    height: auto;
+    height: 400px;
     padding: 10px;
   }
 
   .csv-upload-box {
-    height: auto;
+    height: 500px;
   }
 
   .toggle-and-instructions-container {
