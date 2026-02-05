@@ -426,6 +426,6 @@
 
 /* Still let the list grow naturally on mobile */
 .list-container {
-  height: auto;
+  height: 478px;
 }
 }

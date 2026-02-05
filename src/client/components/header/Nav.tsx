@@ -1,31 +1,49 @@
 import React from "react";
-import { useLocation, Link, NavLink } from 'react-router-dom';
+import { useLocation, Link, NavLink, useNavigate } from 'react-router-dom';
+import { logout } from "../../../firebase/firebase";
 import '../../../App.css';
 
 function Nav() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const inDatabase = location.pathname.startsWith('/database');
   const inForms = location.pathname.startsWith('/forms');
   const inClass = location.pathname.startsWith('/class');
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login", { replace: true });
+  };
+
   return (
     <div className="nav-container">
-      <div className="top-nav-container">
-        <NavLink 
-          to="/database"
-          className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-            Database
-        </NavLink>
-        <NavLink
-          to="/forms"
-          className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-            Forms
-        </NavLink>
-        <NavLink
-          to="/class"
-          className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
-            Classes
-        </NavLink>
+      <div className="nav-and-logout-container">
+        <div className="top-nav-container">
+          <NavLink 
+            to="/database"
+            className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
+              Database
+          </NavLink>
+          <NavLink
+            to="/forms"
+            className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
+              Forms
+          </NavLink>
+          <NavLink
+            to="/class"
+            className={({ isActive }) => isActive ? 'nav-button active' : 'nav-button'}>
+              Classes
+          </NavLink>
+        </div>
+        <div className="top-nav-container">
+          <button
+            onClick={handleLogout}
+            className="logout-button"
+          >
+            Logout
+          </button>
+        </div>
       </div>
       {inDatabase && (
         <div className="sub-nav-container">
