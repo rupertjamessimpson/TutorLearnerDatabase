@@ -1,5 +1,6 @@
 export interface Learner {
   id: string;
+  order: number;
   first_name: string;
   last_name: string;
   gender: string;

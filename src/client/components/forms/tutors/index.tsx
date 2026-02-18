@@ -17,6 +17,7 @@ type TutorForm = Omit<Tutor, "id" >
 function TutorsForm() {
   const navigate = useNavigate();
   const [tutor, setTutor] = useState<TutorForm>({
+    order: 0,
     first_name: "",
     last_name: "",
     gender: "",
@@ -60,6 +61,15 @@ function TutorsForm() {
       }));
       return;
     }
+
+    if (type === "number") {
+    setTutor((prevTutor) => ({
+        ...prevTutor,
+        [name]: value === "" ? 0 : Number(value),
+      }));
+      return;
+    }
+
 
     if (type === "checkbox") {
       const [category, field] = name.split(".");

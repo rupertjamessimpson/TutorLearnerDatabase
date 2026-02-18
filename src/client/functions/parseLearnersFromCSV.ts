@@ -226,6 +226,7 @@ export function parseLearnerFromCSV(text: string): Learner[] {
 
       const learner: Learner = {
         id: "", // filled in by batch-create service
+        order: 0,
         first_name: capitalizeWord(firstNameRaw || ""),
         last_name: capitalizeWord(lastNameRaw || ""),
         gender: normalizeGender(genderRaw || ""),

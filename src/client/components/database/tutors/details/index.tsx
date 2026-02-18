@@ -78,6 +78,14 @@ function TutorDetails() {
                   </div>
                 </div>
               </div>
+              <div className="details-group">
+                <h4 className="details-label">Waitlist</h4>
+                <div className="info-container">
+                  <div className="details-container">
+                    <p>{tutor.order}</p>
+                  </div>
+                </div>
+              </div>
               <div className="level-details-group">
                 <h4 className="details-label">Preferences</h4>
                 <div className="info-container">

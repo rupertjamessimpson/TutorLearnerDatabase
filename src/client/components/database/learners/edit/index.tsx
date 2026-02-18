@@ -18,6 +18,7 @@ function LearnerEdit() {
 
   const [learner, setLearner] = useState<Learner>({
     id: "",
+    order: 0,
     first_name: "",
     last_name: "",
     gender: "",
@@ -57,6 +58,15 @@ function LearnerEdit() {
       setLearner((prevLearner) => ({
         ...prevLearner,
         [name]: value,
+      }));
+      return;
+    }
+
+    // number input
+    if (type === "number") {
+      setLearner((prev) => ({
+        ...prev,
+        [name]: value === "" ? 0 : Number(value),
       }));
       return;
     }
@@ -227,7 +237,6 @@ function LearnerEdit() {
               </div>
             </div>
 
-            {/* NEW GENDER SELECT, matching tutor forms */}
             <div className="form-group">
               <h4 className="input-label">Gender</h4>
               <div className="gender-container">
@@ -242,6 +251,22 @@ function LearnerEdit() {
                   <option value="female">female</option>
                   <option value="nonbinary">non-binary</option>
                 </select>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <h4 className="input-label">Waitlist</h4>
+              <div className="gender-container">
+                <input
+                  className="waitlist-input"
+                  id="order"
+                  name="order"
+                  type="number"
+                  value={learner.order ?? 0}
+                  onChange={handleChange}
+                  min={0}
+                  step={1}
+                />
               </div>
             </div>
 

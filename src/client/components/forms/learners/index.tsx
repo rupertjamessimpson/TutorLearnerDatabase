@@ -17,6 +17,7 @@ type LearnerForm = Omit<Learner, "id">;
 function LearnersForm() {
   const navigate = useNavigate();
   const [learner, setLearner] = useState<LearnerForm>({
+    order: 0,
     first_name: "",
     last_name: "",
     gender: "",

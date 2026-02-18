@@ -88,6 +88,16 @@ function Tutors() {
 
   const filteredTutors = applyFilters();
 
+  const sortedTutors = [...filteredTutors].sort((a, b) => {
+    const orderDiff = (a.order ?? 0) - (b.order ?? 0);
+    if (orderDiff !== 0) return orderDiff;
+
+    const last = a.last_name.localeCompare(b.last_name);
+    if (last !== 0) return last;
+
+    return a.first_name.localeCompare(b.first_name);
+  });
+
   return (
     <div className="data-container">
       <h3 className="header">Tutors</h3>
@@ -105,7 +115,7 @@ function Tutors() {
       <div className="filters-and-list-container">
         <div className="list-container">
           <ul className="list">
-            {filteredTutors.map(tutor => (
+            {sortedTutors.map(tutor => (
               <li key={tutor.id}>
                 <Link to={`/database/tutors/${tutor.id}`}>
                   {tutor.first_name} {tutor.last_name}

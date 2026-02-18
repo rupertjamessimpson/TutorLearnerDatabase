@@ -17,6 +17,7 @@ function TutorEdit() {
   const navigate = useNavigate();
   const [tutor, setTutor] = useState<Tutor>({
     id: "",
+    order: 0,
     first_name: "",
     last_name: "",
     gender: "",
@@ -68,6 +69,15 @@ function TutorEdit() {
       setTutor((prevTutor) => ({
         ...prevTutor,
         [name]: value,
+      }));
+      return;
+    }
+    
+    // number input
+    if (type === "number") {
+      setTutor((prev) => ({
+        ...prev,
+        [name]: value === "" ? 0 : Number(value),
       }));
       return;
     }
@@ -245,7 +255,6 @@ function TutorEdit() {
               </div>
             </div>
 
-            {/* NEW GENDER SELECT */}
             <div className="form-group">
               <h4 className="input-label">Gender</h4>
               <div className="gender-container">
@@ -260,6 +269,22 @@ function TutorEdit() {
                   <option value="female">female</option>
                   <option value="nonbinary">non-binary</option>
                 </select>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <h4 className="input-label">Waitlist</h4>
+              <div className="gender-container">
+                <input
+                  className="waitlist-input"
+                  id="order"
+                  name="order"
+                  type="number"
+                  value={tutor.order ?? 0}
+                  onChange={handleChange}
+                  min={0}
+                  step={1}
+                />
               </div>
             </div>
 

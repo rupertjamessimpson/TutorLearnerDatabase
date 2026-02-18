@@ -101,7 +101,7 @@
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  height: 520px;
+  height: auto;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
 }
@@ -240,6 +240,7 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
+  padding-top: 30px;
 }
 
 .match-and-edit-buttons {

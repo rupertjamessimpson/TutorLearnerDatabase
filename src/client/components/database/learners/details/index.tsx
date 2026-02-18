@@ -80,6 +80,14 @@ function LearnerDetails() {
                 </div>
               </div>
               <div className="details-group">
+                <h4 className="details-label">Waitlist</h4>
+                <div className="info-container">
+                  <div className="details-container">
+                    <p>{learner.order}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="details-group">
                 <h4 className="details-label">Level</h4>
                 <div className="info-container">
                   <div className="details-gender-container">

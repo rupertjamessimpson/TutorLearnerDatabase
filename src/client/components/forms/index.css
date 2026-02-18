@@ -26,10 +26,11 @@
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  height: 590px;
+  height: auto;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .form-group {
@@ -172,6 +173,10 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+  .waitlist-input {
+    width: 50px;
+  }
 
 .button-container {
   display: flex;

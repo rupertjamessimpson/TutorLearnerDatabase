@@ -220,6 +220,7 @@ export function parseTutorsFromCSV(text: string): Tutor[] {
 
       const tutor: Tutor = {
         id: "",
+        order: 0,
         first_name: capitalizeWord(firstNameRaw || ""),
         last_name: capitalizeWord(lastNameRaw || ""),
         gender: normalizeGender(genderRaw || ""),

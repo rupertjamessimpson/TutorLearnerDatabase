@@ -7,6 +7,7 @@ import {
   updateDoc,
   deleteDoc,
   writeBatch,
+  orderBy,
   query,
   where,
   limit,
@@ -38,6 +39,7 @@ const DEFAULT_AVAILABILITY: Learner["availability"] = {
 function normalizeLearner(id: string, data: DocumentData): Learner {
   return {
     id,
+    order: Number.isFinite(data?.order) ? Number(data.order) : 0,
     first_name: data?.first_name ?? "",
     last_name: data?.last_name ?? "",
     gender: data?.gender ?? "",
@@ -105,13 +107,21 @@ export async function createLearner(
   learnerForm: Omit<Learner, "id">
 ): Promise<Learner> {
   const colRef = collection(db, LEARNERS_COL);
-  const docRef = await addDoc(colRef, learnerForm);
+
+  // 1) Get highest order
+  const q = query(colRef, orderBy("order", "desc"), limit(1));
+  const snap = await getDocs(q);
+  const highest = (snap.docs[0]?.data()?.order ?? 0) as number;
+
+  // 2) Create with next order
+  const docRef = await addDoc(colRef, { ...learnerForm, order: highest + 1 });
 
   const created = await getDoc(docRef);
   if (!created.exists()) throw new Error("Failed to create learner");
 
   return normalizeLearner(created.id, created.data());
 }
+
 
 /**
  * Updates the learner with the provided ID
@@ -214,13 +224,26 @@ export async function batchCreateLearners(
   batchLearners: Array<Omit<Learner, "id">>
 ): Promise<Learner[]> {
   const learnersColRef = collection(db, LEARNERS_COL);
+
+  // 1) Find current highest order
+  const q = query(learnersColRef, orderBy("order", "desc"), limit(1));
+  const snap = await getDocs(q);
+  const highestOrder = (snap.docs[0]?.data()?.order ?? 0) as number;
+
+  // 2) Assign sequential orders (highest+1, highest+2, ...)
+  const learnersWithOrder = batchLearners.map((l, i) => ({
+    ...l,
+    order: highestOrder + i + 1,
+  }));
+
+  // 3) Batch write with auto IDs
   const batch = writeBatch(db);
+  const refs = learnersWithOrder.map(() => doc(learnersColRef)); // auto-id refs
 
-  const refs = batchLearners.map(() => doc(learnersColRef)); // auto-id refs
-  refs.forEach((ref, i) => batch.set(ref, batchLearners[i]));
-
+  refs.forEach((ref, i) => batch.set(ref, learnersWithOrder[i]));
   await batch.commit();
 
+  // 4) Read back created docs so caller gets IDs + normalized shape
   const created = await Promise.all(refs.map((ref) => getDoc(ref)));
   return created
     .filter((s) => s.exists())
