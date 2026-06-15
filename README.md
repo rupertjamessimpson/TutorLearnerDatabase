@@ -1,3 +1,9 @@
+## v1.2 — Ordering Tutor List
+**Date:** Jun 2026
+
+- Added CSV export feature for data fields
+- Added delete all feature
+
 ## v1.1 — Ordering Tutor List
 **Date:** Feb 2026
 

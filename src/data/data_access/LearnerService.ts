@@ -164,7 +164,7 @@ export async function updateLearner(
 
 /**
  * Deletes the learner with the provided ID, any matches they are in,
- * and marks their tutor as available (mirrors your example)
+ * and marks their tutor as available
  */
 export async function deleteLearner(id: string): Promise<void> {
   // Delete learner doc
@@ -191,6 +191,43 @@ export async function deleteLearner(id: string): Promise<void> {
 
   // Delete match doc
   await deleteDoc(matchDoc.ref);
+}
+
+/**
+ * Deletes all learners, any matches they are in,
+ * and marks their tutor as available
+ */
+export async function deleteAllLearners(): Promise<number> {
+  const learnersSnap = await getDocs(collection(db, LEARNERS_COL));
+  const matchesSnap = await getDocs(collection(db, MATCHES_COL));
+
+  const batch = writeBatch(db);
+  let deleteCount = 0;
+
+  // Delete all learners
+  learnersSnap.docs.forEach((learnerDoc) => {
+    batch.delete(learnerDoc.ref);
+    deleteCount++;
+  });
+
+  // Delete matches that involve learners, and free tutors
+  matchesSnap.docs.forEach((matchDoc) => {
+    const data = matchDoc.data();
+    const tutorId = data?.tutor?.id ?? data?.tutorId;
+
+    if (tutorId) {
+      const tutorRef = doc(db, TUTORS_COL, tutorId);
+      batch.update(tutorRef, {
+        available: true,
+        match: "",
+      });
+    }
+
+    batch.delete(matchDoc.ref);
+  });
+
+  await batch.commit();
+  return deleteCount;
 }
 
 /**

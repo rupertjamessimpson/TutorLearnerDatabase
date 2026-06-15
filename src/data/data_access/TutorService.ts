@@ -180,10 +180,9 @@ export async function updateTutor(
 
 /**
  * Deletes the tutor with the provided ID
- * Mirrors your example behavior:
  * - Delete Tutors/{id}
  * - If they had a match:
- *    - set matched learner available=true (and optionally clear match field if you use it)
+ *    - set matched learner available=true
  *    - delete the match doc
  */
 export async function deleteTutor(id: string): Promise<void> {
@@ -213,6 +212,45 @@ export async function deleteTutor(id: string): Promise<void> {
 
   // Delete match doc
   await deleteDoc(matchDoc.ref);
+}
+
+/**
+ * Deletes all tutors.
+ * - If they had a match:
+ *    - set matched learner available=true
+ *    - delete the match doc
+ */
+export async function deleteAllTutors(): Promise<number> {
+  const tutorsSnap = await getDocs(collection(db, TUTORS_COL));
+  const matchesSnap = await getDocs(collection(db, MATCHES_COL));
+
+  const batch = writeBatch(db);
+  let deleteCount = 0;
+
+  // Delete all tutors
+  tutorsSnap.docs.forEach((tutorDoc) => {
+    batch.delete(tutorDoc.ref);
+    deleteCount++;
+  });
+
+  // Delete matches involving tutors, and free learners
+  matchesSnap.docs.forEach((matchDoc) => {
+    const data = matchDoc.data();
+    const learnerId = data?.learner?.id ?? data?.learnerId;
+
+    if (learnerId) {
+      const learnerRef = doc(db, LEARNERS_COL, learnerId);
+      batch.update(learnerRef, {
+        available: true,
+        match: "",
+      });
+    }
+
+    batch.delete(matchDoc.ref);
+  });
+
+  await batch.commit();
+  return deleteCount;
 }
 
 /**

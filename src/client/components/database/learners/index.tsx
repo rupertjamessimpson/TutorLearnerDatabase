@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // import { exampleFetchLearners } from "../../../../data/data_access/ExampleLearnerService";
-import { fetchLearners } from "../../../../data/data_access/LearnerService";
+import { fetchLearners, deleteAllLearners } from "../../../../data/data_access/LearnerService";
 
 import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFilters, levelKeys, dayKeys } from "../../../objects/Filters";
 
-import "../index.css";
+import exportLearnersCsv from "../../../functions/exportLearnersCsv";
+
+// import "../index.css";
 
 function Learners() {
   const [learners, setLearners] = useState<Learner[]>([]);
@@ -34,6 +36,7 @@ function Learners() {
     saturday: false
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDeleteMessageOpen, setIsDeleteMessageOpen] = useState(false);
 
   useEffect(() => {
     const getLearners = async () => {
@@ -47,8 +50,51 @@ function Learners() {
     getLearners();
   }, []);
 
+  const handleExportCsv = () => {
+    const csv = exportLearnersCsv(learners);
+
+    const blob = new Blob([csv], {
+      type: "text/csv;charset=utf-8;",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "learners.csv";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  };
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleDeleteMessage = () => {
+    if (isDeleteMessageOpen) {
+      setIsDeleteMessageOpen(false);
+    } else {
+      setIsDeleteMessageOpen(true);
+    }
+  };
+
+  const handleDeleteAllLearners = async () => {
+
+    try {
+      const deletedCount = await deleteAllLearners();
+      setLearners([]);
+      setIsDeleteMessageOpen(false);
+      alert(`Deleted ${deletedCount} learners.`);
+    } catch (err) {
+      console.error("Failed to delete all learners:", err);
+      alert("Could not delete learners.");
+    } finally {
+      setIsDeleteMessageOpen(false);
+    }
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,7 +145,12 @@ function Learners() {
 
   return (
     <div className="data-container">
-      <h3 className="header">Learners</h3>
+      <div className="title-and-export-container">
+        <h3 className="header">Learners</h3>
+        <button className="filterButton" onClick={handleExportCsv}>
+          Export CSV
+        </button>
+      </div>
       <div className="search-filter-container">
         <input
           type="text"
@@ -177,6 +228,15 @@ function Learners() {
             </form>
           </div>
         )}
+      </div>
+      <div className="delete-all">
+        {isDeleteMessageOpen ? (
+          <div className="delete-message">
+            <p className="delete-message-text">Are you sure you want to delete all learners?</p>
+            <button className="yes-delete-button" onClick={handleDeleteAllLearners}>Yes</button>
+            <button className="no-delete-button" onClick={toggleDeleteMessage}>No</button>
+          </div>
+        ) :     <button className="delete-button" onClick={toggleDeleteMessage}>Delete All</button>}
       </div>
     </div>
   );

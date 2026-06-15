@@ -19,8 +19,16 @@ const learnerHeaderKeywords = {
   gender: ["gender"],
   phone: ["phone"],
   email: ["email"],
-  help: ["help", "what would you like help with"],
-  availability: ["availability", "available", "when are you available"],
+  help: [
+    "help",
+    "what would you like help with",
+    "level",                // ← add this
+  ],
+  availability: [
+    "availability",
+    "available",
+    "when are you available",
+  ],
 } as const;
 
 // Look up a value in this row by header substring(s)
@@ -152,6 +160,7 @@ function parseAvailability(text: string): Availability {
 // Map the learner "help" options to the canonical level strings
 // used in tutor preferences.
 const helpToLevelMap: Record<string, string> = {
+  // Original Google Form labels
   "learning english": "esl_novice",
   "practicing english": "esl_beginner",
   "mastering english": "esl_intermediate",
@@ -163,6 +172,17 @@ const helpToLevelMap: Record<string, string> = {
   "reading hiset": "hiset_reading",
   "basic writing": "basic_writing",
   "writing hiset": "hiset_writing",
+
+  // Canonical values
+  "esl_novice": "esl_novice",
+  "esl_beginner": "esl_beginner",
+  "esl_intermediate": "esl_intermediate",
+  "sped_ela": "sped_ela",
+  "hiset_math": "hiset_math",
+  "basic_reading": "basic_reading",
+  "hiset_reading": "hiset_reading",
+  "basic_writing": "basic_writing",
+  "hiset_writing": "hiset_writing",
 };
 
 function parseLevel(row: Record<string, string>): string {

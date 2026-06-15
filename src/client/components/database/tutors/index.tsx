@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // import { exampleFetchTutors } from "../../../../data/data_access/ExampleTutorService";
-import { fetchTutors } from "../../../../data/data_access/TutorService";
+import { fetchTutors, deleteAllTutors } from "../../../../data/data_access/TutorService";
 
 import { Tutor, Preferences, Availability } from "../../../../data/data_objects/Tutor";
 import { TutorFilters, preferenceKeys, dayKeys } from "../../../objects/Filters";
 
-import "../index.css";
+import exportTutorsCsv from "../../../functions/exportTutorsCsv";
+
+// import "../index.css";
 
 function Tutors() {
   const [tutors, setTutors] = useState<Tutor[]>([]);
@@ -34,12 +36,14 @@ function Tutors() {
     saturday: false
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDeleteMessageOpen, setIsDeleteMessageOpen] = useState(false);
 
   useEffect(() => {
     const getTutors = async () => {
       try {
         const data = await fetchTutors();
         setTutors(data);
+        exportTutorsCsv(data);
       } catch (err) {
         console.error("Failed to fetch tutors:", err);
       }
@@ -49,6 +53,49 @@ function Tutors() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleDeleteMessage = () => {
+    if (isDeleteMessageOpen) {
+      setIsDeleteMessageOpen(false);
+    } else {
+      setIsDeleteMessageOpen(true);
+    }
+  };
+
+  const handleExportCsv = () => {
+    const csv = exportTutorsCsv(tutors);
+
+    const blob = new Blob([csv], {
+      type: "text/csv;charset=utf-8;",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "tutors.csv";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDeleteAllTutors = async () => {
+
+    try {
+      const deletedCount = await deleteAllTutors();
+      setTutors([]);
+      setIsDeleteMessageOpen(false);
+      alert(`Deleted ${deletedCount} tutors.`);
+    } catch (err) {
+      console.error("Failed to delete all tutors:", err);
+      alert("Could not delete tutors.");
+    } finally {
+      setIsDeleteMessageOpen(false);
+    }
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,14 +147,21 @@ function Tutors() {
 
   return (
     <div className="data-container">
-      <h3 className="header">Tutors</h3>
+      <div className="title-and-export-container">
+        <h3 className="header">Tutors</h3>
+        <button className="filterButton" onClick={handleExportCsv}>
+          Export CSV
+        </button>
+      </div>
       <div className="search-filter-container">
-        <input
-          type="text"
-          placeholder="Search Tutors"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Search Tutors"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         <button className="filterButton" onClick={toggleSidebar}>
           {isSidebarOpen ? 'Hide Filters' : 'Show Filters'}
         </button>
@@ -168,6 +222,15 @@ function Tutors() {
             </form>
           </div>
         )}
+      </div>
+      <div className="delete-all">
+        {isDeleteMessageOpen ? (
+          <div className="delete-message">
+            <p className="delete-message-text">Are you sure you want to delete all tutors?</p>
+            <button className="yes-delete-button" onClick={handleDeleteAllTutors}>Yes</button>
+            <button className="no-delete-button" onClick={toggleDeleteMessage}>No</button>
+          </div>
+        ) : <button className="delete-button" onClick={toggleDeleteMessage}>Delete All</button>}
       </div>
     </div>
   );
