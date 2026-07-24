@@ -1,265 +1,145 @@
-import { Learner, Availability } from "../../data/data_objects/Learner";
+import Papa from "papaparse";
 
-type TimeBandName = "morning" | "afternoon" | "evening";
+import { Learner, DayAvailability } from "../../data/data_objects/Learner";
 
-const availabilityDays: (keyof Availability)[] = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
+///// Keywords
 
-// ---------- header keyword config ----------
+const headerKeywords = {
+  firstName: "first name",
+  lastName: "last name",
+  phone: "phone",
+  email: "email",
+  gender: "gender",
+  level: "best describes",
 
-const learnerHeaderKeywords = {
-  firstName: ["first name"],
-  lastName: ["last name"],
-  gender: ["gender"],
-  phone: ["phone"],
-  email: ["email"],
-  help: [
-    "help",
-    "what would you like help with",
-    "level",                // ← add this
-  ],
-  availability: [
-    "availability",
-    "available",
-    "when are you available",
-  ],
-} as const;
+  mondayAvailability: "monday availability",
+  tuesdayAvailability: "tuesday availability",
+  wednesdayAvailability: "wednesday availability",
+  thursdayAvailability: "thursday availability",
+  fridayAvailability: "friday availability",
+  saturdayAvailability: "saturday availability",
 
-// Look up a value in this row by header substring(s)
-function getFieldByKeywords(
-  row: Record<string, string>,
-  keywords: readonly string[]
-): string {
-  const headers = Object.keys(row); // already lowercased in our row
+  notes: "citizenship test",
+  conversationGroup: "conversation group",
+};
 
-  for (const keyword of keywords) {
-    const target = keyword.toLowerCase();
-    const matchKey = headers.find((h) => h.includes(target));
-    if (matchKey) {
-      return row[matchKey];
+const levelKeywords = {
+  esl_novice: ["do not speak", "no english"],
+  esl_beginner: ["a little english", "little english"],
+  esl_intermediate: ["practice", "improve", "some english"],
+};
+
+const availabilityKeywords = {
+  morning: {
+    keyword: "morning",
+    start_time: "10:00AM",
+    end_time: "1:00PM",
+  },
+  afternoon: {
+    keyword: "afternoon",
+    start_time: "1:00PM",
+    end_time: "3:00PM",
+  },
+  late: {
+    keyword: "late",
+    start_time: "3:00PM",
+    end_time: "6:00PM",
+  },
+  night: {
+    keyword: "night",
+    start_time: "6:00PM",
+    end_time: "8:30PM",
+  },
+};
+
+///// Parsers
+
+function parseLevel(value: string): string {
+  const normalized = value.toLowerCase();
+
+  for (const [level, keywords] of Object.entries(levelKeywords)) {
+    if (keywords.some((keyword) => normalized.includes(keyword))) {
+      return level;
     }
   }
 
   return "";
 }
 
-// ------------------ helpers ------------------
+function parseDayAvailability(value: string): DayAvailability {
+  const normalized = value.toLowerCase();
 
-// Removes non-digit characters from phone
-function normalizePhone(phone: string): string {
-  return phone.replace(/\D/g, "");
-}
-
-// Standardizes gender input
-function normalizeGender(gender: string): string {
-  const g = gender.toLowerCase();
-  if (g.startsWith("m")) return "male";
-  if (g.startsWith("f")) return "female";
-  if (g.includes("non")) return "non-binary";
-  return gender;
-}
-
-// Capitalizes first letter of a word
-function capitalizeWord(word: string): string {
-  if (!word) return "";
-  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-}
-
-// Uses regex to split a CSV line on commas, respecting quotes
-function splitCSVLine(line: string): string[] {
-  return line
-    .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-    .map((v) => v.replace(/^"|"$/g, "").trim());
-}
-
-// Time bands for “morning / afternoon / evening”
-const timeBands: Record<TimeBandName, { start: number; end: number }> = {
-  morning: { start: 10 * 60, end: 13 * 60 },   // 10:00 AM - 1:00 PM
-  afternoon: { start: 13 * 60, end: 18 * 60 }, // 1:00 PM - 6:00 PM
-  evening: { start: 18 * 60, end: 20 * 60 },   // 6:00 PM - 8:00 PM
-};
-
-function minutesToTimeString(minutes: number): string {
-  const hour24 = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  const suffix = hour24 >= 12 ? "PM" : "AM";
-  const hour12 = hour24 % 12 || 12;
-  const mm = mins.toString().padStart(2, "0");
-  return `${hour12}:${mm}${suffix}`;
-}
-
-function parseTimeStringToMinutes(time: string): number | null {
-  if (!time) return null;
-  const match = time.match(/^(\d{1,2}):(\d{2})(AM|PM)$/i);
-  if (!match) return null;
-  let [, hStr, mStr, suffix] = match;
-  let h = parseInt(hStr, 10);
-  const m = parseInt(mStr, 10);
-  const upper = suffix.toUpperCase();
-  if (upper === "PM" && h !== 12) h += 12;
-  if (upper === "AM" && h === 12) h = 0;
-  return h * 60 + m;
-}
-
-/**
- * Parse "Monday mornings, Monday afternoons, Tuesday evenings"
- * into an Availability object. If multiple bands for the same day,
- * we merge them into the earliest start and latest end.
- */
-function parseAvailability(text: string): Availability {
-  const availability: Availability = Object.fromEntries(
-    availabilityDays.map((day) => [
-      day,
-      { start_time: "", end_time: "" },
-    ])
-  ) as unknown as Availability;
-
-  if (!text) return availability;
-
-  const entries = text
-    .split(",")
-    .map((v) => v.trim().toLowerCase())
-    .filter(Boolean);
-
-  for (const entry of entries) {
-    const bandName: TimeBandName | undefined = (
-      ["morning", "afternoon", "evening"] as TimeBandName[]
-    ).find((band) => entry.includes(band));
-
-    if (!bandName) continue;
-    const band = timeBands[bandName];
-
-    for (const day of availabilityDays) {
-      if (!entry.includes(day)) continue;
-
-      const dayAvail = availability[day];
-      const currentStart = parseTimeStringToMinutes(dayAvail.start_time);
-      const currentEnd = parseTimeStringToMinutes(dayAvail.end_time);
-
-      const newStart =
-        currentStart == null ? band.start : Math.min(currentStart, band.start);
-      const newEnd =
-        currentEnd == null ? band.end : Math.max(currentEnd, band.end);
-
-      dayAvail.start_time = minutesToTimeString(newStart);
-      dayAvail.end_time = minutesToTimeString(newEnd);
-    }
-  }
-
-  return availability;
-}
-
-// ---------- level parsing (from “help” question) ----------
-
-// Map the learner "help" options to the canonical level strings
-// used in tutor preferences.
-const helpToLevelMap: Record<string, string> = {
-  // Original Google Form labels
-  "learning english": "esl_novice",
-  "practicing english": "esl_beginner",
-  "mastering english": "esl_intermediate",
-  "citizenship": "citizenship",
-  "special needs": "sped_ela",
-  "basic math": "basic_math",
-  "math hiset": "hiset_math",
-  "basic reading": "basic_reading",
-  "reading hiset": "hiset_reading",
-  "basic writing": "basic_writing",
-  "writing hiset": "hiset_writing",
-
-  // Canonical values
-  "esl_novice": "esl_novice",
-  "esl_beginner": "esl_beginner",
-  "esl_intermediate": "esl_intermediate",
-  "sped_ela": "sped_ela",
-  "hiset_math": "hiset_math",
-  "basic_reading": "basic_reading",
-  "hiset_reading": "hiset_reading",
-  "basic_writing": "basic_writing",
-  "hiset_writing": "hiset_writing",
-};
-
-function parseLevel(row: Record<string, string>): string {
-  // Whatever text the learner selected for “help”
-  const rawHelp =
-    (getFieldByKeywords(row, learnerHeaderKeywords.help) || "").toLowerCase();
-
-  if (!rawHelp) return "";
-
-  // In case Google Forms ever lets them pick multiple options
-  // (comma-separated), check each mapped keyword with `includes`.
-  for (const [keyword, level] of Object.entries(helpToLevelMap)) {
-    if (rawHelp.includes(keyword)) {
-      return level;
-    }
-  }
-
-  // Fallback: just return the raw text (so nothing is silently lost)
-  return rawHelp;
-}
-
-// ---------- core parser ----------
-
-export function parseLearnerFromCSV(text: string): Learner[] {
-  // Split into lines, get headers
-  const [headerLine, ...rows] = text.trim().split(/\r?\n/);
-  const headerValues = splitCSVLine(headerLine).map((h) =>
-    h.trim().toLowerCase()
+  const matches = Object.values(availabilityKeywords).filter((band) =>
+    normalized.includes(band.keyword)
   );
 
-  return rows
-    .filter((line) => line.trim().length > 0)
-    .map((line) => {
-      const values = splitCSVLine(line);
+  if (matches.length === 0) {
+    return {
+      start_time: "",
+      end_time: "",
+    };
+  }
 
-      // Build a "row" dictionary keyed by lowercased header text
-      const row: Record<string, string> = {};
-      headerValues.forEach((header, i) => {
-        row[header] = (values[i] ?? "").toString();
-      });
+  return {
+    start_time: matches[0].start_time,
+    end_time: matches[matches.length - 1].end_time,
+  };
+}
 
-      const availabilityText = getFieldByKeywords(
-        row,
-        learnerHeaderKeywords.availability
-      );
-      const availability = parseAvailability(availabilityText || "");
+export function parseLearnerFromCSV(text: string): Learner[] {
+  const result = Papa.parse<Record<string, string>>(text, {
+    header: true,
+    skipEmptyLines: true,
+  });
 
-      // Core fields via keyword lookup
-      const firstNameRaw = getFieldByKeywords(
-        row,
-        learnerHeaderKeywords.firstName
-      );
-      const lastNameRaw = getFieldByKeywords(
-        row,
-        learnerHeaderKeywords.lastName
-      );
-      const genderRaw = getFieldByKeywords(row, learnerHeaderKeywords.gender);
-      const phoneRaw = getFieldByKeywords(row, learnerHeaderKeywords.phone);
-      const emailRaw = getFieldByKeywords(row, learnerHeaderKeywords.email);
-      const levelRaw = parseLevel(row);
+  console.log("Parsed rows:", result.data);
+  console.log("CSV headers:", result.meta.fields);
 
-      const learner: Learner = {
-        id: "", // filled in by batch-create service
-        order: 0,
-        first_name: capitalizeWord(firstNameRaw || ""),
-        last_name: capitalizeWord(lastNameRaw || ""),
-        gender: normalizeGender(genderRaw || ""),
-        phone: normalizePhone(phoneRaw || ""),
-        email: (emailRaw || "").toLowerCase(),
-        available: true,
-        match: "",
-        notes: "",
-        level: levelRaw, // normalized level string
-        class: "",
-        availability,
-      };
+  return result.data.map((row) => {
+    const find = (keyword: string): string =>
+      Object.entries(row).find(([header]) =>
+        header.toLowerCase().includes(keyword.toLowerCase())
+      )?.[1]?.trim() ?? "";
 
-      return learner;
-    });
+    const learner: Learner = {
+      id: "",
+      order: 0,
+      first_name: find(headerKeywords.firstName),
+      last_name: find(headerKeywords.lastName),
+      gender: find(headerKeywords.gender),
+      phone: find(headerKeywords.phone),
+      email: find(headerKeywords.email),
+      available: true,
+      match: "",
+      notes: find(headerKeywords.notes)
+      .toLowerCase()
+      .includes("yes")
+        ? "Preparing for citizenship test."
+        : "",
+      level: parseLevel(find(headerKeywords.level)),
+      class: "",
+      availability: {
+        monday: parseDayAvailability(
+          find(headerKeywords.mondayAvailability)
+        ),
+        tuesday: parseDayAvailability(
+          find(headerKeywords.tuesdayAvailability)
+        ),
+        wednesday: parseDayAvailability(
+          find(headerKeywords.wednesdayAvailability)
+        ),
+        thursday: parseDayAvailability(
+          find(headerKeywords.thursdayAvailability)
+        ),
+        friday: parseDayAvailability(
+          find(headerKeywords.fridayAvailability)
+        ),
+        saturday: parseDayAvailability(
+          find(headerKeywords.saturdayAvailability)
+        ),
+      },
+    };
+
+    return learner;
+  });
 }

@@ -143,6 +143,16 @@ function Learners() {
 
   const filteredLearners = applyFilters();
 
+  const sortedLearners = [...filteredLearners].sort((a, b) => {
+    const orderDiff = (a.order ?? 0) - (b.order ?? 0);
+    if (orderDiff !== 0) return orderDiff;
+
+    const last = a.last_name.localeCompare(b.last_name);
+    if (last !== 0) return last;
+
+    return a.first_name.localeCompare(b.first_name);
+  });
+
   return (
     <div className="data-container">
       <div className="title-and-export-container">
@@ -165,7 +175,7 @@ function Learners() {
       <div className="filters-and-list-container">
         <div className="list-container">
           <ul className="list">
-            {filteredLearners.map(learner => (
+            {sortedLearners.map(learner => (
               <li key={learner.id}>
                 <Link to={`/database/learners/${learner.id}`}>
                   {learner.first_name} {learner.last_name}

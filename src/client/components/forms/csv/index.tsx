@@ -12,8 +12,6 @@ import { parseLearnerFromCSV } from "../../../functions/parseLearnersFromCSV";
 import { Tutor } from "../../../../data/data_objects/Tutor";
 import { Learner } from "../../../../data/data_objects/Learner";
 
-import "../index.css";
-
 type UploadType = "tutor" | "learner";
 
 type BatchTutor = {
