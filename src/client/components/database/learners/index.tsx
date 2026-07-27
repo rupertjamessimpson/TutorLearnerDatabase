@@ -16,7 +16,7 @@ function Learners() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<LearnerFilters>({
     available: false,
-    not_in_class: false,
+    awaiting_class: false,
     esl_novice: false,
     esl_beginner: false,
     esl_intermediate: false,
@@ -112,10 +112,10 @@ function Learners() {
         .includes(searchQuery.toLowerCase());
   
       const matchesAvailability = filters.available ? learner.available && !learner.match : true;
-  
-      const matchesNotInClass = !filters.not_in_class
-        ? true
-        : !learner.class?.trim();
+
+      const matchesAwaitingClass = filters.awaiting_class
+        ? learner.class === "0"
+        : true;
 
       const matchesLevel = levelKeys.some((key) => {
         return filters[key] && learner.level === key;
@@ -133,7 +133,7 @@ function Learners() {
       const matchesFilters =
         (!anyLevelFilterSelected || matchesLevel) &&
         (!anyDayFilterSelected || matchDaysAvailable) &&
-        matchesAvailability && matchesNotInClass;
+        matchesAvailability && matchesAwaitingClass;
   
       return matchesSearchQuery && matchesFilters;
     });
@@ -197,14 +197,15 @@ function Learners() {
                   />available
                 </label>
               </div>
-              <div key="not_in_class">
+              <div key="awaiting_class">
                 <label>
                   <input
                     type="checkbox"
-                    name="not_in_class"
-                    checked={filters.not_in_class}
+                    name="awaiting_class"
+                    checked={filters.awaiting_class}
                     onChange={handleFilterChange}
-                  />not in class
+                  />
+                  awaiting class
                 </label>
               </div>
               <h3 className="filter-label">Level</h3>

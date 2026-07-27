@@ -116,6 +116,20 @@ function LearnerDetails() {
                 </div>
               }
               <div className="details-group">
+                <h4 className="details-label">Class</h4>
+                <div className="info-container">
+                  <div className="details-container">
+                    <p>
+                      {learner.class === "0"
+                        ? "Awaiting class"
+                        : learner.class
+                          ? `Class ${learner.class}`
+                          : "Not waiting for class"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="details-group">
                 <h4 className="details-label">Availability</h4>
                 {learner.available ? 
                   <div className="availability-list-container">

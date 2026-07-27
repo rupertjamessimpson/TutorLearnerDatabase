@@ -10,7 +10,7 @@ import { Learner } from "../../../../data/data_objects/Learner";
 import { LearnerFormErrors } from "../../../objects/FormErrors";
 import { dayKeys } from "../../../objects/Filters";
 
-import "../index.css";
+// import "../index.css";
 
 type LearnerForm = Omit<Learner, "id">;
 
@@ -38,6 +38,8 @@ function LearnersForm() {
     }
   });
   const [errors, setErrors] = useState<LearnerFormErrors>({});
+  const isAwaitingClass = learner.class === "0";
+  const hasAssignedClass = learner.class !== "" && learner.class !== "0";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -89,7 +91,7 @@ function LearnersForm() {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (learner.phone && !phonePattern.test(learner.phone)) newErrors.phone = "Phone number is invalid";
     if (learner.email && !emailPattern.test(learner.email)) newErrors.email = "Email is invalid";
-  
+
     dayKeys.forEach((day) => {
       const { start_time, end_time } = learner.availability[day];
 
@@ -103,7 +105,7 @@ function LearnersForm() {
         newErrors.availability = "Start time must be before end time";
       }
     });
-  
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -238,6 +240,22 @@ function LearnersForm() {
                   onChange={handleChange}
                 />
               </div>
+            </div>
+            <div className="form-group">
+              <h4 className="input-label">Class</h4>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={isAwaitingClass}
+                  onChange={(e) =>
+                    setLearner(prev => ({
+                      ...prev,
+                      class: e.target.checked ? "0" : "",
+                    }))
+                  }
+                />
+                Waiting for class
+              </label>
             </div>
             <div className="availability-form-group">
               <h4 className="input-label">Availability</h4>

@@ -24,7 +24,7 @@ export interface TutorFilters extends Filters {
 }
 
 export interface LearnerFilters extends Filters {
-  not_in_class: boolean;
+  awaiting_class: boolean;
 }
 
 export const preferenceKeys = [

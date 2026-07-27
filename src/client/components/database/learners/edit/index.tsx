@@ -39,6 +39,8 @@ function LearnerEdit() {
     },
   });
   const [errors, setErrors] = useState<LearnerFormErrors>({});
+  const isAwaitingClass = learner.class === "0";
+  const hasAssignedClass = learner.class !== "" && learner.class !== "0";
 
   useEffect(() => {
     if (!id) return;
@@ -312,6 +314,27 @@ function LearnerEdit() {
                   onChange={handleChange}
                 />
               </div>
+            </div>
+            <div className="form-group">
+              <h4 className="input-label">Class</h4>
+
+              {hasAssignedClass ? (
+                <p>Class {learner.class}</p>
+              ) : (
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isAwaitingClass}
+                    onChange={(e) =>
+                      setLearner(prev => ({
+                        ...prev,
+                        class: e.target.checked ? "0" : "",
+                      }))
+                    }
+                  />
+                  Waiting for class
+                </label>
+              )}
             </div>
             <div className="availability-form-group">
               <h4 className="input-label">Availability</h4>

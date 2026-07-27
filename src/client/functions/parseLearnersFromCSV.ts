@@ -117,7 +117,11 @@ export function parseLearnerFromCSV(text: string): Learner[] {
         ? "Preparing for citizenship test."
         : "",
       level: parseLevel(find(headerKeywords.level)),
-      class: "",
+      class: find(headerKeywords.conversationGroup)
+      .toLowerCase()
+      .includes("yes")
+        ? "0"
+        : "",
       availability: {
         monday: parseDayAvailability(
           find(headerKeywords.mondayAvailability)
