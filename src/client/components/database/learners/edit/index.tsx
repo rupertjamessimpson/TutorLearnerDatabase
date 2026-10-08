@@ -55,7 +55,27 @@ function LearnerEdit() {
   ) => {
     const { name, value, type } = e.target;
 
-    // Text/email/select (gender) + any other plain string fields like notes/class
+    // Availability selects: "monday.start_time"
+    if (name.includes(".")) {
+      const [day, timeType] = name.split(".");
+
+      setLearner((prevLearner) => ({
+        ...prevLearner,
+        availability: {
+          ...prevLearner.availability,
+          [day as keyof Learner["availability"]]: {
+            ...prevLearner.availability[
+              day as keyof Learner["availability"]
+            ],
+            [timeType]: value,
+          },
+        },
+      }));
+
+      return;
+    }
+
+    // Text/email/select fields
     if (type === "text" || type === "email" || type === "select-one") {
       setLearner((prevLearner) => ({
         ...prevLearner,
@@ -84,7 +104,7 @@ function LearnerEdit() {
       return;
     }
 
-    // Level checkbox (treated like radio – only one level at a time)
+    // Level checkbox
     if (type === "checkbox") {
       if (name === "level") {
         setLearner((prevLearner) => ({
@@ -95,29 +115,12 @@ function LearnerEdit() {
       return;
     }
 
-    // Availability selects: "monday.start_time"
-    if (name.includes(".")) {
-      const [day, timeType] = name.split(".");
-      setLearner((prevLearner) => ({
-        ...prevLearner,
-        availability: {
-          ...prevLearner.availability,
-          [day as keyof Learner["availability"]]: {
-            ...prevLearner.availability[day as keyof Learner["availability"]],
-            [timeType]: value,
-          },
-        },
-      }));
-      return;
-    }
-
     // Fallback
     setLearner((prevLearner) => ({
       ...prevLearner,
       [name]: value,
     }));
   };
-
 
   const validateForm = () => {
     const newErrors: LearnerFormErrors = {};
